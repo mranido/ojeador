@@ -2,13 +2,10 @@
 
 const express = require("express");
 const router = express.Router();
-const { activatePlayer } = require("../controllers/users/activation-account");
-const { activateScout } = require("../controllers/users/activation-account");
+const { activateUser } = require("../controllers/users/activation-account");
 //const { getPlayers } = require("../controllers/users/get-users");
-const { loginJugador } = require("../controllers/users/login-player");
-const { loginOjeador } = require("../controllers/users/login-player");
-const { registerPlayer } = require("../controllers/users/register-player");
-const { registerScout } = require("../controllers/users/register-player");
+const { loginUser } = require("../controllers/users/login-user");
+const { registerUser } = require("../controllers/users/register-user");
 //const { updatePlayer } = require("../controllers/users/update-user");
 // const {
 //   uploadImageProfile,
@@ -20,12 +17,9 @@ const validateAuth = require("../middlewares/validate-auth");
 //Publicas
 ///api/v1/users
 
-router.route("/register/player").post(registerPlayer);
-router.route("/login/player").post(loginJugador);
-router.route("/activation/player").get(activatePlayer);
-router.route("/register/scout").post(registerScout);
-router.route("/login/scout").post(loginOjeador);
-router.route("/activation/scout").get(activateScout);
+router.route("/register/").post(registerUser);
+router.route("/login/").post(loginUser);
+router.route("/activation/").get(activateUser);
 
 //Privadas
 // router.route("/").all(validateAuth).get(getUsers).put(updateUser);

@@ -2,330 +2,157 @@
 
 const database = require("../infrastructure/database");
 
-async function addPlayer(player) {
+async function addUser(user) {
   const pool = await database.getPool();
   const now = new Date();
-  const query = `INSERT INTO players (
-        playerName,
-        playerEmail,
-        playerPassword,
-        playerVerificationCode,
-        playerCreatedAt
-    ) VALUES (?,?,?,?,?)`;
-  const [created] = await pool.query(query, [...Object.values(player), now]);
+  const query = `INSERT INTO users (
+        userName,
+        userEmail,
+        userPassword,
+        userVerificationCode,
+        userRol,
+        userCreatedAt
+        ) VALUES (?,?,?,?,?,?)`;
+  const [created] = await pool.query(query, [...Object.values(user), now]);
 
   return created.insertId;
 }
 
-async function activateValidationPlayer(playerVerificationCode) {
+async function activateValidation(userVerificationCode) {
   const now = new Date();
 
   const pool = await database.getPool();
-  const updateQuery = `UPDATE players
-    SET playerVerifiedAt = ?
-    WHERE playerVerificationCode = ?
-    AND playerVerifiedAt IS NULL`;
+  const updateQuery = `UPDATE users
+    SET userVerifiedAt = ?
+    WHERE userVerificationCode = ?
+    AND userVerifiedAt IS NULL`;
 
   const [resultActivation] = await pool.query(updateQuery, [
     now,
-    playerVerificationCode,
+    userVerificationCode,
   ]);
 
   return resultActivation.affectedRows === 1;
 }
 
-async function getPlayerByVerificationCode(playerVerificationCode) {
+async function getUserByVerificationCode(userVerificationCode) {
   const pool = await database.getPool();
-  const query = `SELECT playerName, playerEmail
-  FROM players
-  WHERE playerVerificationCode = ?`;
-  const [player] = await pool.query(query, playerVerificationCode);
+  const query = `SELECT userName, userEmail
+  FROM users
+  WHERE userVerificationCode = ?`;
+  const [user] = await pool.query(query, userVerificationCode);
 
-  return player[0];
+  return user[0];
 }
 
-async function findAllPlayers() {
+async function findAllUsers(userRol) {
   const pool = await database.getPool();
-  const query = `SELECT playerId, playerName, playerEmail, playerVerifiedAt FROM players`;
+  const query = `SELECT userId, userName, userEmail, userVerifiedAt FROM users where userRol =?`;
   console.log("query", query);
-  const [players] = await pool.query(query);
-  console.log("players", players);
+  const [users] = await pool.query(query, userRol);
+  console.log("users", users);
 
-  return players;
+  return users;
 }
 
-async function loginPlayer(playerEmail) {
+async function login(userEmail) {
   const pool = await database.getPool();
-  const query = `SELECT playerId, playerName, playerRol, playerVerifiedAt, playerPassword
-    FROM players
-    WHERE playerEmail = ?`;
-  const [player] = await pool.query(query, playerEmail);
+  const query = `SELECT userId, userName, userRol, userVerifiedAt, userPassword
+    FROM users
+    WHERE userEmail = ?`;
+  const [user] = await pool.query(query, userEmail);
 
-  console.log(player);
-  return player[0];
+  console.log(user);
+  return user[0];
 }
-async function removePlayerById(playerId) {
+async function removeUserById(userId) {
   const pool = await database.getPool();
-  const query = `DELETE FROM players WHERE playerId = ?`;
-  await pool.query(query, playerId);
+  const query = `DELETE FROM users WHERE userId = ?`;
+  await pool.query(query, userId);
 
   return true;
 }
 
-async function findPlayerById(playerId) {
+async function findUserById(userId) {
   const pool = await database.getPool();
-  const query = "SELECT * FROM players WHERE playerId = ?";
-  const [players] = await pool.query(query, playerId);
+  const query = "SELECT * FROM users WHERE userId = ?";
+  const [users] = await pool.query(query, userId);
 
-  return players[0];
+  return users[0];
 }
 
-async function updatePlayerById(data) {
-  const {
-    playerId,
-    playerName,
-    playerEmail,
-    playerPassword,
-    playerUpdatedAt,
-  } = data;
+async function updateUserById(data) {
+  const { userId, userName, userEmail, userPassword, userUpdatedAt } = data;
   const now = new Date();
   const pool = await database.getPool();
-  const updateQuery = `UPDATE players
-  SET playerName = ?, playerEmail = ?, playerPassword = ?, playerUpdatedAt =?
-  WHERE playerId = ?`;
+  const updateQuery = `UPDATE users
+  SET userName = ?, userEmail = ?, userPassword = ?, userUpdatedAt =?
+  WHERE userId = ?`;
   await pool.query(updateQuery, [
-    playerName,
-    playerEmail,
-    playerPassword,
+    userName,
+    userEmail,
+    userPassword,
     now,
-    playerId,
+    userId,
   ]);
 
   return true;
 }
 
-async function findPlayerProfileImage(playerId) {
+async function findUserProfileImage(userId) {
   const pool = await database.getPool();
-  const query = `SELECT playerImage FROM players WHERE playerId = ?`;
-  const [players] = await pool.query(query, playerId);
+  const query = `SELECT userImage FROM users WHERE userId = ?`;
+  const [users] = await pool.query(query, userId);
 
-  return players[0];
+  return users[0];
 }
 
-async function uploadPlayerProfileImagePlayer(playerId, playerImage) {
+async function uploadUserProfileImage(userId, userImage) {
   const pool = await database.getPool();
-  const updateQuery = `UPDATE players SET playerImage = ? WHERE playerId = ?`;
-  await pool.query(updateQuery, [playerImage, playerId]);
+  const updateQuery = `UPDATE users SET userImage = ? WHERE userId = ?`;
+  await pool.query(updateQuery, [userImage, userId]);
 
   return true;
 }
-async function addVerificationCodePlayer(playerId, playerVerificationCode) {
+async function addVerificationCode(userId, userVerificationCode) {
   const now = new Date();
   const pool = await database.getPool();
   const insertQuery = `
-    UPDATE INTO players SET playerVerificationCode = ?,
-    playerUpdatedAt = ?,
-    playerVerifiedAt = ?
-    WHERE playerId = ?
+    UPDATE INTO users SET userVerificationCode = ?,
+    userUpdatedAt = ?,
+    userVerifiedAt = ?
+    WHERE userId = ?
   `;
   const [created] = await pool.query(insertQuery, [
-    playerVerificationCode,
+    userVerificationCode,
     now,
     now,
-    playerId,
+    userId,
   ]);
 
   return created.insertId;
 }
-async function getPlayerByEmail(playerEmail) {
+async function getUserByEmail(userEmail) {
   const pool = await database.getPool();
-  const query = `SELECT playerId, playerEmail
-  FROM players
-  WHERE playerEmail = ?`;
-  const [player] = await pool.query(query, playerEmail);
+  const query = `SELECT userId, userEmail
+  FROM users
+  WHERE userEmail = ?`;
+  const [user] = await pool.query(query, userEmail);
 
-  return player[0];
-}
-
-async function addScout(scout) {
-  const pool = await database.getPool();
-  const now = new Date();
-  const query = `INSERT INTO scouts (
-        scoutName,
-        scoutEmail,
-        scoutPassword,
-        scoutVerificationCode,
-        scoutCreatedAt
-    ) VALUES (?,?,?,?,?)`;
-  const [created] = await pool.query(query, [...Object.values(scout), now]);
-
-  return created.insertId;
-}
-
-async function activateValidationScout(scoutVerificationCode) {
-  const now = new Date();
-
-  const pool = await database.getPool();
-  const updateQuery = `UPDATE scouts
-    SET scoutVerifiedAt = ?
-    WHERE scoutVerificationCode = ?
-    AND scoutVerifiedAt IS NULL`;
-
-  const [resultActivation] = await pool.query(updateQuery, [
-    now,
-    scoutVerificationCode,
-  ]);
-
-  return resultActivation.affectedRows === 1;
-}
-
-async function getScoutByVerificationCode(scoutVerificationCode) {
-  const pool = await database.getPool();
-  const query = `SELECT scoutName, scoutEmail
-  FROM scouts
-  WHERE scoutVerificationCode = ?`;
-  const [scout] = await pool.query(query, scoutVerificationCode);
-
-  return scout[0];
-}
-
-async function findAllScouts() {
-  const pool = await database.getPool();
-  const query = `SELECT scoutId, scoutName, scoutEmail, scoutVerifiedAt FROM scouts`;
-  console.log("query", query);
-  const [scouts] = await pool.query(query);
-  console.log("scouts", scouts);
-
-  return scouts;
-}
-
-async function loginScout(scoutEmail) {
-  const pool = await database.getPool();
-  const query = `SELECT scoutId, scoutName, scoutRol, scoutVerifiedAt, scoutPassword
-    FROM scouts
-    WHERE scoutEmail = ?`;
-  const [scout] = await pool.query(query, scoutEmail);
-
-  console.log(scout);
-  return scout[0];
-}
-async function removeScoutById(scoutId) {
-  const pool = await database.getPool();
-  const query = `DELETE FROM scouts WHERE scoutId = ?`;
-  await pool.query(query, scoutId);
-
-  return true;
-}
-
-async function findScoutById(scoutId) {
-  const pool = await database.getPool();
-  const query = "SELECT * FROM scouts WHERE scoutId = ?";
-  const [scouts] = await pool.query(query, scoutId);
-
-  return scouts[0];
-}
-
-async function updateScoutById(data) {
-  const {
-    scoutId,
-    scoutName,
-    scoutEmail,
-    scoutPassword,
-    scoutUpdatedAt,
-  } = data;
-  const now = new Date();
-  const pool = await database.getPool();
-  const updateQuery = `UPDATE scouts
-  SET scoutName = ?, scoutEmail = ?, scoutPassword = ?, scoutUpdatedAt =?
-  WHERE scoutId = ?`;
-  await pool.query(updateQuery, [
-    scoutName,
-    scoutEmail,
-    scoutPassword,
-    now,
-    scoutId,
-  ]);
-
-  return true;
-}
-
-async function findScoutProfileImage(scoutId) {
-  const pool = await database.getPool();
-  const query = `SELECT scoutImage FROM scouts WHERE scoutId = ?`;
-  const [scouts] = await pool.query(query, scoutId);
-
-  return scouts[0];
-}
-
-async function uploadScoutProfileImagePlayer(scoutId, scoutImage) {
-  const pool = await database.getPool();
-  const updateQuery = `UPDATE scouts SET scoutImage = ? WHERE scoutId = ?`;
-  await pool.query(updateQuery, [scoutImage, scoutId]);
-
-  return true;
-}
-async function addVerificationCodeScout(scoutId, scoutVerificationCode) {
-  const now = new Date();
-  const pool = await database.getPool();
-  const insertQuery = `
-    UPDATE INTO scouts SET scoutVerificationCode = ?,
-    scoutUpdatedAt = ?,
-    scoutVerifiedAt = ?
-    WHERE scoutId = ?
-  `;
-  const [created] = await pool.query(insertQuery, [
-    scoutVerificationCode,
-    now,
-    now,
-    scoutId,
-  ]);
-
-  return created.insertId;
-}
-async function getScoutByEmail(scoutEmail) {
-  const pool = await database.getPool();
-  const query = `SELECT scoutId, scoutEmail
-  FROM scouts
-  WHERE scoutEmail = ?`;
-  const [scout] = await pool.query(query, scoutEmail);
-
-  return scout[0];
-}
-
-async function getScoutOrPlayerByEmail(scoutEmail, playerEmail) {
-  const pool = await database.getPool();
-  const query = `SELECT scoutId, scoutEmail, playerId, playerEmail
-  FROM scouts, players
-  WHERE scoutEmail = ? OR playerEmail=?`;
-  const [scoutOrPlayer] = await pool.query(query, [scoutEmail, playerEmail]);
-
-  return scoutOrPlayer[0];
+  return user[0];
 }
 
 module.exports = {
-  addPlayer,
-  activateValidationPlayer,
-  addVerificationCodePlayer,
-  findAllPlayers,
-  findPlayerById,
-  findPlayerProfileImage,
-  removePlayerById,
-  updatePlayerById,
-  uploadPlayerProfileImagePlayer,
-  loginPlayer,
-  getPlayerByVerificationCode,
-  getPlayerByEmail,
-  addScout,
-  activateValidationScout,
-  addVerificationCodeScout,
-  findAllScouts,
-  findScoutById,
-  findScoutProfileImage,
-  removeScoutById,
-  updateScoutById,
-  uploadScoutProfileImagePlayer,
-  loginScout,
-  getScoutByVerificationCode,
-  getScoutByEmail,
-  getScoutOrPlayerByEmail,
+  addUser,
+  activateValidation,
+  addVerificationCode,
+  findAllUsers,
+  findUserById,
+  findUserProfileImage,
+  removeUserById,
+  updateUserById,
+  uploadUserProfileImage,
+  login,
+  getUserByVerificationCode,
+  getUserByEmail,
 };

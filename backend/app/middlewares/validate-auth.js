@@ -29,9 +29,9 @@ function validateAuth(req, res, next) {
 
     const decodedToken = jwt.verify(token, JWT_SECRET);
     //console.log(decodedToken);
-    const { playerId, playerName, playerRol } = decodedToken;
+    const { userId, userName, userRol } = decodedToken;
 
-    req.auth = { playerId, playerName, playerRol };
+    req.auth = { userId, userName, userRol };
 
     next();
   } catch (error) {

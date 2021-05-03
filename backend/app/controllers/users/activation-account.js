@@ -1,27 +1,22 @@
 "use strict";
 const createJsonError = require("../../errors/create-json-error");
 const {
-  activateValidationPlayer,
-  getPlayerByVerificationCode,
-  activateValidationScout,
-  getScoutByVerificationCode,
+  activateValidation,
+  getUserByVerificationCode,
 } = require("../../repositories/users-respository");
-const {
-  sendEmailPlayerCorrectValidation,
-  sendEmailScoutCorrectValidation,
-} = require("../../helpers/mail-smtp");
+const { sendEmailCorrectValidation } = require("../../helpers/mail-smtp");
 
-async function activatePlayer(req, res) {
+async function activateUser(req, res) {
   try {
-    const { verification_code: playerVerificationCode } = req.query;
+    const { verification_code: userVerificationCode } = req.query;
 
-    if (!playerVerificationCode) {
+    if (!userVerificationCode) {
       return res.status(400).json({
         message: "invalid verification code",
       });
     }
 
-    const isActivated = await activateValidationPlayer(playerVerificationCode);
+    const isActivated = await activateValidation(userVerificationCode);
 
     if (!isActivated) {
       res.send({
@@ -29,9 +24,9 @@ async function activatePlayer(req, res) {
       });
     }
 
-    const player = await getPlayerByVerificationCode(playerVerificationCode);
-    const { playerName, playerEmail } = player;
-    await sendEmailPlayerCorrectValidation(playerName, playerEmail);
+    const user = await getUserByVerificationCode(userVerificationCode);
+    const { userName, userEmail } = user;
+    await sendEmailCorrectValidation(userName, userEmail);
 
     res.send({ message: "account activated" });
   } catch (error) {
@@ -39,32 +34,4 @@ async function activatePlayer(req, res) {
   }
 }
 
-async function activateScout(req, res) {
-  try {
-    const { verification_code: scoutVerificationCode } = req.query;
-
-    if (!scoutVerificationCode) {
-      return res.status(400).json({
-        message: "invalid verification code",
-      });
-    }
-
-    const isActivated = await activateValidationScout(scoutVerificationCode);
-    console.log(isActivated);
-    if (!isActivated) {
-      res.send({
-        message: "Account not activated, verification code expired.",
-      });
-    }
-
-    const scout = await getScoutByVerificationCode(scoutVerificationCode);
-    const { scoutName, scoutEmail } = scout;
-    await sendEmailScoutCorrectValidation(scoutName, scoutEmail);
-
-    res.send({ message: "account activated" });
-  } catch (error) {
-    createJsonError(error, res);
-  }
-}
-
-module.exports = { activatePlayer, activateScout };
+module.exports = { activateUser };

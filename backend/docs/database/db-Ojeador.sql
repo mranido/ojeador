@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
     userName VARCHAR(255) NOT NULL,
     userEmail VARCHAR(320) UNIQUE NOT NULL,
     userPassword VARCHAR(255) NOT NULL,
-    userRol ENUM('Player', 'Scout') DEFAULT 'Player',
+    userRol ENUM('Player', 'Scout') DEFAULT,
     userVerificationCode VARCHAR(64) NULL,
     userLocation VARCHAR(60) NULL,
     userTeam VARCHAR(100) NULL,
