@@ -292,6 +292,16 @@ async function getScoutByEmail(scoutEmail) {
   return scout[0];
 }
 
+async function getScoutOrPlayerByEmail(scoutEmail, playerEmail) {
+  const pool = await database.getPool();
+  const query = `SELECT scoutId, scoutEmail, playerId, playerEmail
+  FROM scouts, players
+  WHERE scoutEmail = ? OR playerEmail=?`;
+  const [scoutOrPlayer] = await pool.query(query, [scoutEmail, playerEmail]);
+
+  return scoutOrPlayer[0];
+}
+
 module.exports = {
   addPlayer,
   activateValidationPlayer,
@@ -317,4 +327,5 @@ module.exports = {
   loginScout,
   getScoutByVerificationCode,
   getScoutByEmail,
+  getScoutOrPlayerByEmail,
 };

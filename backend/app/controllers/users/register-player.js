@@ -14,6 +14,7 @@ const {
   getPlayerByEmail,
   addScout,
   getScoutByEmail,
+  getScoutOrPlayerByEmail,
 } = require("../../repositories/users-respository");
 
 const schemaPlayer = Joi.object({
@@ -36,14 +37,21 @@ async function registerPlayer(req, res) {
     await schemaPlayer.validateAsync(body);
     const { playerName, playerEmail, playerPassword, scoutEmail } = body;
     console.log(playerName);
+    const playerOrScout = await getScoutOrPlayerByEmail(
+      playerEmail,
+      scoutEmail
+    );
     const player = await getPlayerByEmail(playerEmail);
-    console.log("player", player);
     if (player) {
       const error = new Error("Ya existe un usario registrado con ese email!");
       error.status = 409; // 400 tb es correcto
       throw error;
     }
-
+    if (playerOrScout) {
+      const error = new Error("Ya existe un usario registrado con ese email!");
+      error.status = 409; // 400 tb es correcto
+      throw error;
+    }
     const passwordHash = await bcrypt.hash(playerPassword, 10);
     const playerVerificationCode = await cryptoRandomString({ length: 64 });
     const playerDB = {
@@ -72,15 +80,24 @@ async function registerScout(req, res) {
   try {
     const { body } = req;
     await schemaScout.validateAsync(body);
-    const { scoutName, scoutEmail, scoutPassword } = body;
+    const { scoutName, scoutEmail, scoutPassword, playerEmail } = body;
+    console.log(scoutName);
+    const playerOrScout = await getScoutOrPlayerByEmail(
+      playerEmail,
+      scoutEmail
+    );
     const scout = await getScoutByEmail(scoutEmail);
-    console.log("scout", scout);
     if (scout) {
       const error = new Error("Ya existe un usario registrado con ese email!");
       error.status = 409; // 400 tb es correcto
       throw error;
     }
-
+    console.log("playerOrScout", playerOrScout);
+    if (playerOrScout) {
+      const error = new Error("Ya existe un usario registrado con ese email!");
+      error.status = 409; // 400 tb es correcto
+      throw error;
+    }
     const passwordHash = await bcrypt.hash(scoutPassword, 10);
     const scoutVerificationCode = await cryptoRandomString({ length: 64 });
     const scoutDB = {

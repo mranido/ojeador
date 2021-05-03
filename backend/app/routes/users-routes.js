@@ -19,6 +19,7 @@ const validateAuth = require("../middlewares/validate-auth");
 
 //Publicas
 ///api/v1/users
+
 router.route("/register/player").post(registerPlayer);
 router.route("/login/player").post(loginJugador);
 router.route("/activation/player").get(activatePlayer);
