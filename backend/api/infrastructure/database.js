@@ -13,6 +13,7 @@ async function getPool() {
       database: config.db.name,
       user: config.db.user,
       password: config.db.password,
+      timezone: config.db.timezone,
     });
   }
   console.log(pool);

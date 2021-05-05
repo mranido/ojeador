@@ -11,6 +11,7 @@ const controller = require("./controller");
 // const { getPlayerProfile } = require("../controllers/users/get-user-profile");
 
 const validateAuth = require("../../middlewares/validate-auth");
+const accessAuth = require("../../middlewares/access-auth");
 
 //Publicas
 ///api/v1/users
@@ -18,9 +19,11 @@ const validateAuth = require("../../middlewares/validate-auth");
 router
   .post("/register", controller.register)
   .get("/activation", controller.activation)
-  .get("/profiles", controller.get);
-// router.route("/login/").post(loginUser);
-// router.route("/activation/").get(activateUser);
+  .get("/profiles/:id", controller.get_profile)
+  .delete("/profiles/delete/:id", controller.remove)
+  .post("/login", controller.login);
+
+// .delete("/profiles/delete/:id", accessAuth.onlyPlayers, controller.remove)
 
 //Privadas
 // router.route("/").all(validateAuth).get(getUsers).put(updateUser);

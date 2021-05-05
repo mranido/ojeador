@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const { login } = require("../../../repositories/users-respository");
 const createJsonError = require("../../../errors/create-json-error");
 const config = require("../../../config");
+const accessAuth = require("../../../middlewares/access-auth");
 
 const schema = Joi.object({
   userEmail: Joi.string().email().required(),
@@ -62,6 +63,7 @@ async function loginUser(req, res) {
     const response = {
       accessToken: token,
       expiresIn: config.jwt.sesion,
+      result: accessAuth.decodedToken(token),
     };
 
     res.status(200);
@@ -72,4 +74,4 @@ async function loginUser(req, res) {
   }
 }
 
-module.exports = { loginUser };
+module.exports = loginUser;

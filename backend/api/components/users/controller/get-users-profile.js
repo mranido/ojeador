@@ -8,15 +8,20 @@ const config = require("../../../config");
 async function getUserProfile(req, res) {
   try {
     // Recogemos el Id del accessToken así no usamos ni tenemos que fiarnos de la URL
-    const { id } = req.auth;
-    const user = await usersRepository.findUserById(id);
+    const { id: userId } = req.params;
+    const user = await usersRepository.findUserById(userId);
 
-    const image = `${config.api.host}:${config.api.port}/${config.files.playerImage}/${user.image}`;
+    if (userId === undefined || !user) {
+      return res.status(400).send({ message: "no hay usuarios" });
+    }
 
-    const { nombre, email, rol, createdAt } = user;
+    // const image = `${config.api.host}:${config.api.port}/${config.files.userImage}/${user.image}`;
 
-    res.status(200);
-    res.send({ nombre, email, rol, createdAt, image });
+    //const { nombre, email, rol, createdAt } = user;
+
+    res.status(200).json({
+      data: { id: user.userId, name: user.userName, rol: user.userRol },
+    });
   } catch (err) {
     createJsonError(err, res);
   }

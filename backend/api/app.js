@@ -27,8 +27,8 @@ app
   .use(express.json(express.urlencoded({ extended: false })))
 
   //Muestro ficheros en carpeta Public
-  .use(express.static("public"));
+  .use(express.static("public"))
 
-app.use("/", router);
+  .use("/", router);
 
 module.exports = app;
