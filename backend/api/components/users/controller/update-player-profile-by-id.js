@@ -9,47 +9,72 @@ const { jwt } = require("../../../config");
 const schema = require("../schemas");
 const TABLE = "users";
 
+// async function updatePlayer(req, res, next) {
+//   try {
+//     const { userEmail } = req.auth;
+//     console.log("polllas", req.auth);
+//     const { id } = req.params;
+//     const userId = Number(id);
+//     const user = await model.findOne({ userId }, TABLE);
+//     if (!user) {
+//       return response.error(req, res, "El usuario no existe", 404);
+//     }
+//     const { body } = req;
+//     await schema.update.validateAsync(body);
+//     const {
+//       userName,
+//       userPassword,
+//       userLocation,
+//       userTeam,
+//       userNumber,
+//       userImage,
+//       userBirthday,
+//       userDescription,
+//     } = req.body;
+
+//     const userExists = await model.findOne({ userId }, TABLE);
+//     if (!userExists) {
+//       return response.error(req, res, "El usuario no existe", 404);
+//     }
+//     console.log(userExists);
+//     const userUpdated = {
+//       userName,
+//       userPassword,
+//       userLocation,
+//       userTeam,
+//       userNumber,
+//       userImage,
+//       userBirthday,
+//       userDescription,
+//     };
+
+//     await model.update(userUpdated, TABLE, userEmail);
+
+//     response.success(req, res, "Soy el puto amo", 201);
+//   } catch (error) {
+//     next(error);
+//   }
+// }
 async function updatePlayer(req, res, next) {
   try {
-    console.log(req.body);
-    response.success(req, res, "ola", 201);
-    const {id} = req.params;
+    const { id } = req.params;
     const userId = Number(id);
-    console.log(body);
-    await schema.update.validateAsync(req.body);
-    // const {
-    //   name,
-    //   userEmail,
-    //   userPassword,
-    //   userLocation,
-    //   userTeam,
-    //   userNumber,
-    //   userImage,
-    //   userBirthday,
-    //   userDescription,
-    // } = req.body;
-    // // accessAuth.decodedToken(authorization);
 
-    // // const token = authorization.replace("Bearer ", "");
+    const { body: userDataUpdated } = req;
+    await schema.update.validateAsync(userDataUpdated);
 
-    // const userExists = await model.findOne({ userId }, TABLE);
-    // if (!userExists) {
-    //   return response.error(req, res, "El usuario no existe", 404);
-    // }
-    // const userUpdated = {
-    //   userId,
-    //   userName: name,
-    //   userEmail,
-    //   userPassword,
-    //   userLocation,
-    //   userTeam,
-    //   userNumber,
-    //   userImage,
-    //   userBirthday,
-    //   userDescription,
-    // };
+    const userExists = await model.findOne({ userId }, TABLE);
+    if (!userExists) {
+      return response.error(req, res, "El usuario no existe", 404);
+    }
 
-    // await model.update(userUpdated, TABLE);
+    if (userExists.userId === userId) {
+      await model.update(userDataUpdated, TABLE, userId);
+    } else {
+      return response.error(req, res, "tu madre", 403);
+    }
+
+    response.success(req, res, "Soy el puto amo", 201);
   } catch (error) {
     next(error);
   }

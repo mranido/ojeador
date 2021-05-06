@@ -44,6 +44,17 @@ module.exports = {
     const [result] = await connectionDB.query(sql, [...values]);
     return result[0];
   },
+
+  delete: async (params, tableName) => {
+    connectionDB = await getConnection();
+    const { columnSet, values } = multipleColumnSet(params);
+
+    const sql = `DELETE FROM ${tableName}
+        WHERE ${columnSet}`;
+
+    const [result] = await connectionDB.query(sql, [...values]);
+    return result[0];
+  },
   create: async (user, tableName) => {
     connectionDB = await getConnection();
 

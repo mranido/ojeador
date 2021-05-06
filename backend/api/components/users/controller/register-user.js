@@ -16,7 +16,7 @@ async function registerUser(req, res, next) {
 
     const emailExists = await model.findOne({ userEmail }, TABLE);
     if (emailExists) {
-      response.error(req, res, "Ya existe un usuario", 409);
+      return response.error(req, res, "Ya existe un usuario", 409);
     }
 
     const userVerificationCode = cryptoRandomString({ length: 64 });

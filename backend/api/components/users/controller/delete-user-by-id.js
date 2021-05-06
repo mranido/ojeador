@@ -1,31 +1,29 @@
 "use strict";
 
 const Joi = require("joi");
-const createJsonError = require("../../../errors/create-json-error");
-const {
-  findUserById,
-  removeUserById,
-} = require("../../../repositories/users-respository");
-const throwJsonError = require("../../../errors/throw-json-error");
+const schema = require("../schemas");
+const model = require("../../../infrastructure/mock-db");
+const TABLE = "users";
+const response = require("../../../routes/response");
 
-const schema = Joi.number().positive();
 
-async function deleteUserById(req, res) {
+async function deleteUserById(req, res, next) {
   try {
     // Cogemos el id
     const { id: userId } = req.params;
-    await schema.validateAsync(userId);
+    await schema.remove.validateAsync(userId);
 
-    const user = await findUserById(userId);
-    if (!user) {
-      return throwJsonError("Usuario no existe", 400);
-    }
+      const user = await model.findOne({ userId }, TABLE);
+      console.log("--> user", user);
+      if (!user) {
+        return response.error(req, res, "Usuario erróneo", 409);
+      }
 
-    await removeUserById(userId);
+    await model.delete({userId}, TABLE);
 
-    res.status(200).json({ message: "Se ha borrado correctamente el usuario" });
-  } catch (err) {
-    createJsonError(err, res);
+    response.success(req, res, "usuario borrado correctamente", 201);
+  } catch (error) {
+    next(error);
   }
 }
 

@@ -3,6 +3,7 @@
 const routerx = require("express-promise-router");
 const router = routerx();
 const controller = require("./controller");
+const bodyParser = require("body-parser").json();
 
 //const { updatePlayer } = require("../controllers/users/update-user");
 // const {
@@ -10,7 +11,7 @@ const controller = require("./controller");
 // } = require("../controllers/users/upload-image-profile");
 // const { getPlayerProfile } = require("../controllers/users/get-user-profile");
 
-const accessAuth = require("../../middlewares/access-auth");
+const accessAuth = require("../../middlewares/access-auth")
 const validateAuth = require("../../middlewares/validate-auth");
 
 //Publicas
@@ -20,9 +21,13 @@ router
   .post("/register", controller.register)
   .get("/:id/activation", controller.activation)
   .post("/login", controller.login)
- //.get("/profiles/:id", controller.get_profile)
- .put("/profiles/update/:id", controller.update);
-// .delete("/profiles/delete/:id", controller.remove);
+  //.get("/profiles/:id", controller.get_profile)
+  .put(
+    "/profiles/update/:id",
+    bodyParser,
+    // accessAuth,
+    controller.update
+  ).delete("/profiles/delete/:id", controller.remove);
 
 // .delete("/profiles/delete/:id", accessAuth.onlyPlayers, controller.remove)
 
