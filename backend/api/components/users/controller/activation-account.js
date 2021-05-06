@@ -1,22 +1,25 @@
 "use strict";
-const createJsonError = require("../../../errors/create-json-error");
-const {
-  activateValidation,
-  getUserByVerificationCode,
-} = require("../../../repositories/users-respository");
+const model = require("../../../infrastructure/mock-db");
+const response = require("../../../routes/response");
 const { sendEmailCorrectValidation } = require("../../../helpers/mail-smtp");
+const TABLE = "users";
 
-async function activateUser(req, res) {
+async function activateUser(req, res, next) {
   try {
     const { verification_code: userVerificationCode } = req.query;
+    const { id } = req.params;
+    const userId = id;
+    console.log(req.params, "Este es el puto id", userId);
 
     if (!userVerificationCode) {
-      return res.status(400).json({
-        message: "invalid verification code",
-      });
+      return response.error(req, res, "Código de verificación no válido", 400);
     }
 
-    const isActivated = await activateValidation(userVerificationCode);
+    const activatedLink = {
+      userVerifiedAt: new Date(),
+      userVerificationCode: null,
+    };
+    const isActivated = await model.update(activatedLink, TABLE, userId);
 
     if (!isActivated) {
       res.send({
@@ -24,13 +27,13 @@ async function activateUser(req, res) {
       });
     }
 
-    const user = await getUserByVerificationCode(userVerificationCode);
-    const { userName, userEmail } = user;
+    const dataEmail = await model.findOne({ userId }, TABLE);
+    const { userName, userEmail } = dataEmail;
     await sendEmailCorrectValidation(userName, userEmail);
 
     res.send({ message: "account activated" });
   } catch (error) {
-    createJsonError(error, res);
+    next(error);
   }
 }
 

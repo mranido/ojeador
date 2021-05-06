@@ -1,54 +1,50 @@
 "use strict";
 
-const Joi = require("joi");
 const bcrypt = require("bcryptjs");
 const cryptoRandomString = require("crypto-random-string");
-
-const createJsonError = require("../../../errors/create-json-error");
+const model = require("../../../infrastructure/mock-db");
+const response = require("../../../routes/response");
 const { sendEmailRegistration } = require("../../../helpers/mail-smtp");
-const {
-  addUser,
-  getUserByEmail,
-} = require("../../../repositories/users-respository");
+const schema = require("../schemas");
+const TABLE = "users";
 
-const schema = Joi.object({
-  userName: Joi.string().min(1).max(240).required(),
-  userEmail: Joi.string().email().required(),
-  userPassword: Joi.string().min(4).max(8).required(),
-  userRepeatPassword: Joi.ref("userPassword"),
-  userRol: Joi.valid("Player", "Scout"),
-});
-
-async function registerUser(req, res) {
+async function registerUser(req, res, next) {
   try {
-    const { body } = req;
-    await schema.validateAsync(body);
-    const { userName, userEmail, userPassword, userRol } = body;
+    await schema.register.validateAsync(req.body);
+    const { userName, userEmail, userPassword, userRol } = req.body;
 
-    const user = await getUserByEmail(userEmail);
-    if (user) {
-      const error = new Error("Ya existe un usario registrado con ese email!");
-      error.status = 409; // 400 tb es correcto
-      throw error;
+    const emailExists = await model.findOne({ userEmail }, TABLE);
+    if (emailExists) {
+      response.error(req, res, "Ya existe un usuario", 409);
     }
-    const passwordHash = await bcrypt.hash(userPassword, 10);
-    const userVerificationCode = await cryptoRandomString({ length: 64 });
+
+    const userVerificationCode = cryptoRandomString({ length: 64 });
     const userDB = {
       userName,
       userEmail,
-      passwordHash,
+      userPassword: await bcrypt.hash(userPassword, 10),
       userVerificationCode,
       userRol,
     };
-    console.log(userDB);
-    const userId = await addUser(userDB);
 
-    await sendEmailRegistration(userName, userEmail, userVerificationCode);
+    const newUser = await model.create(userDB, TABLE);
 
-    res.status(200);
-    res.send({ userId });
+    const findId = await model.findOne({ userEmail }, TABLE);
+
+    const { userId } = findId;
+
+    console.log("VAMOOOOSSS", findId);
+
+    await sendEmailRegistration(
+      userName,
+      userEmail,
+      userVerificationCode,
+      userId
+    );
+
+    response.success(req, res, "usuario creado", 201);
   } catch (error) {
-    createJsonError(error, res);
+    next(error);
   }
 }
 

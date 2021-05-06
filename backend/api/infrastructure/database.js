@@ -5,19 +5,11 @@ const config = require("../config");
 
 let pool;
 
-async function getPool() {
+async function getConnection() {
   if (!pool) {
-    pool = await mysql.createPool({
-      host: config.db.host,
-      port: config.db.port,
-      database: config.db.name,
-      user: config.db.user,
-      password: config.db.password,
-      timezone: config.db.timezone,
-    });
+    pool = mysql.createPool(config.db);
   }
-  console.log(pool);
-  return pool;
+  return await pool.getConnection();
 }
 
-module.exports = { getPool };
+module.exports = getConnection;

@@ -82,16 +82,33 @@ async function findUserById(userId) {
 }
 
 async function updateUserById(data) {
-  const { userId, userName, userEmail, userPassword, userUpdatedAt } = data;
+  const {
+    userId,
+    userName,
+    userEmail,
+    userPassword,
+    userLocation,
+    userTeam,
+    userNumber,
+    userImage,
+    userBirhtday,
+    userDescription,
+  } = data;
   const now = new Date();
   const pool = await database.getPool();
   const updateQuery = `UPDATE users
-  SET userName = ?, userEmail = ?, userPassword = ?, userUpdatedAt =?
+  SET userName = ?, userEmail = ?, userPassword = ?, userLocation =?, userTeam=?, userNumber=?, userImage=?, userBirthday=?, userDescription=?, userUpdatedAt=?
   WHERE userId = ?`;
   await pool.query(updateQuery, [
     userName,
     userEmail,
     userPassword,
+    userLocation,
+    userTeam,
+    userNumber,
+    userImage,
+    userBirhtday,
+    userDescription,
     now,
     userId,
   ]);

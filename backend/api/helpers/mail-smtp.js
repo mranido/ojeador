@@ -16,9 +16,10 @@ const transporter = nodemailer.createTransport({
 async function sendEmailRegistration(
   userName,
   userEmail,
-  userVerificationCode
+  userVerificationCode,
+  userid
 ) {
-  const linkActivation = `${config.api.host}:${config.api.port}/api/v1/users/activation?verification_code=${userVerificationCode}`;
+  const linkActivation = `${config.api.host}:${config.api.port}/api/v1/users/${userid}/activation?verification_code=${userVerificationCode}`;
   console.log(linkActivation);
 
   const mailMessage = {

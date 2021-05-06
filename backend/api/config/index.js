@@ -3,11 +3,11 @@ require("dotenv").config();
 module.exports = {
   api: { port: process.env.PORT, host: process.env.HOST },
   db: {
-    port: process.env.DB_PORT,
+    connectionLimit: 100,
     host: process.env.DB_HOST,
-    name: process.env.DB_NAME,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     timezone: process.env.DB_TIMEZONE,
   },
   jwt: {

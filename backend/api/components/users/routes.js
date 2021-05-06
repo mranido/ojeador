@@ -10,23 +10,27 @@ const controller = require("./controller");
 // } = require("../controllers/users/upload-image-profile");
 // const { getPlayerProfile } = require("../controllers/users/get-user-profile");
 
-const validateAuth = require("../../middlewares/validate-auth");
 const accessAuth = require("../../middlewares/access-auth");
+const validateAuth = require("../../middlewares/validate-auth");
 
 //Publicas
 ///api/v1/users
 
 router
   .post("/register", controller.register)
-  .get("/activation", controller.activation)
-  .get("/profiles/:id", controller.get_profile)
-  .delete("/profiles/delete/:id", controller.remove)
+  .get("/:id/activation", controller.activation)
   .post("/login", controller.login);
+// .get("/profiles/:id", controller.get_profile)
+// // .put("/profiles/update/:id", controller.update_profile)
+// .delete("/profiles/delete/:id", controller.remove);
 
 // .delete("/profiles/delete/:id", accessAuth.onlyPlayers, controller.remove)
 
 //Privadas
-// router.route("/").all(validateAuth).get(getUsers).put(updateUser);
+//router;
+// .post("/login", controller.login)
+// .delete("/profiles/delete/:id", accessAuth.decodedToken, controller.remove);
+
 // router.route("/:id").all(validateAuth).delete(deleteUserById);
 // router.route("/:id/reviews").all(validateAuth).get(getUserReviewsById);
 // router.route("/profile").all(validateAuth);

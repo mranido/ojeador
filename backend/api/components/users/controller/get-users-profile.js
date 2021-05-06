@@ -9,12 +9,16 @@ async function getUserProfile(req, res) {
   try {
     // Recogemos el Id del accessToken así no usamos ni tenemos que fiarnos de la URL
     const { id: userId } = req.params;
+    const { id } = req.auth;
+    console.log(userId);
     const user = await usersRepository.findUserById(userId);
 
     if (userId === undefined || !user) {
       return res.status(400).send({ message: "no hay usuarios" });
     }
-
+    if (userId === id) {
+      return "ok";
+    }
     // const image = `${config.api.host}:${config.api.port}/${config.files.userImage}/${user.image}`;
 
     //const { nombre, email, rol, createdAt } = user;
