@@ -6,43 +6,53 @@ const response = require("../../../routes/response");
 const config = require("../../../config");
 const accessAuth = require("../../../middlewares/access-auth");
 const { jwt } = require("../../../config");
+const schema = require("../schemas");
 const TABLE = "users";
 
-const schemaId = Joi.number().positive();
-
-async function updatePlayerProfile(req, res, next) {
+async function updatePlayer(req, res, next) {
   try {
-    const { body } = req;
-    const { id } = req.params;
+    console.log(req.body);
+    response.success(req, res, "ola", 201);
+    const {id} = req.params;
     const userId = Number(id);
-    const { authorization } = req.headers;
-    // userSchema.validateAsync(user);
+    console.log(body);
+    await schema.update.validateAsync(req.body);
+    // const {
+    //   name,
+    //   userEmail,
+    //   userPassword,
+    //   userLocation,
+    //   userTeam,
+    //   userNumber,
+    //   userImage,
+    //   userBirthday,
+    //   userDescription,
+    // } = req.body;
+    // // accessAuth.decodedToken(authorization);
 
-    // accessAuth.decodedToken(authorization);
+    // // const token = authorization.replace("Bearer ", "");
 
-    // const token = authorization.replace("Bearer ", "");
+    // const userExists = await model.findOne({ userId }, TABLE);
+    // if (!userExists) {
+    //   return response.error(req, res, "El usuario no existe", 404);
+    // }
+    // const userUpdated = {
+    //   userId,
+    //   userName: name,
+    //   userEmail,
+    //   userPassword,
+    //   userLocation,
+    //   userTeam,
+    //   userNumber,
+    //   userImage,
+    //   userBirthday,
+    //   userDescription,
+    // };
 
-    const userExists = await usersRepository.findUserById(userId);
-    if (!userExists) {
-      return res.status(404).json({ message: "El usuario no existe" });
-    }
-    const userUpdated = {
-      id: userId,
-      name: body.name,
-      email: body.email,
-      password: body.password,
-      location: body.location,
-      team: body.team,
-      number: body.number,
-      image: body.image,
-      birthday: body.birthday,
-      description: body.description,
-    };
-
-    await usersRepository.updateUserById(userUpdated);
+    // await model.update(userUpdated, TABLE);
   } catch (error) {
     next(error);
   }
 }
 
-module.exports = updatePlayerProfile;
+module.exports = updatePlayer;

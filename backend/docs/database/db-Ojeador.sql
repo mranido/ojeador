@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
     userNumber TINYINT UNSIGNED NULL,
     userImage VARCHAR(255) NULL,
     userBirthday DATE NULL,
-    userDescription VARCHAR(500) NULL, 
+    userDescription VARCHAR(500) NULL DEFAULT NOW(), 
     userCreatedAt DATETIME NOT NULL,
     userUpdatedAt DATETIME NULL,
     userDeletedAt DATETIME NULL,

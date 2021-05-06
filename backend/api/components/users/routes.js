@@ -19,9 +19,9 @@ const validateAuth = require("../../middlewares/validate-auth");
 router
   .post("/register", controller.register)
   .get("/:id/activation", controller.activation)
-  .post("/login", controller.login);
-// .get("/profiles/:id", controller.get_profile)
-// // .put("/profiles/update/:id", controller.update_profile)
+  .post("/login", controller.login)
+ //.get("/profiles/:id", controller.get_profile)
+ .put("/profiles/update/:id", controller.update);
 // .delete("/profiles/delete/:id", controller.remove);
 
 // .delete("/profiles/delete/:id", accessAuth.onlyPlayers, controller.remove)

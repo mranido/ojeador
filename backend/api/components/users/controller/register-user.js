@@ -10,6 +10,7 @@ const TABLE = "users";
 
 async function registerUser(req, res, next) {
   try {
+    console.log(req.body);
     await schema.register.validateAsync(req.body);
     const { userName, userEmail, userPassword, userRol } = req.body;
 
