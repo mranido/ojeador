@@ -99,7 +99,6 @@ module.exports = {
 
     const [result] = await connectionDB.query(sql, [...values, cValues]);
     const affectedRows = result ? result.affectedRows : 0;
-
     return affectedRows;
   },
 };
