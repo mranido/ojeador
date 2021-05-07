@@ -5,9 +5,9 @@ const bcrypt = require("bcryptjs");
 const config = require("../../../config");
 const accessAuth = require("../../../middlewares/access-auth");
 const schema = require("../schemas");
-const model=require('../../../infrastructure/mock-db');
-const TABLE ='users';
-const response = require('../../../routes/response');
+const model = require("../../../infrastructure/mock-db");
+const TABLE = "users";
+const response = require("../../../routes/response");
 
 async function loginUser(req, res, next) {
   try {
@@ -16,11 +16,11 @@ async function loginUser(req, res, next) {
     const { userEmail, userPassword } = req.body;
 
     // 1. Buscamos el usuario en la base de datos
-    const user = await model.findOne({userEmail},TABLE);
+    const user = await model.findOne({ userEmail }, TABLE);
     console.log("--> user", user);
     // 2. Validamo sel usuario
     if (!user) {
-      return response.error(req, res, 'Usuario erróneo', 409);
+      return response.error(req, res, "Usuario erróneo", 409);
     }
     const { userId, userName, userRol, userVerifiedAt } = user;
     // 3. Comprobamos que el password que nos están enviando es válido.
@@ -29,11 +29,21 @@ async function loginUser(req, res, next) {
       user.userPassword
     );
     if (!isValidPassword) {
-      return response.error(req, res, 'No existe usuario o contraseña no válida', 403);
+      return response.error(
+        req,
+        res,
+        "No existe usuario o contraseña no válida",
+        403
+      );
     }
     // 4. Comprobamos que su cuenta esta activa
     if (!userVerifiedAt) {
-  return response.error(req, res, "Verifique su cuenta para proceder con nuestros servicios", 403);
+      return response.error(
+        req,
+        res,
+        "Verifique su cuenta para proceder con nuestros servicios",
+        403
+      );
     }
 
     // 5. generar el JWT
@@ -42,14 +52,17 @@ async function loginUser(req, res, next) {
       expiresIn: config.jwt.sesion,
     });
 
+    console.log(tokenPayload);
+    console.log(token);
+
     const tokenData = {
       accessToken: token,
       expiresIn: config.jwt.sesion,
     };
 
-    return response.success(req, res, tokenData, 200);
+    response.success(req, res, tokenData, 200);
   } catch (error) {
-    next(error)
+    next(error);
   }
 }
 

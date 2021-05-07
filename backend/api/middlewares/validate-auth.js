@@ -30,7 +30,7 @@ function validateAuth(req, res, next) {
     const token = extractAccessToken(req.headers);
 
     const decodedToken = jwt.verify(token, JWT_SECRET);
-    //console.log(decodedToken);
+    console.log(decodedToken);
     const { userId, userName, userEmail, userRol } = decodedToken;
 
     req.auth = { userId, userName, userEmail, userRol };

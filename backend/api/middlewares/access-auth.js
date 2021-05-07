@@ -6,16 +6,18 @@ const config = require("../config");
 
 module.exports = {
   decodedToken: (token) => {
-    const tokenDecoded = jwt.verify(token, config.jwt.secret);
+    const tokenDecoded = jwt.decode(token, config.jwt.secret);
     return tokenDecoded;
   },
 
   only_player: (req, res, next) => {
+    console.log("DECODE", this.decodedToken);
     const { authorization } = req.headers;
+    console.log(req.headers);
 
     // we check if reequest has an authorization in headers
     if (authorization) {
-      const authNoBearer = authorization.replace("Bearer ", "");
+      const authNoBearer = authorization.split(" ")[1];
       console.log(
         "ESTE ES EL AUTHORIZATION::::::",
         authorization,

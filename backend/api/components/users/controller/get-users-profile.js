@@ -10,8 +10,11 @@ async function getUserProfile(req, res, next) {
   try {
     // Recogemos el Id del accessToken así no usamos ni tenemos que fiarnos de la URL
     const { userId } = req.params;
-    console.log(userEmail);
-    const user = await await model.findOne({ userId }, TABLE);
+    parseInt(userId);
+    console.log(req.auth);
+
+    const user = await model.findOne({ userId }, TABLE);
+    console.log(user);
 
     if (userId === undefined || !user) {
       return response.error(req, res, "No hay usuarios", 409);
@@ -21,14 +24,9 @@ async function getUserProfile(req, res, next) {
     // }
 
     res.status(200).json({
-      data: { id: user.userId, name: user.userName, rol: user.userRol },
+      data: { id: user.userId, rol: user.userRol },
     });
-    response.success(
-      req,
-      res,
-      { id: user.userId, name: user.userName, rol: user.userRol },
-      201
-    );
+    response.success(req, res, { id: user.userId, rol: user.userRol }, 201);
   } catch (error) {
     next(error);
   }
