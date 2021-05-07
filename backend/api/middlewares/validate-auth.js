@@ -2,7 +2,7 @@
 
 const jwt = require("jsonwebtoken");
 const createJsonError = require("../errors/create-json-error");
-const JWT_SECRET = require("../config");
+const {JWT_SECRET} = process.env;
 const config = require("../config");
 
 /**
@@ -20,19 +20,20 @@ function extractAccessToken(headers) {
     throw error;
   }
 
-  return req.headers.authorization.split(" ");
+  return authorization.split(" ");
   //return authorization.slice(7, authorization.length);
 }
 
 function validateAuth(req, res, next) {
   try {
+    console.log(req.headers);
     const token = extractAccessToken(req.headers);
 
-    const decodedToken = jwt.verify(token, config.jwt.secret);
+    const decodedToken = jwt.verify(token, JWT_SECRET);
     //console.log(decodedToken);
-    const { userId, userName, userRol } = decodedToken;
+    const { userId, userName, userEmail, userRol } = decodedToken;
 
-    // req.auth = { userId, userName, userRol,... };
+    req.auth = { userId, userName, userEmail, userRol };
 
     next();
   } catch (error) {

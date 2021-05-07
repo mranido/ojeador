@@ -68,7 +68,6 @@ module.exports = {
 
     return affectedRows;
   },
-
   update: async (user, tableName, where) => {
     connectionDB = await getConnection();
     if (where === undefined || where === null) {
@@ -90,5 +89,17 @@ module.exports = {
 
       return affectedRows;
     }
+  },
+  update1: async (user, tableName, where) => {
+    connectionDB = await getConnection();
+    const { columnSet, values } = multipleColumnSet(user);
+    const { columnSet: condition, values: cValues } = multipleColumnSet(where);
+    let sql = `
+			UPDATE ${tableName} SET ${columnSet} WHERE ${condition}`;
+
+    const [result] = await connectionDB.query(sql, [...values, cValues]);
+    const affectedRows = result ? result.affectedRows : 0;
+
+    return affectedRows;
   },
 };

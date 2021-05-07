@@ -21,14 +21,9 @@ router
   .post("/register", controller.register)
   .get("/:id/activation", controller.activation)
   .post("/login", controller.login)
-  //.get("/profiles/:id", controller.get_profile)
-  .put(
-    "/profiles/update/:id",
-    bodyParser,
-    // accessAuth,
-    controller.update
-  ).delete("/profiles/delete/:id", controller.remove);
-
+  .get("/profiles/:id", controller.get_profile)
+  .put("/profiles/update/:id", accessAuth.only_player, controller.update)
+  .delete("/profiles/delete/:id", accessAuth.only_player, controller.remove);
 // .delete("/profiles/delete/:id", accessAuth.onlyPlayers, controller.remove)
 
 //Privadas

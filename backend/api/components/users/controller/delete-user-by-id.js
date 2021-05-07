@@ -6,20 +6,18 @@ const model = require("../../../infrastructure/mock-db");
 const TABLE = "users";
 const response = require("../../../routes/response");
 
-
 async function deleteUserById(req, res, next) {
   try {
-    // Cogemos el id
     const { id: userId } = req.params;
     await schema.remove.validateAsync(userId);
 
-      const user = await model.findOne({ userId }, TABLE);
-      console.log("--> user", user);
-      if (!user) {
-        return response.error(req, res, "Usuario erróneo", 409);
-      }
+    const user = await model.findOne({ userId }, TABLE);
+    console.log("--> user", user);
+    if (!user) {
+      return response.error(req, res, "Usuario erróneo", 409);
+    }
 
-    await model.delete({userId}, TABLE);
+    await model.delete({ userId }, TABLE);
 
     response.success(req, res, "usuario borrado correctamente", 201);
   } catch (error) {

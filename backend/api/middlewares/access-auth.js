@@ -1,25 +1,42 @@
 "use strict";
 const jwt = require("jsonwebtoken");
 const config = require("../config");
-const bodyParser = require("body-parser").json();
+//auth.replace
+"Bearer ", "";
 
-module.exports = (req, res, next) => {
-  try {
-    const token = req.headers.authorization;
-    //.split(" ")[1];
-    console.log('jjjj', token);
-    const decodedToken = jwt.verify(JSON.parse(token), config.jwt.secret);
-    const userId = decodedToken.userId;
-    if (req.body.userId && req.body.userId !== userId) {
-      throw "Invalid user ID";
+module.exports = {
+  decodedToken: (token) => {
+    const tokenDecoded = jwt.verify(token, config.jwt.secret);
+    return tokenDecoded;
+  },
+
+  only_player: (req, res, next) => {
+    const { authorization } = req.headers;
+
+    // we check if reequest has an authorization in headers
+    if (authorization) {
+      const authNoBearer = authorization.replace("Bearer ", "");
+      console.log(
+        "ESTE ES EL AUTHORIZATION::::::",
+        authorization,
+        "ESTE ES EL no bearer::::::",
+        authNoBearer
+      );
     } else {
-      next();
+      return res.status(401).send({
+        message: "Debes estar registrado para tener acceso a esta sección",
+      });
     }
-  } catch {
-    res.status(401).json({
-      error: new Error("Invalid request!"),
-    });
-  }
+
+    // we check if user token is admin or not
+    try {
+      /*	const {userRol} = verify(authorization, config.jwt.secret_key);
+
+			if (is_admin === 0 || is_admin === 1)*/
+      // else user get access
+      next();
+    } catch (error) {
+      next(error);
+    }
+  },
 };
-
-

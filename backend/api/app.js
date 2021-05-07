@@ -15,21 +15,21 @@ const accessLogStream = fs.createWriteStream(
   { flags: "a" }
 );
 //Subo ficheros
-app
-  // LOG con Morgan
-  .use(morgan("combined", { stream: accessLogStream }))
 
-  //Permiso de acceso a otras URLS
-  .use(cors())
+// LOG con Morgan
+app.use(morgan("combined", { stream: accessLogStream }));
 
-  .use(fileUpload())
+//Permiso de acceso a otras URLS
+app.use(cors());
 
-  //Recibo datos como json en el body;
-  .use(express.json(express.urlencoded({ extended: true })))
+app.use(fileUpload());
 
-  //Muestro ficheros en carpeta Public
-  .use(express.static("public"))
+//Recibo datos como json en el body;
+app.use(express.json(express.urlencoded({ extended: true })));
 
-  .use("/", router);
+//Muestro ficheros en carpeta Public
+app.use(express.static("public"));
+
+app.use("/", router);
 
 module.exports = app;
