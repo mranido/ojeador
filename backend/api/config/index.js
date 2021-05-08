@@ -15,9 +15,8 @@ module.exports = {
     sesion: process.env.JWT_SESSION_TIME,
   },
   files: {
-    playerImage: process.env.PATH_PLAYER_IMAGE,
-    scoutImage: process.env.PATH_SCOUT_IMAGE,
-    videos: process.env.PATH_VIDEOS_IMAGE,
+    userImage: process.env.PATH_USERS_IMAGE,
+    videos: process.env.PATH_USER_VIDEOS,
   },
   nodemailer: {
     port: process.env.SMTP_PORT,

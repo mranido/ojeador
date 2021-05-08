@@ -21,8 +21,8 @@ function multipleColumnSet(object) {
 module.exports = {
   find: async (request = {}, tableName) => {
     connectionDB = await getConnection();
-    let sql = `SELECT * FROM ${tableName}`;
-    let [requestQuery] = await connectionDB.query(sql);
+    const sql = `SELECT * FROM ${tableName}`;
+     const requestQuery = await connectionDB.query(sql);
 
     if (!Object.keys(request).length) {
       return requestQuery;
@@ -34,11 +34,31 @@ module.exports = {
     return await connectionDB.query(sql, [...values]);
   },
 
+
+  findAll: async (tableName) => {
+    connectionDB = await getConnection();
+
+    const sql = `SELECT * FROM ${tableName}`;
+
+    const [result] = await connectionDB.query(sql);
+    return result;
+  },
+
   findOne: async (params, tableName) => {
     connectionDB = await getConnection();
     const { columnSet, values } = multipleColumnSet(params);
 
     const sql = `SELECT * FROM ${tableName}
+        WHERE ${columnSet}`;
+
+    const [result] = await connectionDB.query(sql, [...values]);
+    return result[0];
+  },
+  findOneAndFilter: async ( params, tableName) => {
+    connectionDB = await getConnection();
+    const { columnSet, values } = multipleColumnSet(params);
+
+    const sql = `SELECT userImage FROM ${tableName}
         WHERE ${columnSet}`;
 
     const [result] = await connectionDB.query(sql, [...values]);

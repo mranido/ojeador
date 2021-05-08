@@ -6,7 +6,8 @@ const getUsersProfile = require("./get-users-profile");
 const loginUser = require("./login-user");
 const registerUser = require("./register-user");
 const updatePlayer = require("./update-player-profile-by-id");
-const removeUser = require("./delete-user-by-id")
+const removeUser = require("./delete-user-by-id");
+const updateProfileImage = require("./update-user-profile-image")
 
 module.exports = {
   activation: activationAccount,
@@ -16,4 +17,5 @@ module.exports = {
   register: registerUser,
   update: updatePlayer,
   remove: removeUser,
+  updateImage : updateProfileImage,
 };

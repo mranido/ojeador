@@ -2,7 +2,6 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 
-
 const accessAuth = {
   decodedToken: (token) => {
     console.log("token", token);
@@ -13,7 +12,6 @@ const accessAuth = {
   only_player: (req, res, next) => {
     try {
       const { authorization } = req.headers;
-      console.log(req.headers);
       // we check if reequest has an authorization in headers
       if (!authorization) {
         return res.status(401).send({
@@ -28,18 +26,21 @@ const accessAuth = {
         authNoBearer
       );
 
-      const { userRol, userId } = accessAuth.decodedToken(authNoBearer);
-      if (userId !== Number(req.params.userId)){
-                return res.status(401).send({
-                  message:
-                    "No puedes hacer esto",
-                });
-      }
-      if (req.params.userRol !== 'Player' || req.params.userRol !== 'Scout'){
+      const { userId, userRol } = accessAuth.decodedToken(authNoBearer);
+      console.log(req.params.id);
+      console.log(userId);
+      if (userId !== Number(req.params.id)) {
+        console.log(Number(req.params.id));
+        console.log(req.params.id);
         return res.status(401).send({
           message: "No puedes hacer esto",
         });
       }
+      // if (userRol !== "Player" || userRol !== "Scout") {
+      //   return res.status(401).send({
+      //     message: "No puedes hacer esto",
+      //   });
+      // }
       next();
       console.log("ESTE ES EL USER ROL DE ONLY FANS", userRol);
     } catch (error) {

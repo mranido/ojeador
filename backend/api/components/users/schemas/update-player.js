@@ -10,7 +10,6 @@ const update = Joi.object({
 	userEmail: Joi.string()
 		.email()
 		.pattern(new RegExp("^[.A-z0-9-_+]+@+[A-Za-z0-9-_=]+.[A-z]{3}$"))
-		.required()
 		.messages({
 			"string.email": "Debes introducir un email valido",
 			"string.pattern.base": "El email no esta bien formado",
@@ -37,10 +36,6 @@ const update = Joi.object({
 		"string.min": "El campo number tiene que tener un minimo 1 carácteres",
 		"string.max": "El campo number tiene que tener un máximo 99 carácteres",
 		"string.max": "El campo number tiene que ser positivo",
-	}),
-
-	userImage: Joi.string().max(255).messages({
-		"string.max": "El campo imagen tiene que tener un máximo 255 carácteres",
 	}),
 
 	userBirthday: Joi.date(),
