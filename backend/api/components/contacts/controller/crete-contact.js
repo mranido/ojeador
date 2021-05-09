@@ -2,7 +2,7 @@
 const Joi = require("joi");
 const schema = require("../schemas");
 const model = require("../../../infrastructure/mock-db");
-const response = require("../../../routes/responses");
+const response = require("../../../routes/response");
 const { sendEmailContact } = require("../../../helpers/mail-smtp");
 const TABLE = "contacts";
 const TABLE2 = "users";
@@ -16,7 +16,7 @@ async function createContact(req, res, next) {
 
     const player = await model.findOne({ id }, TABLE2);
     if (!player) {
-      return responses.error(req, res, "Persona no existe", 400);
+      return response.error(req, res, "Persona no existe", 400);
     }
     const { userEmail, userName } = player;
 
