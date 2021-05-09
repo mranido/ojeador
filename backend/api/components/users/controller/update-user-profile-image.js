@@ -13,7 +13,9 @@ const validExtensions = [".jpeg", ".jpg", ".png"];
 async function uploadImageProfile(req, res, next) {
   try {
     const { id } = req.params;
-    const userId = Number(id);
+    const {userId} = req.headers;
+    console.log('del req.headers', userId);
+    //const userId = Number(id);
     // Las imagenes vienen dentro de la cabecera req en el objeto files
     // Comprobamos q existe alguna imagen
 
@@ -39,6 +41,7 @@ async function uploadImageProfile(req, res, next) {
 
     // Cogemos la imagen de perfil original
     const user = await model.findOneAndFilter({ userId }, TABLE);
+    
     const { userImage } = user;
     
     // Generamos la ruta completa a la carpeta donde situamos las imagenes de perfil

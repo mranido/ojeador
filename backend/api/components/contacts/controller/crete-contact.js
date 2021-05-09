@@ -10,11 +10,12 @@ const TABLE2 = "users";
 async function createContact(req, res, next) {
   try {
     const { id } = req.params;
+    const userId = Number(id);
 
     await schema.create.validateAsync(req.body);
     const { contactScoutId, contactPlayerId, contactDescription } = req.body;
 
-    const player = await model.findOne({ id }, TABLE2);
+    const player = await model.findOne({ userId }, TABLE2);
     if (!player) {
       return response.error(req, res, "Persona no existe", 400);
     }
@@ -22,7 +23,7 @@ async function createContact(req, res, next) {
 
     const contactDB = {
       contactScoutId,
-      contactPlayerId: id,
+      contactPlayerId: userId,
       contactDescription,
     };
 

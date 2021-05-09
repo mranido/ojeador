@@ -22,14 +22,15 @@ router
   .post("/login", controller.login)
   .get("/profiles/:id", controller.get_profile)
   .put(
-    "/profiles/update/:id" /*accessAuth.only_player,*/,
+    "/profiles/update/:id",
+    accessAuth.only_player,
     schema.updateData,
     controller.update
   )
-  .delete("/profiles/delete/:id", /*accessAuth.only_player,*/ controller.remove)
+  .delete("/profiles/delete/:id", accessAuth.only_player, controller.remove)
   .post(
     "/profiles/upload/:id/",
-    /*accessAuth.only_player,*/ controller.updateImage
+    accessAuth.only_player, controller.updateImage
   );
 
 //Privadas

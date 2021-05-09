@@ -13,6 +13,7 @@ async function updatePlayer(req, res, next) {
     const { id } = req.params;
     const userId = Number(id);
 
+
     const {
       userName,
       userEmail,

@@ -6,6 +6,7 @@ const accessAuth = {
   decodedToken: (token) => {
     console.log("token", token);
     const tokenDecoded = jwt.decode(token, config.jwt.secret);
+    console.log(tokenDecoded);
     return tokenDecoded;
   },
 
@@ -26,7 +27,7 @@ const accessAuth = {
         authNoBearer
       );
 
-      const { userId, userRol } = accessAuth.decodedToken(authNoBearer);
+      const { userId, userName, userEmail, userRol } = accessAuth.decodedToken(authNoBearer);
       console.log(req.params.id);
       console.log(userId);
       if (userId !== Number(req.params.id)) {
