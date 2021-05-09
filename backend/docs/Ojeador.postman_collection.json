@@ -15,20 +15,26 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"playerName\": \"Diego\",\n    \"playerEmail\": \"mranidodeveloper@gmail.com\",\n    \"playerPassword\": \"1234\",\n    \"playerRepeatPassword\": \"1234\"\n}"
+							"raw": "{\n    \"userName\": \"Diegiño\",\n    \"userEmail\": \"habojeador+5@gmail.com\",\n    \"userPassword\": \"1234\",\n    \"userRepeatPassword\": \"1234\",\n    \"userRol\": \"Player\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/register",
+							"raw": "http://localhost:8000/api/v1/users/register/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "8000",
 							"path": [
 								"api",
 								"v1",
 								"users",
-								"register"
+								"register",
+								""
 							]
 						}
 					},
@@ -41,7 +47,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"scoutName\": \"Diego\",\n    \"scoutEmail\": \"mranidodeveloper@gmail.com\",\n    \"scoutPassword\": \"1234\",\n    \"scoutRepeatPassword\": \"1234\"\n}",
+							"raw": "{\n    \"userName\": \"Brais\",\n    \"userEmail\": \"habojeador+4@gmail.com\",\n    \"userPassword\": \"1234\",\n    \"userRepeatPassword\": \"1234\",\n    \"userRol\": \"Scout\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -49,17 +55,18 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/register",
+							"raw": "http://localhost:8000/api/v1/users/register/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "8000",
 							"path": [
 								"api",
 								"v1",
 								"users",
-								"register"
+								"register",
+								""
 							]
 						}
 					},
@@ -72,7 +79,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"playerEmail\": \"mranidodevelop@gmail.com\",\n    \"playerPassword\": \"1234\"\n}",
+							"raw": "{\n    \"userEmail\": \"habojeador+4@gmail.com\",\n    \"userPassword\": \"1234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -80,18 +87,18 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/login/player",
+							"raw": "http://localhost:8000/api/v1/users/login/",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "3000",
+							"port": "8000",
 							"path": [
 								"api",
 								"v1",
 								"users",
 								"login",
-								"player"
+								""
 							]
 						}
 					},
@@ -104,7 +111,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"scoutEmail\": \"mranidodeveloper+1@gmail.com\",\n    \"scoutPassword\": \"1234\"\n}",
+							"raw": "{\n    \"userEmail\": \"habojeador+1@gmail.com\",\n    \"userPassword\": \"1234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -112,7 +119,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/users/login/scout",
+							"raw": "http://localhost:3000/api/v1/users/login/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -123,13 +130,449 @@
 								"v1",
 								"users",
 								"login",
-								"scout"
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Users By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/profiles/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profiles",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Users By Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/profiles/delete/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profiles",
+								"delete",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "peticion vacia",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/users/profiles/update/25",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profiles",
+								"update",
+								"25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"pm.environment.set(\"accessToken\"), response.accessToken;"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJOYW1lIjoiQW5nZWwiLCJ1c2VyRW1haWwiOiJoYWJvamVhZG9yKzRAZ21haWwuY29tIiwidXNlclJvbCI6IlBsYXllciIsImlhdCI6MTYyMDQ5NzAyNSwiZXhwIjoxNjIwNDk4ODI1fQ.OtcP5NOherQcDvWAWiqdKMqRamy8LVBg1grSqMJzxPQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"miscoz\",\n    \"userEmail\": \"habojeador+83@gmail.com\",\n    \"userTeam\": \"Corinthians\",\n    \"userPassword\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/users/profiles/update/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profiles",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Photo Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data; boundary=<calculated when request is sent>",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profileImage",
+									"value": "dark-knight-joker-tux.png",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/users/upload",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Profile",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/users/profiles/delete/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"profiles",
+								"delete",
+								"2"
 							]
 						}
 					},
 					"response": []
 				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
+		},
+		{
+			"name": "Videos",
+			"item": [
+				{
+					"name": "Create a Video",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profileVideo",
+									"type": "file",
+									"src": "/home/diego/Descargas/yt1s.com - Tiene 7 años y hace suspirar a clubes con su talento para la pelota_480p.mp4"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/videos/user/3/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"videos",
+								"user",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Video",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/v1/videos/user/2/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"videos",
+								"user",
+								"2",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Videos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"item": [
+				{
+					"name": "Create a Contact",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"contactScoutId\": 1,\n    \"contactDescription\": \"¿quieres que te fiche? Veo que eres buena persona\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/v1/contact/user/1/contact/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"v1",
+								"contact",
+								"user",
+								"1",
+								"contact",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Contact",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reject Contact",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJOYW1lIjoiQW5nZWwiLCJ1c2VyRW1haWwiOiJoYWJvamVhZG9yKzRAZ21haWwuY29tIiwidXNlclJvbCI6IlBsYXllciIsImlhdCI6MTYyMDQ5NzAyNSwiZXhwIjoxNjIwNDk4ODI1fQ.OtcP5NOherQcDvWAWiqdKMqRamy8LVBg1grSqMJzxPQ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
