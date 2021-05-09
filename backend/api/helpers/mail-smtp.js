@@ -48,8 +48,23 @@ async function sendEmailCorrectValidation(userName, userEmail) {
 
   return data;
 }
+async function sendEmailContact(userName, userEmail, id) {
+  const mailMessage = {
+    from: config.nodemailer.from,
+    to: userEmail,
+    subject: "[Ojeador]Tienes una nueva oferta",
+    text: `Hola ${userName},\n, Tienes una nueva oferta , puedes consultarlo desde <a href ="http://localhost:8000/contact/user/${id}">aquí`,
+    html: `<p>Hi ${userName}\n,<p>Tienes una nueva oferta, puedes consultarla desde <a href="http://localhost:8000/contact/user/${id}">aquí</a></p>`,
+  };
+
+  const data = await transporter.sendMail(mailMessage);
+
+  return data;
+}
 
 module.exports = {
   sendEmailRegistration,
   sendEmailCorrectValidation,
+  sendEmailContact,
 };
+
