@@ -2,7 +2,7 @@
 const Joi = require("joi");
 const schema = require("../schemas");
 const model = require("../../../infrastructure/mock-db");
-const responses = require("../../../routes/responses");
+const response = require("../../../routes/responses");
 const { sendEmailContact } = require("../../../helpers/mail-smtp");
 const TABLE = "contacts";
 const TABLE2 = "users";
@@ -30,11 +30,10 @@ async function createContact(req, res, next) {
 
     await sendEmailContact(userName, userEmail);
 
-    responses.success(req, res, "mensaje creado", 201);
+    response.success(req, res, "mensaje creado", 201);
   } catch (error) {
     next(error);
   }
 }
-
 
 module.exports = createContact;
