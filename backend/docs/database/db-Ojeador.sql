@@ -1,6 +1,6 @@
-drop database if exists ojeador;
-create database if not exists ojeador;
-use ojeador;
+DROP DATABASE IF EXISTS ojeador;
+CREATE DATABASE IF NOT EXISTS ojeador;
+USE ojeador;
 
 CREATE TABLE IF NOT EXISTS users (
 	userId INT NOT NULL AUTO_INCREMENT,
@@ -44,9 +44,14 @@ CREATE TABLE IF NOT EXISTS positionsSkills (
     positionSkillPositionId INT NOT NULL,
     positionSkillSkillId INT NOT NULL,
     PRIMARY KEY (positionSkillId),
-    FOREIGN KEY (`positionSkillSkillid`) REFERENCES `skills` (`skillId`),
-    FOREIGN KEY (`positionSkillPositionid`) REFERENCES `positions` (`positionId`) 
+    FOREIGN KEY (`positionSkillSkillid`) REFERENCES `skills` (`skillId`) ON DELETE CASCADE,
+    FOREIGN KEY (`positionSkillPositionid`) REFERENCES `positions` (`positionId`) ON DELETE CASCADE
 );
+INSERT INTO positionsSkills (positionSkillId, positionSkillPositionId, positionSkillSkillId) VALUES
+(1,1,1),(2,1,2),(3,1,3),(4,1,4),(5,1,5),
+(6,2,2),(7,2,3),(8,2,4),(9,2,5),(10,2,7),
+(11,3,2),(12,3,3),(13,3,4),(14,3,6),(15,3,7),
+(16,4,3),(17,4,4),(18,4,5),(19,4,6),(20,4,7);
 
 CREATE TABLE IF NOT EXISTS ratings (
 	ratingId INT NOT NULL AUTO_INCREMENT,
@@ -57,9 +62,9 @@ CREATE TABLE IF NOT EXISTS ratings (
 	ratingCreatedAt DATETIME NOT NULL,
     ratingUpdatedAt DATETIME NULL,
     PRIMARY KEY (ratingId),
-    FOREIGN KEY (`ratingIdUser`) REFERENCES `users` (`userId`),
-    FOREIGN KEY (`ratingIdVoteuser`) REFERENCES `users` (`userId`),
-    FOREIGN KEY (`ratingPositionSkillId`) REFERENCES `positionsSkills` (`positionSkillId`)
+    FOREIGN KEY (`ratingIdUser`) REFERENCES `users` (`userId`) ON DELETE CASCADE,
+    FOREIGN KEY (`ratingIdVoteuser`) REFERENCES `users` (`userId`) ON DELETE CASCADE,
+    FOREIGN KEY (`ratingPositionSkillId`) REFERENCES `positionsSkills` (`positionSkillId`) ON DELETE CASCADE
 );    
 
 CREATE TABLE IF NOT EXISTS videos (
@@ -68,7 +73,7 @@ CREATE TABLE IF NOT EXISTS videos (
     videoUrl VARCHAR(255) NOT NULL,
 	videoCreatedAt DATETIME NOT NULL DEFAULT NOW(),
     PRIMARY KEY (videoId),
-    FOREIGN KEY (`videoIduser`) REFERENCES `users` (`userId`)
+    FOREIGN KEY (`videoIduser`) REFERENCES `users` (`userId`) ON DELETE CASCADE
 );    
 
 CREATE TABLE IF NOT EXISTS videoLikes (
@@ -76,8 +81,8 @@ videoLikeId INT NOT NULL AUTO_INCREMENT,
 videoLikevideoId INT NOT NULL,
 videoLikeUserId INT NOT NULL,
 PRIMARY KEY (videoLikeId),
-FOREIGN KEY (`videoLikeVideoId`) REFERENCES `videos` (`videoId`),
-FOREIGN KEY (`videoLikeUserId`) REFERENCES `users` (`userId`)
+FOREIGN KEY (`videoLikeVideoId`) REFERENCES `videos` (`videoId`) ON DELETE CASCADE,
+FOREIGN KEY (`videoLikeUserId`) REFERENCES `users` (`userId`) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS contacts (
@@ -88,8 +93,8 @@ contactDescription VARCHAR(255) NOT NULL,
 contactStatus ENUM ("True", "False"),
 contactCreatedAt DATETIME NOT NULL DEFAULT NOW(),
 PRIMARY KEY (contactId),
-FOREIGN KEY(`contactPlayerId`) REFERENCES `users` (`userId`),
-FOREIGN KEY(`contactScoutId`) REFERENCES `users` (`userId`)
+FOREIGN KEY(`contactPlayerId`) REFERENCES `users` (`userId`) ON DELETE CASCADE,
+FOREIGN KEY(`contactScoutId`) REFERENCES `users` (`userId`) ON DELETE CASCADE
 );
     
     
