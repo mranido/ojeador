@@ -60,7 +60,8 @@ async function loginUser(req, res, next) {
       expiresIn: config.jwt.sesion,
     };
 
-    response.success(req, res, tokenData, 200);
+    res.status(200);
+    res.send(tokenData);
   } catch (error) {
     next(error);
   }

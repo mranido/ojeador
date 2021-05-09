@@ -1,3 +1,4 @@
+drop database if exists ojeador;
 create database if not exists ojeador;
 use ojeador;
 
@@ -8,6 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
     userPassword VARCHAR(255) NOT NULL,
     userRol ENUM('Player', 'Scout'),
     userVerificationCode VARCHAR(64) NULL,
+    userPosition ENUM('Portero', 'Defensa', 'Mediocentro', 'Delantero'),
     userLocation VARCHAR(60) NULL,
     userTeam VARCHAR(100) NULL,
     userNumber TINYINT UNSIGNED NULL,
@@ -16,7 +18,6 @@ CREATE TABLE IF NOT EXISTS users (
     userDescription VARCHAR(500) NULL, 
     userCreatedAt DATETIME NOT NULL DEFAULT NOW(),
     userUpdatedAt DATETIME NULL,
-    userDeletedAt DATETIME NULL,
     userVerifiedAt DATETIME NULL,
     PRIMARY KEY (userId)
 );
@@ -40,8 +41,8 @@ INSERT INTO skills (skillId, skillName) VALUES (1,'Paralotodo'),(2,'Defensivo'),
 
 CREATE TABLE IF NOT EXISTS positionsSkills (
 	positionSkillId INT NOT NULL AUTO_INCREMENT,
-    positionSkillSkillId INT NOT NULL,
     positionSkillPositionId INT NOT NULL,
+    positionSkillSkillId INT NOT NULL,
     PRIMARY KEY (positionSkillId),
     FOREIGN KEY (`positionSkillSkillid`) REFERENCES `skills` (`skillId`),
     FOREIGN KEY (`positionSkillPositionid`) REFERENCES `positions` (`positionId`) 
@@ -55,7 +56,6 @@ CREATE TABLE IF NOT EXISTS ratings (
     ratingPositionSkillId INT NOT NULL,
 	ratingCreatedAt DATETIME NOT NULL,
     ratingUpdatedAt DATETIME NULL,
-    ratingDeletedAt DATETIME NULL,
     PRIMARY KEY (ratingId),
     FOREIGN KEY (`ratingIdUser`) REFERENCES `users` (`userId`),
     FOREIGN KEY (`ratingIdVoteuser`) REFERENCES `users` (`userId`),
@@ -66,8 +66,7 @@ CREATE TABLE IF NOT EXISTS videos (
 	videoId INT NOT NULL AUTO_INCREMENT,
     videoIduser INT NOT NULL,
     videoUrl VARCHAR(255) NOT NULL,
-	videoCreatedAt DATETIME NOT NULL,
-    videoDeletedAt DATETIME NULL,
+	videoCreatedAt DATETIME NOT NULL DEFAULT NOW(),
     PRIMARY KEY (videoId),
     FOREIGN KEY (`videoIduser`) REFERENCES `users` (`userId`)
 );    
@@ -85,8 +84,9 @@ CREATE TABLE IF NOT EXISTS contacts (
 contactId INT NOT NULL AUTO_INCREMENT,
 contactPlayerId INT NOT NULL,
 contactScoutId INT NOT NULL,
-contactCreatedAt DATETIME NOT NULL,
-contactDeletedAt DATETIME NULL,
+contactDescription VARCHAR(255) NOT NULL,
+contactStatus ENUM ("True", "False"),
+contactCreatedAt DATETIME NOT NULL DEFAULT NOW(),
 PRIMARY KEY (contactId),
 FOREIGN KEY(`contactPlayerId`) REFERENCES `users` (`userId`),
 FOREIGN KEY(`contactScoutId`) REFERENCES `users` (`userId`)
