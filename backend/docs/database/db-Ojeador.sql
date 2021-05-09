@@ -47,6 +47,11 @@ CREATE TABLE IF NOT EXISTS positionsSkills (
     FOREIGN KEY (`positionSkillSkillid`) REFERENCES `skills` (`skillId`),
     FOREIGN KEY (`positionSkillPositionid`) REFERENCES `positions` (`positionId`) 
 );
+INSERT INTO positionsSkills (positionSkillId, positionSkillPositionId, positionSkillSkillId) VALUES
+(1,1,1),(2,1,2),(3,1,3),(4,1,4),(5,1,5),
+(6,2,2),(7,2,3),(8,2,4),(9,2,5),(10,2,7),
+(11,3,2),(12,3,3),(13,3,4),(14,3,6),(15,3,7),
+(16,4,3),(17,4,4),(18,4,5),(19,4,6),(20,4,7);
 
 CREATE TABLE IF NOT EXISTS ratings (
 	ratingId INT NOT NULL AUTO_INCREMENT,
