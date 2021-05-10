@@ -1,4 +1,5 @@
 "use strict";
+const { async } = require("crypto-random-string");
 const getConnection = require("../infrastructure/database");
 let connectionDB;
 
@@ -22,7 +23,7 @@ module.exports = {
   find: async (request = {}, tableName) => {
     connectionDB = await getConnection();
     const sql = `SELECT * FROM ${tableName}`;
-     const requestQuery = await connectionDB.query(sql);
+    const requestQuery = await connectionDB.query(sql);
 
     if (!Object.keys(request).length) {
       return requestQuery;
@@ -33,7 +34,6 @@ module.exports = {
 
     return await connectionDB.query(sql, [...values]);
   },
-
 
   findAll: async (tableName) => {
     connectionDB = await getConnection();
@@ -54,7 +54,7 @@ module.exports = {
     const [result] = await connectionDB.query(sql, [...values]);
     return result[0];
   },
-  findOneAndFilter: async ( params, tableName) => {
+  findOneAndFilter: async (params, tableName) => {
     connectionDB = await getConnection();
     const { columnSet, values } = multipleColumnSet(params);
 
@@ -121,4 +121,36 @@ module.exports = {
     const affectedRows = result ? result.affectedRows : 0;
     return affectedRows;
   },
+  getRating: async (user) => {
+    connectionDB = await getConnection();
+    const sql = `select a.userName as Nombre, b.positionName as Posición, d.skillName as Habilidades, truncate(avg(e.ratingValue),1) as Puntuación
+    from users a left join positions b
+    on a.userPosition = b.positionName
+    left join positionsSkills c
+    on b.positionId = c.positionSkillPositionId 
+    right join skills d 
+    on c.positionSkillSkillId = d.skillId
+    right join ratings e
+    on e.ratingPositionSkillId = c.positionSkillId
+    where userId = ${user}
+    group by a.userId, b.positionName, d.skillName`;
+    const [result] = await connectionDB.query(sql);
+    return result;
+  },
+  getAverageRating: async(user) =>{
+     connectionDB = await getConnection();
+     const sql = `select a.userName as Nombre, truncate(avg(e.ratingValue),1) as "Puntuación Media"
+    from users a left join positions b
+    on a.userPosition = b.positionName
+    left join positionsSkills c
+    on b.positionId = c.positionSkillPositionId 
+    right join skills d 
+    on c.positionSkillSkillId = d.skillId
+    right join ratings e
+    on e.ratingPositionSkillId = c.positionSkillId
+    where userId = ${user}
+    group by a.userId`;
+     const [result] = await connectionDB.query(sql);
+     return result;
+  }
 };
