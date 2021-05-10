@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS ratings (
     ratingIdVoteUser INT NULL,
     ratingValue TINYINT UNSIGNED,
     ratingPositionSkillId INT NOT NULL,
-	ratingCreatedAt DATETIME NOT NULL,
+	ratingCreatedAt DATETIME NOT NULL DEFAULT NOW(),
     ratingUpdatedAt DATETIME NULL,
     PRIMARY KEY (ratingId),
     FOREIGN KEY (`ratingIdUser`) REFERENCES `users` (`userId`),
