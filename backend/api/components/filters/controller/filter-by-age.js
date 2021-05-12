@@ -1,30 +1,25 @@
 "use strict";
 const response = require("../../../routes/response");
-const model = require("../../../infrastructure/mock-db");
-const TABLE = "users";
-const { years } = require("../../../helpers/age");
+const getConnection = require("../../../infrastructure/database");
 
 async function getAge(req, res, next) {
+  const findAge = Number(req.params.age);
+  console.log(findAge);
   try {
-    const user = await model.findAll(TABLE);
-    if (!user) {
-      return response.error(
-        req,
-        res,
-        "No existe resultados a tu búsqueda!",
-        400
-      );
+    const connection = await getConnection();
+    const getPositionQuery = `SELECT userId, userName, userBirthday as age, userPosition, userTeam
+                                    FROM users
+                                    WHERE userBirthday = timestampdiff(year,?, curdate())`;
+    const [results] = await connection.execute(getPositionQuery, [
+      findAge,
+    ]);
+    console.log("Edad --|--", results);
+    connection.release();
+    if (results.length === 0) {
+      return response.error(req, res, "Posición no encontrada", 404);
     }
 
-    const datos = [];
-    for (const position of user) {
-      datos.push(position.userBirthday);
-    }
-
-    const age = datos.map((edad) => years(edad));
-    console.log(age);
-
-    response.success(req, res, user, 201);
+    return response.success(req, res, results, 201);
   } catch (error) {
     next(error);
   }

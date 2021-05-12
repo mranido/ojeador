@@ -18,7 +18,9 @@ const accessAuth = require("../../middlewares/accessAuth");
 router
   .post("/user/:id", controller.createVideo)
   .delete("/user/:id/:videoid", controller.deleteVideo)
-  .get("/", controller.getVideos);
+  .get("/", controller.getVideos)
+  .post("/:id", controller.createLike)
+  .get("/:id", controller.getLikes);
 
 
 module.exports = router;
