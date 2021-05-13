@@ -30,7 +30,9 @@ async function findSkills(req, res, next) {
     const skill = iterableWithoutBinaryRow.filter(
       (item) => findSkill === item.userSkills
     );
-
+    if (skill.length===0) {
+    response.error(req, res, "No existen resultados para esta búsqueda", 401);
+    }
     console.log(iterableWithoutBinaryRow);
     return response.success(req, res, skill, 201);
   } catch (error) {
