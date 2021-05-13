@@ -132,7 +132,8 @@ module.exports = {
     on c.positionSkillSkillId = d.skillId
     right join ratings e
     on e.ratingPositionSkillId = c.positionSkillId
-    where userId = ${user}
+    where a.userId = ${user}
+    and e.ratingIdUser =${user}
     group by a.userId, b.positionName, d.skillName`;
     const [result] = await connectionDB.query(sql);
     return result;
@@ -148,7 +149,8 @@ module.exports = {
     on c.positionSkillSkillId = d.skillId
     right join ratings e
     on e.ratingPositionSkillId = c.positionSkillId
-    where userId = ${user}
+    where a.userId = ${user}
+    and e.ratingIdUser =${user}
     group by a.userId`;
      const [result] = await connectionDB.query(sql);
      return result;

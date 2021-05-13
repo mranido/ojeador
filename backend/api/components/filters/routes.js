@@ -9,5 +9,6 @@ router
   .get("/position/:position", controller.filterPosition)
   .get("/team/:team", controller.filterTeam)
   .get("/skills/:skills", controller.filterSkills)
+  .get("/skills/:skills/rating/:ratings", controller.filterSkillbyRating)
 
 module.exports = router;

@@ -11,12 +11,7 @@ async function getAverageRating(req, res, next) {
 
     const user = await model.findOne({ userId }, TABLE);
     if (!user) {
-      return response.error(
-        req,
-        res,
-        "No existe la persona indicada!",
-        400
-      );
+      return response.error(req, res, "No existe la persona indicada!", 400);
     }
 
     const averageRating = await model.getAverageRating(userId);
