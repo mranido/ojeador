@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS positionsSkills (
     positionSkillPositionId INT NOT NULL,
     positionSkillSkillId INT NOT NULL,
     PRIMARY KEY (positionSkillId),
-    FOREIGN KEY (`positionSkillSkillid`) REFERENCES `skills` (`skillId`),
-    FOREIGN KEY (`positionSkillPositionid`) REFERENCES `positions` (`positionId`) 
+    FOREIGN KEY (`positionSkillSkillid`) REFERENCES `skills` (`skillId`) on delete cascade,
+    FOREIGN KEY (`positionSkillPositionid`) REFERENCES `positions` (`positionId`) on delete cascade
 );
 INSERT INTO positionsSkills (positionSkillId, positionSkillPositionId, positionSkillSkillId) VALUES
 (1,1,1),(2,1,2),(3,1,3),(4,1,4),(5,1,5),
@@ -62,9 +62,9 @@ CREATE TABLE IF NOT EXISTS ratings (
 	ratingCreatedAt DATETIME NOT NULL DEFAULT NOW(),
     ratingUpdatedAt DATETIME NULL,
     PRIMARY KEY (ratingId),
-    FOREIGN KEY (`ratingIdUser`) REFERENCES `users` (`userId`),
-    FOREIGN KEY (`ratingIdVoteuser`) REFERENCES `users` (`userId`),
-    FOREIGN KEY (`ratingPositionSkillId`) REFERENCES `positionsSkills` (`positionSkillId`)
+    FOREIGN KEY (`ratingIdUser`) REFERENCES `users` (`userId`) on delete cascade,
+    FOREIGN KEY (`ratingIdVoteuser`) REFERENCES `users` (`userId`) on delete cascade,
+    FOREIGN KEY (`ratingPositionSkillId`) REFERENCES `positionsSkills` (`positionSkillId`) on delete cascade
 );    
 
 CREATE TABLE IF NOT EXISTS videos (
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS videos (
     videoUrl VARCHAR(255) NOT NULL,
 	videoCreatedAt DATETIME NOT NULL DEFAULT NOW(),
     PRIMARY KEY (videoId),
-    FOREIGN KEY (`videoIduser`) REFERENCES `users` (`userId`)
+    FOREIGN KEY (`videoIduser`) REFERENCES `users` (`userId`) on delete cascade
 );    
 
 CREATE TABLE IF NOT EXISTS videoLikes (
@@ -81,8 +81,8 @@ videoLikeId INT NOT NULL AUTO_INCREMENT,
 videoLikevideoId INT NOT NULL,
 videoLikeUserId INT NOT NULL,
 PRIMARY KEY (videoLikeId),
-FOREIGN KEY (`videoLikeVideoId`) REFERENCES `videos` (`videoId`),
-FOREIGN KEY (`videoLikeUserId`) REFERENCES `users` (`userId`)
+FOREIGN KEY (`videoLikeVideoId`) REFERENCES `videos` (`videoId`) on delete cascade,
+FOREIGN KEY (`videoLikeUserId`) REFERENCES `users` (`userId`) on delete cascade
 );
 
 CREATE TABLE IF NOT EXISTS contacts (
@@ -93,8 +93,8 @@ contactDescription VARCHAR(255) NOT NULL,
 contactStatus BOOLEAN,
 contactCreatedAt DATETIME NOT NULL DEFAULT NOW(),
 PRIMARY KEY (contactId),
-FOREIGN KEY(`contactPlayerId`) REFERENCES `users` (`userId`),
-FOREIGN KEY(`contactScoutId`) REFERENCES `users` (`userId`)
+FOREIGN KEY(`contactPlayerId`) REFERENCES `users` (`userId`) on delete cascade,
+FOREIGN KEY(`contactScoutId`) REFERENCES `users` (`userId`) on delete cascade
 );
     
     
