@@ -1,8 +1,8 @@
 "use strict";
 
-const filterAge = require("./filter-by-age");
+const filterCategory = require("./filter-by-age");
 const filterPosition = require("./filter-by-position");
 const filterTeam = require("./filter-by-team")
 
 
-module.exports = { filterAge, filterPosition, filterTeam };
+module.exports = { filterCategory, filterPosition, filterTeam };

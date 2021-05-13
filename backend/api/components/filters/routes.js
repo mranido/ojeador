@@ -5,7 +5,7 @@ const router = routerx();
 const controller = require("./controller");
 
 router
-  .get("/age/:age", controller.filterAge)
+  .get("/category/:category", controller.filterCategory)
   .get("/position/:position", controller.filterPosition)
   .get("/team/:team", controller.filterTeam)
 

@@ -2,23 +2,22 @@
 
 const moment = require("moment");
 
-const years = (userBirthday) => {
-  let edad = moment().diff(userBirthday, "years");
-  if (edad >= 10 && edad < 12) {
+const years = (userAge) => {
+  if (userAge >= 4 && userAge < 6) {
+    return "Prebenjamin";
+  } else if (userAge >= 6 && userAge < 8) {
+    return "Benjamin";
+  } else if (userAge >= 10 && userAge < 12) {
     return "Alevin";
-  } else if (edad >= 12 && edad <= 13) {
-    return "Infantil";
-  } else if (edad >= 14 && edad <= 15) {
+  } else if (userAge >= 12 && userAge < 14) {
     return "Cadete";
-  } else if (edad >= 16 && edad <= 18) {
+  } else if (userAge >= 14 && userAge < 16) {
+    return "Infantil";
+  } else if (userAge >= 16 && userAge <= 18) {
     return "Juvenil";
   } else {
     return "Edad no válida";
   }
 };
 
-
-module.exports = {years};
-
-
-
+module.exports = { years };
