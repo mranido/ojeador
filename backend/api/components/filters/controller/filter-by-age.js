@@ -14,7 +14,7 @@ async function getCategory(req, res, next) {
 
     connection.release();
     if (results.length === 0) {
-      return response.error(req, res, "Posición no encontrada", 404);
+      return response.error(req, res, "Edad no encontrada", 404);
     }
 
     const iterableWithoutBinaryRow = Object.values(JSON.parse(JSON.stringify(results)));

@@ -8,5 +8,6 @@ router
   .get("/category/:category", controller.filterCategory)
   .get("/position/:position", controller.filterPosition)
   .get("/team/:team", controller.filterTeam)
+  .get("/skills/:skills", controller.filterSkills)
 
 module.exports = router;
