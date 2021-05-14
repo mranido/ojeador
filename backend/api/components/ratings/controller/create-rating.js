@@ -24,6 +24,7 @@ async function createRate(req, res, next) {
     if(user.userId === ratingIdVoteUser){
       return response.error(req, res, "No puedes votarte a ti mismo")
     }
+    
 
     const ratingDB = {
       ratingIdUser: user.userId,
