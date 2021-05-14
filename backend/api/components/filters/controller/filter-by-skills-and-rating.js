@@ -41,7 +41,7 @@ async function findSkillsandRatings(req, res, next) {
     const rating = skill.filter(
       (item) => findRating === Math.floor(item.userPuntuation)
     );
-    if (skill.length === 0) {
+    if (rating.length === 0) {
       response.error(req, res, "No existen resultados para esta búsqueda", 401);
     }
 

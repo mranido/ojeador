@@ -26,8 +26,8 @@ async function updatePlayer(req, res, next) {
       userBirthday,
       userDescription,
     } = req.body;
-    console.log("este es el puto usuario::::::::::::", userId);
-    console.log("puto password", req.body.userPassword);
+    console.log("este es el usuario::::::::::::", userId);
+    console.log("Password", req.body.userPassword);
     const userDataUpdated = {
       userName,
       userEmail,
@@ -49,10 +49,10 @@ async function updatePlayer(req, res, next) {
     if (userExists.userId === userId) {
       await model.update1(userDataUpdated, TABLE, { userId: userId });
     } else {
-      return response.error(req, res, "tu madre", 403);
+      return response.error(req, res, "Fallo", 403);
     }
 
-    response.success(req, res, "Soy el puto amo", 201);
+    response.success(req, res, "Usuario actualizado", 201);
   } catch (error) {
     next(error);
   }

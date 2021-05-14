@@ -34,7 +34,7 @@ async function registerUser(req, res, next) {
 
     const { userId } = findId;
 
-    console.log("VAMOOOOSSS", findId);
+    console.log("Id", findId);
 
     await sendEmailRegistration(
       userName,

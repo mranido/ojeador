@@ -129,3 +129,7 @@
 ::1 - - [13/May/2021:12:49:36 +0000] "GET /api/v1/ratings/user/4 HTTP/1.1" 201 222 "-" "PostmanRuntime/7.26.8"
 ::1 - - [13/May/2021:12:51:04 +0000] "GET /api/v1/filters/skills/Rematador/rating/1 HTTP/1.1" 201 136 "-" "PostmanRuntime/7.26.8"
 ::1 - - [13/May/2021:12:51:23 +0000] "GET /api/v1/filters/skills/Rematador/rating/2 HTTP/1.1" 201 38 "-" "PostmanRuntime/7.26.8"
+::1 - - [14/May/2021:09:06:03 +0000] "POST /api/v1/users/register/ HTTP/1.1" 409 58 "-" "PostmanRuntime/7.26.8"
+::1 - - [14/May/2021:09:06:38 +0000] "POST /api/v1/users/register/ HTTP/1.1" 201 52 "-" "PostmanRuntime/7.26.8"
+::1 - - [14/May/2021:09:06:46 +0000] "GET /api/v1/users/5/activation?verification_code=5b606dce6def01a45baae87982444b7a18820455751e8e478edc6be762e7e08f HTTP/1.1" 200 31 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
+::1 - - [14/May/2021:09:06:46 +0000] "GET /favicon.ico HTTP/1.1" 404 80 "http://localhost:8000/api/v1/users/5/activation?verification_code=5b606dce6def01a45baae87982444b7a18820455751e8e478edc6be762e7e08f" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"

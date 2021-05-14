@@ -9,7 +9,7 @@ async function activateUser(req, res, next) {
     const { verification_code: userVerificationCode } = req.query;
     const { id } = req.params;
     const userId = id;
-    console.log(req.params, "Este es el puto id", userId);
+    console.log(req.params, "Este es el id", userId);
 
     if (!userVerificationCode) {
       return response.error(req, res, "Código de verificación no válido", 400);
@@ -23,7 +23,7 @@ async function activateUser(req, res, next) {
 
     if (!isActivated) {
       res.send({
-        message: "Account not activated, verification code expired.",
+        message: "Cuenta no verificada,  código de verificación expirado.",
       });
     }
 
