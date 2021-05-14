@@ -13,7 +13,6 @@ async function updatePlayer(req, res, next) {
     const { id } = req.params;
     const userId = Number(id);
 
-
     const {
       userName,
       userEmail,
@@ -26,8 +25,8 @@ async function updatePlayer(req, res, next) {
       userBirthday,
       userDescription,
     } = req.body;
-    console.log("este es el puto usuario::::::::::::", userId);
-    console.log("puto password", req.body.userPassword);
+    console.log("este es el usuario:", userId);
+    console.log("password", req.body.userPassword);
     const userDataUpdated = {
       userName,
       userEmail,

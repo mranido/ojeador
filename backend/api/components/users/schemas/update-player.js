@@ -31,7 +31,12 @@ const update = Joi.object({
     "string.min": "El campo password tiene que tener un minimo 5 carácteres",
     "string.max": "El campo password tiene que tener un máximo 100 carácteres",
   }),
-  userPosition: Joi.valid('Portero', 'Defensa', 'Mediocentro', 'Delantero').messages({
+  userPosition: Joi.valid(
+    "Portero",
+    "Defensa",
+    "Mediocentro",
+    "Delantero"
+  ).messages({
     "string.min": "El campo password tiene que tener un minimo 5 carácteres",
     "string.max": "El campo password tiene que tener un máximo 100 carácteres",
   }),
@@ -56,7 +61,6 @@ const updateData = (request, response, next) => {
 
   if (result.error === undefined) {
     next();
-    // return;
   } else {
     const validationErrors = result.error.details.reduce((acc, error) => {
       acc.push(`${error.message}`);
