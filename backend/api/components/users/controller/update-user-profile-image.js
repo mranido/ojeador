@@ -12,12 +12,13 @@ const validExtensions = [".jpeg", ".jpg", ".png"];
 
 async function uploadImageProfile(req, res, next) {
   try {
-    const { id } = req.params;
-    const {userId} = req.headers;
-    console.log('del req.headers', userId);
-    //const userId = Number(id);
+    const {userEmail} = req.auth;
+    console.log(userEmail);
+    const { id } =(req.params);
+    const userId = Number(id);
     // Las imagenes vienen dentro de la cabecera req en el objeto files
     // Comprobamos q existe alguna imagen
+    console.log(id, typeof userId);
 
     const { files } = req;
     if (!files || Object.keys(files).length === 0) {
@@ -32,6 +33,7 @@ async function uploadImageProfile(req, res, next) {
     // profileImage es el nombre que enviamos desde el postman,
     // si enviamos
     const { profileImage } = files;
+
     const extension = path.extname(profileImage.name);
     if (!validExtensions.includes(extension)) {
       return response.error(req, res, "FORMATO NO VÁLIDO", 409);
@@ -41,15 +43,16 @@ async function uploadImageProfile(req, res, next) {
 
     // Cogemos la imagen de perfil original
     const user = await model.findOneAndFilter({ userId }, TABLE);
-    
+
+    console.log("user", user);
     const { userImage } = user;
-    
+
     // Generamos la ruta completa a la carpeta donde situamos las imagenes de perfil
     const pathProfileImageFolder = `${__dirname}/../../../../public/${PATH_USER_IMAGE}`;
     console.log(__dirname);
     // Borramos la imagen original si existe
     if (userImage) {
-       fs.unlink(`${pathProfileImageFolder}/${userImage}`, () => {
+      fs.unlink(`${pathProfileImageFolder}/${userImage}`, () => {
         console.log("Borrada imagen de perfil correctamente");
       });
     }
@@ -64,11 +67,15 @@ async function uploadImageProfile(req, res, next) {
     profileImage.mv(pathImage, async function (err) {
       if (err) res.status(500).send(err);
       await model.update1({ userImage: imageName }, TABLE, {
-        userId: userId,
+        userId,
       });
 
-      return response.success(req, res,{url: `${HTTP_SERVER_DOMAIN}/${PATH_USER_IMAGE}/${imageName}`} , 201);
-      
+      return response.success(
+        req,
+        res,
+        { url: `${HTTP_SERVER_DOMAIN}/${PATH_USER_IMAGE}/${imageName}` },
+        201
+      );
     });
   } catch (error) {
     next(error);

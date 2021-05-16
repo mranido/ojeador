@@ -13,6 +13,7 @@ const accessAuth = {
   only_player: (req, res, next) => {
     try {
       const { authorization } = req.headers;
+      console.log(authorization);
       // we check if reequest has an authorization in headers
       if (!authorization) {
         return res.status(401).send({
@@ -20,15 +21,16 @@ const accessAuth = {
         });
       }
       const authNoBearer = authorization.split(" ")[1];
-      console.log(
-        "ESTE ES EL AUTHORIZATION::::::",
-        authorization,
-        "ESTE ES EL no bearer::::::",
-        authNoBearer
-      );
+      // console.log(
+      //   "ESTE ES EL AUTHORIZATION::::::",
+      //   authorization,
+      //   "ESTE ES EL no bearer::::::",
+      //   authNoBearer
+      // );
 
-      const { userId, userName, userEmail, userRol } = accessAuth.decodedToken(authNoBearer);
-      console.log(req.params.id);
+      const { userId, userName, userEmail, userRol } =
+        accessAuth.decodedToken(authNoBearer);
+      console.log(accessAuth.decodedToken(authNoBearer));
       console.log(userId);
       if (userId !== Number(req.params.id)) {
         console.log(Number(req.params.id));
