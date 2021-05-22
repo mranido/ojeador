@@ -9,7 +9,8 @@ async function findTeams(req, res, next) {
     const connection = await getConnection();
     const getPositionQuery = `SELECT userId, userName, userBirthday, userPosition, userTeam
                                     FROM users
-                                    WHERE userTeam = ?`;
+                                    WHERE userTeam = ?
+                                    and userRol = 'Player'`;
     const [results] = await connection.execute(getPositionQuery, [
       findTeam,
     ]);

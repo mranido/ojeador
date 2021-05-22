@@ -23,24 +23,11 @@ router
   .get("/profiles/:id", controller.get_profile)
   .put(
     "/profiles/update/:id",
-    accessAuth.only_player,
+    accessAuth.registred,
     schema.updateData,
     controller.update
   )
-  .delete("/profiles/delete/:id", accessAuth.only_player, controller.remove)
-  .post(
-    "/profiles/upload/:id/",
-    accessAuth.only_player, controller.updateImage
-  );
-
-//Privadas
-//router;
-// .post("/login", controller.login)
-// .delete("/profiles/delete/:id", accessAuth.decodedToken, controller.remove);
-
-// router.route("/:id").all(validateAuth).delete(deleteUserById);
-// router.route("/:id/reviews").all(validateAuth).get(getUserReviewsById);
-// router.route("/profile").all(validateAuth);
-// router.route("/upload").all(validateAuth).post(uploadImageProfile);
+  .delete("/profiles/delete/:id", accessAuth.registred, controller.remove)
+  .post("/profiles/upload/:id/", accessAuth.registred, controller.updateImage);
 
 module.exports = router;

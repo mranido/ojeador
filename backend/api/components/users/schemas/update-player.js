@@ -24,12 +24,12 @@ const update = Joi.object({
   }),
 
   userLocation: Joi.string().max(60).messages({
-    "string.max": "El campo password tiene que tener un máximo 60 carácteres",
+    "string.max": "El campo location tiene que tener un máximo 60 carácteres",
   }),
 
-  userTeam: Joi.string().min(5).max(100).messages({
-    "string.min": "El campo password tiene que tener un minimo 5 carácteres",
-    "string.max": "El campo password tiene que tener un máximo 100 carácteres",
+  userTeam: Joi.string().min(4).max(100).messages({
+    "string.min": "El campo Team tiene que tener un minimo 5 carácteres",
+    "string.max": "El campo Team tiene que tener un máximo 100 carácteres",
   }),
   userPosition: Joi.valid(
     "Portero",

@@ -5,12 +5,12 @@ const config = require("../config");
 const accessAuth = {
   decodedToken: (token) => {
     console.log("token", token);
-    const tokenDecoded = jwt.decode(token, config.jwt.secret);
+    const tokenDecoded = jwt.verify(token, config.jwt.secret);
     console.log(tokenDecoded);
     return tokenDecoded;
   },
 
-  only_player: (req, res, next) => {
+  registred: (req, res, next) => {
     try {
       const { authorization } = req.headers;
       console.log(authorization);
@@ -21,12 +21,6 @@ const accessAuth = {
         });
       }
       const authNoBearer = authorization.split(" ")[1];
-      // console.log(
-      //   "ESTE ES EL AUTHORIZATION::::::",
-      //   authorization,
-      //   "ESTE ES EL no bearer::::::",
-      //   authNoBearer
-      // );
 
       const { userId, userName, userEmail, userRol } =
         accessAuth.decodedToken(authNoBearer);
@@ -45,7 +39,33 @@ const accessAuth = {
       //   });
       // }
       next();
-      console.log("ESTE ES EL USER ROL DE ONLY FANS", userRol);
+      console.log("Actualizado", userRol);
+    } catch (error) {
+      next(error);
+    }
+  },
+  onlyScout: (req, res, next) => {
+    try {
+      const { authorization } = req.headers;
+      console.log(authorization);
+      // we check if reequest has an authorization in headers
+      if (!authorization) {
+        return res.status(401).send({
+          message: "Debes estar registrado para tener acceso a esta sección",
+        });
+      }
+      const authNoBearer = authorization.split(" ")[1];
+
+      const { userId, userName, userEmail, userRol } =
+        accessAuth.decodedToken(authNoBearer);
+      console.log(accessAuth.decodedToken(authNoBearer));
+      console.log(userId);
+      if (userRol !== "Scout") {
+        return res.status(401).send({
+          message: "Sólo los ojeadores pueden mandar mensaje",
+        });
+      }
+      next();
     } catch (error) {
       next(error);
     }

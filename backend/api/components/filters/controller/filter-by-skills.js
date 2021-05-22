@@ -17,6 +17,7 @@ async function findSkills(req, res, next) {
     right join ratings e
     on e.ratingPositionSkillId = c.positionSkillId
     where e.ratingIdUser = a.UserId
+    and a.userRol= 'Player'
     group by a.userId, b.positionName, d.skillName`;
     const [results] = await connection.execute(getSkillQuery);
     connection.release();

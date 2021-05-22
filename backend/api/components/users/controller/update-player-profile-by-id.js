@@ -13,6 +13,10 @@ async function updatePlayer(req, res, next) {
     const { id } = req.params;
     const userId = Number(id);
 
+    const {userId :idAutorizado} = req.auth;
+
+    console.log(idAutorizado);
+
     const {
       userName,
       userEmail,

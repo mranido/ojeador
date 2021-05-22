@@ -9,7 +9,8 @@ console.log(req.params);
     const connection = await getConnection();
     const getPositionQuery = `SELECT userId, userName, userBirthday, userPosition, userTeam
                                     FROM users
-                                    WHERE userPosition = ?`;
+                                    WHERE userPosition = ?
+                                    and userRol = 'Player'`;
     const [results] = await connection.execute(getPositionQuery, [findPosition]);
     console.log('Resultado Mediocentro --|--', results);
     connection.release();

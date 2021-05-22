@@ -9,7 +9,7 @@ async function getCategory(req, res, next) {
   try {
     const connection = await getConnection();
     const getAge = `SELECT userId, userName, timestampdiff(year,userbirthday, curdate()) as userAge, userPosition, userTeam
-                                    FROM users;`;
+                                    FROM users where userRol ='Player';`;
     const [results] = await connection.execute(getAge);
 
     connection.release();

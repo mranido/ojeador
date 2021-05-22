@@ -19,7 +19,18 @@ async function createContact(req, res, next) {
     if (!player) {
       return response.error(req, res, "Persona no existe", 400);
     }
-    const { userEmail, userName } = player;
+    console.log("Ese es un player", player);
+
+    const { userEmail, userName, userRol } = player;
+
+    if (userRol !== "Player") {
+      return response.error(
+        req,
+        res,
+        "Sólo se pueden enviar mensajes a los jugadores",
+        400
+      );
+    }
 
     const contactDB = {
       contactScoutId,
