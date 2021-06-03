@@ -9,8 +9,8 @@ const response = require("../../../routes/response");
 async function getUserProfile(req, res, next) {
   try {
     // Recogemos el Id del accessToken así no usamos ni tenemos que fiarnos de la URL
-  const { id } = req.params;
-  const userId = Number(id);
+    const { id } = req.params;
+    const userId = Number(id);
     console.log(req.auth);
 
     const user = await model.findOne({ userId }, TABLE);
@@ -24,9 +24,9 @@ async function getUserProfile(req, res, next) {
     }
 
     res.status(200).json({
-      data: { id: user.userId, rol: user.userRol },
+       user,
     });
-    response.success(req, res, { id: user.userId, rol: user.userRol }, 201);
+    response.success(req, res, { user }, 201);
   } catch (error) {
     next(error);
   }

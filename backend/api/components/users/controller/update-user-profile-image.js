@@ -12,7 +12,7 @@ const validExtensions = [".jpeg", ".jpg", ".png"];
 
 async function uploadImageProfile(req, res, next) {
   try {
-    const {userEmail} = req.auth;
+    const {userEmail} = req.headers.authorization;
     console.log(userEmail);
     const { id } =(req.params);
     const userId = Number(id);

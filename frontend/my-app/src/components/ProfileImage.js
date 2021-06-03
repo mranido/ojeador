@@ -3,6 +3,7 @@ import { AuthContext } from "./AuthContext";
 import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
 
+
 function ProfileImage(props) {
   const [token, setToken] = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState("");
@@ -24,11 +25,12 @@ function ProfileImage(props) {
     loadUserInfo();
   }, [userInfoReloader, userId]);
 
+  
   return userInfo.userImage ? (
     <Link id={id} to={"/profile/user-profile"}>
       <div>{userInfo.userName}</div>
       <img
-        src={`/public/images/profiles/${userId}.${userInfo.userImage
+        src={`../../public/images/profiles/${userInfo.userImage
           .split(".")
           .pop()}`}
         alt="Foto de Perfil"

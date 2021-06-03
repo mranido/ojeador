@@ -54,7 +54,7 @@ const update = Joi.object({
   }),
 });
 
-const updateData = (request, response, next) => {
+const updateDataPlayer = (request, response, next) => {
   let result = update.validate(request.body, {
     abortEarly: false,
   });
@@ -73,4 +73,4 @@ const updateData = (request, response, next) => {
   }
 };
 
-module.exports = updateData;
+module.exports = updateDataPlayer;

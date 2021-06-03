@@ -22,12 +22,23 @@ router
   .post("/login", controller.login)
   .get("/profiles/:id", controller.get_profile)
   .put(
-    "/profiles/update/:id",
+    "/profiles/update_player/:id",
     accessAuth.registred,
-    schema.updateData,
-    controller.update
+    schema.updateDataPlayer,
+    controller.updatePlayer
   )
+  .put(
+    "/profiles/update_scout/:id",
+    accessAuth.registred,
+    schema.updateDataScout,
+    controller.updateScout
+  )
+  .get("/profiles", controller.get_all_profile)
   .delete("/profiles/delete/:id", accessAuth.registred, controller.remove)
-  .post("/profiles/upload/:id/", accessAuth.registred, controller.updateImage);
+  .post(
+    "/profiles/upload-photo/:id",
+    accessAuth.registred,
+    controller.updateImage
+  );
 
 module.exports = router;

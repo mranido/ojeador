@@ -11,21 +11,18 @@ const bcrypt = require("bcryptjs");
 async function updatePlayer(req, res, next) {
   try {
     const { id } = req.params;
-    const userId = Number(id);
+    let { userId, userRol } = req.headers.authorization;
+    userId = Number(id);
 
-    const {userId :idAutorizado} = req.auth;
-
-    console.log(idAutorizado);
+    console.log(userId);
 
     const {
       userName,
       userEmail,
-      userPassword,
       userLocation,
       userTeam,
       userPosition,
       userNumber,
-      userImage,
       userBirthday,
       userDescription,
     } = req.body;
@@ -34,16 +31,15 @@ async function updatePlayer(req, res, next) {
     const userDataUpdated = {
       userName,
       userEmail,
-      userPassword: await bcrypt.hash(userPassword, 10),
       userLocation,
       userTeam,
       userPosition,
       userNumber,
-      userImage,
       userBirthday,
       userDescription,
     };
 
+    console.log(userDataUpdated);
     const userExists = await model.findOne({ userId }, TABLE);
     if (!userExists) {
       return response.error(req, res, "El usuario no existe", 404);
@@ -57,6 +53,7 @@ async function updatePlayer(req, res, next) {
 
     response.success(req, res, "Usuario actualizado", 201);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 }

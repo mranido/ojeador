@@ -2,7 +2,8 @@
 
 const register = require("./register");
 const login = require("./login");
-const updateData = require("./update-player");
+const updateDataPlayer = require("./update-player");
+const updateDataScout = require("./update-scout");
 const remove =  require("./delete")
 
-module.exports = { register, login, updateData, remove };
+module.exports = { register, login, updateDataPlayer, updateDataScout, remove };

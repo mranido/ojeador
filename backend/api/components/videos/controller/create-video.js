@@ -13,7 +13,7 @@ const validExtensions = [".mp4"];
 async function uploadVideo(req, res, next) {
   try {
     const { id } = req.params;
-    console.log("hola");
+
     const videoIdUser = Number(id);
     // Las imagenes vienen dentro de la cabecera req en el objeto files
     // Comprobamos q existe alguna imagen
@@ -27,7 +27,7 @@ async function uploadVideo(req, res, next) {
         400
       );
     }
-
+    console.log('Ese es el video', files);
     // profileImage es el nombre que enviamos desde el postman,
     // si enviamos
     const { profileVideo } = files;
