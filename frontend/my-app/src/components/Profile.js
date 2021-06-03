@@ -3,6 +3,7 @@ import React from "react";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import { UpdateUser } from "./UpdateUser";
 import { UploadVideo } from "./UploadVideo";
+import Logout from "./Logout";
 
 
 function Profile() {
@@ -17,6 +18,9 @@ function Profile() {
         <Link to={`${url}/upload-video`}>
           <button type="submit">Subir Vídeos</button>
         </Link>
+        <Link to={`${url}/logout`}>
+          <button type="submit">Logout</button>
+        </Link>
       </div>
 
       <Switch>
@@ -25,6 +29,9 @@ function Profile() {
         </Route>
         <Route path={`${path}/upload-video`}>
           <UploadVideo />
+        </Route>
+        <Route path={`${path}/logout`}>
+          <Logout />
         </Route>
       </Switch>
     </div>

@@ -25,12 +25,14 @@ function ProfileImage(props) {
     loadUserInfo();
   }, [userInfoReloader, userId]);
 
+  console.log(userInfo);
+
   
   return userInfo.userImage ? (
     <Link id={id} to={"/profile/user-profile"}>
       <div>{userInfo.userName}</div>
       <img
-        src={`../../public/images/profiles/${userInfo.userImage
+        src={`/images/profiles/${userInfo.userImage
           .split(".")
           .pop()}`}
         alt="Foto de Perfil"
@@ -40,7 +42,7 @@ function ProfileImage(props) {
     <Link id={id} to={"/profile/user-profile"}>
       <div>{userInfo.userName}</div>{" "}
       <img
-        src={`/public/images/profiles/image-default.png`}
+        src={`./images/profiles/image-default.png`}
         alt="Foto por defecto"
       ></img>
     </Link>

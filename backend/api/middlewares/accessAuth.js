@@ -62,7 +62,7 @@ const accessAuth = {
       console.log(userId);
       if (userRol !== "Scout") {
         return res.status(401).send({
-          message: "Sólo los ojeadores pueden mandar mensaje",
+          message: "No tienes permiso para relizar dicha petición",
         });
       }
       next();

@@ -29,7 +29,7 @@ router
   )
   .put(
     "/profiles/update_scout/:id",
-    accessAuth.registred,
+    accessAuth.onlyScout,
     schema.updateDataScout,
     controller.updateScout
   )

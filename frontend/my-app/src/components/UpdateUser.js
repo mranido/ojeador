@@ -191,6 +191,7 @@ function UpdateUser() {
                   onChange={(e) => setUserPosition(e.target.value)}
                   value={userPosition}
                 >
+                 <option value ='Valor a Seleccionar'>Elija su posicion</option> 
                   <option value="Portero" key="Portero">
                     Portero
                   </option>
