@@ -4,6 +4,7 @@ import { AuthContext } from "./AuthContext";
 import jwt_decode from "jwt-decode";
 import ProfileImage from "./ProfileImage";
 import { UploadProfileImage } from "./UploadProfileImage";
+import moment from 'moment' ;
 
 function UpdateUser() {
   const [userName, setUserName] = useState("");
@@ -180,7 +181,7 @@ function UpdateUser() {
                   className="update-user-input"
                   type="date"
                   name="userBirthday"
-                  value={userBirthday}
+                  value={moment(userBirthday, 'YYYY-MM-DD').format('YYYY-MM-DD')}
                   onChange={(e) => setUserBirthday(e.target.value)}
                 />
               </label>

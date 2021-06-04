@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
+import "./../style/ProfileImage.css";
 
 
 function ProfileImage(props) {
@@ -52,7 +53,7 @@ function ProfileImage(props) {
         ></img>
       </Link>
     );
-  } else{return 'Vete a tomar por culo'};
+  } else{return ''};
 
 }
 export default ProfileImage;
