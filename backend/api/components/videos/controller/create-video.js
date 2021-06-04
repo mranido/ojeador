@@ -41,7 +41,7 @@ async function uploadVideo(req, res, next) {
     // Cogemos la imagen de perfil original
 
     // Generamos la ruta completa a la carpeta donde situamos las imagenes de perfil
-    const pathVideoFolder = `${__dirname}/../../../../public/${PATH_USER_VIDEOS}`;
+    const pathVideoFolder = `${__dirname}/../../../../../frontend/my-app/public/${PATH_USER_VIDEOS}`;
     console.log(__dirname);
 
     const random = cryptoRandomString({ length: 10, type: "alphanumeric" });

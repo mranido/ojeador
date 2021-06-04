@@ -16,6 +16,7 @@ async function getUserProfile(req, res, next) {
     const user = await model.findOne({ userId }, TABLE);
     console.log(user);
 
+    console.log("esta es la imagen", user.userImage);
     if (userId === undefined || !user) {
       return response.error(req, res, "No hay usuarios", 409);
     }
@@ -26,7 +27,7 @@ async function getUserProfile(req, res, next) {
     res.status(200).json({
        user,
     });
-    response.success(req, res, { user }, 201);
+    // response.success(req, res, { user }, 201);
   } catch (error) {
     next(error);
   }

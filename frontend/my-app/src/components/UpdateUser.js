@@ -19,6 +19,7 @@ function UpdateUser() {
   const [userInfo, setUserInfo] = useState("");
   const [token, setToken] = useContext(AuthContext);
   const decodedToken = jwt_decode(token);
+  const [userImage, setUserImage] = useState("");
   const { userId, userRol } = decodedToken;
   const [formState, setFormState] = useState("");
 
@@ -32,18 +33,20 @@ function UpdateUser() {
       );
       if (response.ok) {
         const body = await response.json();
-        setUserInfo(body);
-        setUserEmail(body.userEmail);
-        setUserName(body.userName);
-        setUserTeam(body.userTeam);
-        setUserNumber(body.userNumber);
-        setUserDescription(body.userDescription);
-        setUserLocation(body.userLocation);
-        setUserBirthday(body.userBirthday);
-        setUserPosition(body.userPosition);
+        setUserInfo(body.user);
+        setUserEmail(body.user.userEmail);
+        setUserName(body.user.userName);
+        setUserTeam(body.user.userTeam);
+        setUserNumber(body.user.userNumber);
+        setUserDescription(body.user.userDescription);
+        setUserLocation(body.user.userLocation);
+        setUserBirthday(body.user.userBirthday);
+        setUserPosition(body.user.userPosition);
+        setUserImage(body.user.userImage);
         setFormState("activo");
       }
     };
+    loadUserInfo();
   }, [formState, userId]);
 
 
@@ -71,7 +74,7 @@ function UpdateUser() {
     const res =
       userRol === "Player"
         ? await fetch(
-            `http://localhost:8000/api/v1/users//profiles/update_player/${userId}`,
+            `http://localhost:8000/api/v1/users/profiles/update_player/${userId}`,
             {
               method: "PUT",
               headers: {
@@ -82,7 +85,7 @@ function UpdateUser() {
             }
           )
         : await fetch(
-            `http://localhost:8000/api/v1/users//profiles/update_scout/${userId}`,
+            `http://localhost:8000/api/v1/users/profiles/update_scout/${userId}`,
             {
               method: "PUT",
               headers: {
