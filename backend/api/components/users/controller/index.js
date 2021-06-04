@@ -10,11 +10,13 @@ const removeUser = require("./delete-user-by-id");
 const updateProfileImage = require("./update-user-profile-image")
 const getAllUsersProfile = require('./get-all-profile');
 const updateScout = require("./update-scout-profile");
+const getUserSkills = require("./get-users-skills");
 
 module.exports = {
   activation: activationAccount,
   remove: deleteUserById,
   get_profile: getUsersProfile,
+  getSkills : getUserSkills,
   login: loginUser,
   register: registerUser,
   updatePlayer,

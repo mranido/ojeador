@@ -6,6 +6,8 @@ import ProfileImage from "./ProfileImage";
 import { UploadProfileImage } from "./UploadProfileImage";
 import { getAge } from "../utils/getAge";
 import moment from "moment";
+import {categories} from "../utils/categories"
+import Menu from "./Menu";
 
 function GetProfileUser() {
   const [userName, setUserName] = useState("");
@@ -51,9 +53,41 @@ function GetProfileUser() {
     loadUserInfo();
   }, [formState, userId, userBirthday]);
 
-  const birth = moment(userInfo.userBirthday).format("YYYY-MM-DD");
+    
 
-  return <div>{getAge(birth)}</div>;
+  const birth = moment(userInfo.userBirthday).format("YYYY-MM-DD");
+  const age = getAge(birth);
+  const category = categories(age);
+  return (
+    <>
+      {userRol === "Player" ? <div>{userInfo.userNumber}</div> : ""}
+      <div>{userInfo.userName}</div>
+      <div>
+        <img
+          src={`/images/profiles/${userInfo.userImage}`}
+          alt="Imagen de perfil"
+          className="profileimage"
+        ></img>
+      </div>
+      {userRol === "Player" ? (
+        <div>
+          Edad: {age} años <span>({category})</span>
+        </div>
+      ) : (
+        ""
+      )}
+      {userRol === "Player" ? (
+        <div>Posición: {userInfo.userPosition} </div>
+      ) : (
+        ""
+      )}
+      <div>Equipo: {userInfo.userTeam} </div>
+      <div>Localidad: {userInfo.userLocation} </div>
+      <div>
+        <p>{userInfo.userDescription}</p>
+      </div>
+    </>
+  );
 }
 
 export { GetProfileUser };

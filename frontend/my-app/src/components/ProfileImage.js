@@ -39,7 +39,7 @@ function ProfileImage(props) {
     return userInfo.user.userImage ? (
       <Link id={id} to={"/profile/user-profile"}>
         <div>{userInfo.user.userName}</div>
-        <img
+        <img className='profileimage'
           src={`/images/profiles/${userInfo.user.userImage}`}
           alt="Foto de Perfil"
         ></img>
