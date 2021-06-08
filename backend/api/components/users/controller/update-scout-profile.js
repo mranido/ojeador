@@ -16,13 +16,8 @@ async function updateScout(req, res, next) {
 
     console.log(userId);
 
-    const {
-      userName,
-      userEmail,
-      userLocation,
-      userTeam,
-      userDescription,
-    } = req.body;
+    const { userName, userEmail, userLocation, userTeam, userDescription } =
+      req.body;
     console.log("este es el usuario:", userId);
     console.log("password", req.body.userPassword);
     const userDataUpdated = {
@@ -47,7 +42,6 @@ async function updateScout(req, res, next) {
 
     response.success(req, res, "Usuario actualizado", 201);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 }

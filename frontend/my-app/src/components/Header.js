@@ -1,7 +1,8 @@
 import React from "react";
-import logo from "./../imagesMenu/logo.png";
-import {Link} from "react-router-dom";
+import logo from "./../imagesMenu/ojeador.svg";
+import { Link } from "react-router-dom";
 import "./../style/Header.css";
+import { FaRegBell } from "react-icons/fa";
 
 function Header() {
   return (
@@ -9,13 +10,30 @@ function Header() {
       <header className="logo-background">
         <section className="logo">
           <Link to="/">
-            <img src={logo} alt="Logo" />
+            <img
+              src={logo}
+              style={{ backgroundColor: "#FFFFFF", borderRadius: "50%" }}
+              alt="Logo"
+            />
           </Link>
+          <span
+            style={{
+              fontFamily: "monospace",
+              fontWeight: "bold",
+              fontSize: "4rem",
+              display: "flex",
+              flexFlow: "1, no-wrap",
+              justifyContent: "center",
+              textAlign: "center",
+              spaceBetween: "",
+            }}
+          >
+            jeador
+          </span>
         </section>
       </header>
     </>
   );
 }
 
-
-export {Header};
+export { Header };
