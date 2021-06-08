@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom";
 function GetMyProfile() {
   const [token, setToken] = useContext(AuthContext);
   const decodedToken = jwt_decode(token);
-  const { userId, userRol } = decodedToken;
+  const { userId } = decodedToken;
 
   return <GetProfile id={userId} />;
 }
@@ -27,6 +27,7 @@ function GetUserProfile() {
 
 function GetProfile({ id }) {
   const [userName, setUserName] = useState("");
+  const [userRol, setUserRol] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userLocation, setUserLocation] = useState("");
   const [userTeam, setUserTeam] = useState("");
@@ -52,6 +53,7 @@ function GetProfile({ id }) {
       if (response.ok) {
         const body = await response.json();
         setUserInfo(body.user);
+        setUserRol(body.user.userRol);
         setUserEmail(body.user.userEmail);
         setUserName(body.user.userName);
         setUserTeam(body.user.userTeam);
@@ -106,7 +108,7 @@ function GetProfile({ id }) {
       <div>
         <p>{userInfo.userDescription}</p>
       </div>
-      <GetSkills id={id} />
+      {userInfo.userRol === "Player" ? <GetSkills id={id} /> : ""}
     </>
   );
 }
