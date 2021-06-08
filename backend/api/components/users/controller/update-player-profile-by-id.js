@@ -13,9 +13,6 @@ async function updatePlayer(req, res, next) {
     const { id } = req.params;
     let { userId, userRol } = req.headers.authorization;
     userId = Number(id);
-
-    console.log(userId);
-
     const {
       userName,
       userEmail,
@@ -26,8 +23,6 @@ async function updatePlayer(req, res, next) {
       userBirthday,
       userDescription,
     } = req.body;
-    console.log("este es el usuario:", userId);
-    console.log("password", req.body.userPassword);
     const userDataUpdated = {
       userName,
       userEmail,
@@ -38,8 +33,6 @@ async function updatePlayer(req, res, next) {
       userBirthday,
       userDescription,
     };
-
-    console.log(userDataUpdated);
     const userExists = await model.findOne({ userId }, TABLE);
     if (!userExists) {
       return response.error(req, res, "El usuario no existe", 404);
@@ -53,7 +46,6 @@ async function updatePlayer(req, res, next) {
 
     response.success(req, res, "Usuario actualizado", 201);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 }
