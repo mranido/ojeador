@@ -21,20 +21,8 @@ export const CreateContact = ({ userId }) => {
     );
   };
 
-  const closePopUp = (e) => {
-    e.preventDefault();
-    const rootDiv = document.getElementById("root");
-    const requestPopUp = document.getElementById("requestPopUp");
-    const body = document.querySelector("body");
-
-    rootDiv.classList.toggle("blurred");
-    requestPopUp.classList.toggle("hidden");
-    body.classList.toggle("scrollDisabled");
-  };
-
   return (
     <form id={"requestPopUp"} className={"hidden"} onSubmit={request}>
-      <button type={"button"} onClick={closePopUp} />
       <textarea
         name="reqContent"
         id="reqContent"
@@ -46,4 +34,3 @@ export const CreateContact = ({ userId }) => {
     </form>
   );
 };
-

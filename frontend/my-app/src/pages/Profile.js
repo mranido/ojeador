@@ -5,7 +5,7 @@ function ProfilePage() {
   return (
     <div>
       <Profile />
-      <CreateContact/>)
+      <CreateContact />
     </div>
   );
 }

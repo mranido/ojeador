@@ -4,7 +4,7 @@ import { AuthContext } from "./AuthContext";
 import jwt_decode from "jwt-decode";
 import ProfileImage from "./ProfileImage";
 import { UploadProfileImage } from "./UploadProfileImage";
-import moment from 'moment' ;
+import moment from "moment";
 
 function UpdateUser() {
   const [userName, setUserName] = useState("");
@@ -50,7 +50,6 @@ function UpdateUser() {
     loadUserInfo();
   }, [formState, userId]);
 
-
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -71,7 +70,7 @@ function UpdateUser() {
       userDescription: userDescription,
       userLocation: userLocation,
     };
- 
+
     const res =
       userRol === "Player"
         ? await fetch(
@@ -97,7 +96,6 @@ function UpdateUser() {
             }
           );
     if (res.ok) {
-      const resMessage = await res.json();
       setResponse("Usuario Actualizado");
     } else {
       const resMessage = await res.json();
@@ -181,7 +179,9 @@ function UpdateUser() {
                   className="update-user-input"
                   type="date"
                   name="userBirthday"
-                  value={moment(userBirthday, 'YYYY-MM-DD').format('YYYY-MM-DD')}
+                  value={moment(userBirthday, "YYYY-MM-DD").format(
+                    "YYYY-MM-DD"
+                  )}
                   onChange={(e) => setUserBirthday(e.target.value)}
                 />
               </label>
@@ -195,7 +195,7 @@ function UpdateUser() {
                   onChange={(e) => setUserPosition(e.target.value)}
                   value={userPosition}
                 >
-                 <option value ='Valor a Seleccionar'>Elija su posicion</option> 
+                  <option value="Valor a Seleccionar">Elija su posicion</option>
                   <option value="Portero" key="Portero">
                     Portero
                   </option>
