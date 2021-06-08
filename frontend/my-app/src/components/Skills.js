@@ -64,8 +64,8 @@ function GetSkills({ id }) {
                   return (
                     <FaStar
                       className="star"
-                      size={50}
-                      color={rating.value > index ? "#ffc107" : "#e4e5e9"}
+                      size={25}
+                      color={rating.value > index ? "#5ACA75" : "#e4e5e9"}
                     />
                   );
                 })}

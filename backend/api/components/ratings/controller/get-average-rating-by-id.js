@@ -16,7 +16,8 @@ async function getAverageRating(req, res, next) {
 
     const averageRating = await model.getAverageRating(userId);
 
-    response.success(req, res, averageRating, 201);
+    res.send(averageRating).status(201);
+    //response.success(req, res, averageRating, 201);
   } catch (error) {
     next(error);
   }

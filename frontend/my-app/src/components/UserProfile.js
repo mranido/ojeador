@@ -10,6 +10,7 @@ import { categories } from "../utils/categories";
 import Menu from "./Menu";
 import { GetSkills } from "./Skills";
 import { useParams } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
 
 function GetMyProfile() {
   const [token, setToken] = useContext(AuthContext);
@@ -38,6 +39,8 @@ function GetProfile({ id }) {
   const [response, setResponse] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [userInfo, setUserInfo] = useState("");
+  const [userRating, setUserRating] = useState("");
+  const [userAverage, setUserAverage] = useState("");
 
   const [userImage, setUserImage] = useState("");
   const [formState, setFormState] = useState("");
@@ -69,6 +72,27 @@ function GetProfile({ id }) {
     loadUserInfo();
   }, [formState, id, userBirthday]);
 
+  useEffect(() => {
+    const loadUserRating = async () => {
+      const response = await fetch(
+        `http://localhost:8000/api/v1/ratings/user/${id}/avgrating`
+      );
+      if (response.ok) {
+        const body2 = await response.json();
+        setUserRating(body2);
+        setUserAverage(body2.averagePuntuation);
+      }
+    };
+    loadUserRating();
+  }, [id]);
+  const avgPunt = () => {
+    if (userRating) {
+      return userRating.map((i) => i.averagePuntuation).pop();
+    } else {
+      return " ";
+    }
+  };
+
   const birth = moment(userInfo.userBirthday).format("YYYY-MM-DD");
   const age = getAge(birth);
   const category = categories(age);
@@ -91,6 +115,24 @@ function GetProfile({ id }) {
           ></img>
         )}
       </div>
+      {avgPunt() && userInfo.userRol === "Player" ? (
+        <div>
+          {Number(avgPunt())}
+          {Array(5)
+            .fill()
+            .map((item, index) => {
+              return (
+                <FaStar
+                  className="star"
+                  size={25}
+                  color={Number(avgPunt()) > index ? "#5ACA75" : "#e4e5e9"}
+                />
+              );
+            })}
+        </div>
+      ) : (
+        ""
+      )}
       {userInfo.userRol === "Player" ? (
         <div>
           Edad: {age} años <span>({category})</span>
