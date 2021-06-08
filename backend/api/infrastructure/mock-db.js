@@ -123,7 +123,7 @@ module.exports = {
   },
   getRating: async (user) => {
     connectionDB = await getConnection();
-    const sql = `select a.userName as Nombre, b.positionName as Posición, d.skillName as Habilidades, truncate(avg(e.ratingValue),1) as Puntuación
+    const sql = `select a.userName , b.positionName, d.skillName, truncate(avg(e.ratingValue),1) as userPuntuation
     from users a left join positions b
     on a.userPosition = b.positionName
     left join positionsSkills c
@@ -140,7 +140,7 @@ module.exports = {
   },
   getAverageRating: async(user) =>{
      connectionDB = await getConnection();
-     const sql = `select a.userName as Nombre, truncate(avg(e.ratingValue),1) as "Puntuación Media"
+     const sql = `select a.userName, truncate(avg(e.ratingValue),1) as averagePuntuation
     from users a left join positions b
     on a.userPosition = b.positionName
     left join positionsSkills c

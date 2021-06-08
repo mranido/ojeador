@@ -21,8 +21,8 @@ async function getRate(req, res, next) {
     }
 
    const ratings = await model.getRating(userId);
-
-    response.success(req, res, ratings , 201);
+    res.send(ratings).status(201);
+    // response.success(req, res, ratings , 201);
   } catch (error) {
     next(error);
   }

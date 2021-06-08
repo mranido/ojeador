@@ -38,7 +38,7 @@ function LoginForm() {
   return (
     <>
       {token ? (
-        <Redirect to="/" />
+        <Redirect to="/profile/user-profile" />
       ) : (
         <div className="login-wrapper">
           <div className="login">

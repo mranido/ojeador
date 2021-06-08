@@ -4,8 +4,7 @@ import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import { UpdateUser } from "./UpdateUser";
 import { UploadVideo } from "./UploadVideo";
 import Logout from "./Logout";
-import { GetProfileUser } from "./UserProfile";
-
+import { GetMyProfile, GetUserProfile } from "./UserProfile";
 
 function Profile() {
   let { path, url } = useRouteMatch();
@@ -38,7 +37,10 @@ function Profile() {
           <Logout />
         </Route>
         <Route path={`${path}/user-profile`}>
-          <GetProfileUser />
+          <GetMyProfile />
+        </Route>
+        <Route path={`${path}/user/:id`}>
+          <GetUserProfile />
         </Route>
       </Switch>
     </div>

@@ -8,6 +8,7 @@ const model = require("../../../infrastructure/mock-db");
 async function createRate(req, res, next) {
   try {
     const { id } = req.params;
+    
     const userId = Number(id);
     const {
       ratingIdUser,

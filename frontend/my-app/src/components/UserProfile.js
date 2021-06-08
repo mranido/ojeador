@@ -6,10 +6,26 @@ import ProfileImage from "./ProfileImage";
 import { UploadProfileImage } from "./UploadProfileImage";
 import { getAge } from "../utils/getAge";
 import moment from "moment";
-import {categories} from "../utils/categories"
+import { categories } from "../utils/categories";
 import Menu from "./Menu";
+import { GetSkills } from "./Skills";
+import { useParams } from "react-router-dom";
 
-function GetProfileUser() {
+function GetMyProfile() {
+  const [token, setToken] = useContext(AuthContext);
+  const decodedToken = jwt_decode(token);
+  const { userId, userRol } = decodedToken;
+
+  return <GetProfile id={userId} />;
+}
+
+function GetUserProfile() {
+  const { id } = useParams();
+
+  return <GetProfile id={id} />;
+}
+
+function GetProfile({ id }) {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userLocation, setUserLocation] = useState("");
@@ -21,10 +37,8 @@ function GetProfileUser() {
   const [response, setResponse] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [userInfo, setUserInfo] = useState("");
-  const [token, setToken] = useContext(AuthContext);
-  const decodedToken = jwt_decode(token);
+
   const [userImage, setUserImage] = useState("");
-  const { userId, userRol } = decodedToken;
   const [formState, setFormState] = useState("");
 
   const [userInfoReloader, setUserInfoReloader] = useState(0);
@@ -33,7 +47,7 @@ function GetProfileUser() {
   useEffect(() => {
     const loadUserInfo = async () => {
       const response = await fetch(
-        `http://localhost:8000/api/v1/users/profiles/${userId}`
+        `http://localhost:8000/api/v1/users/profiles/${id}`
       );
       if (response.ok) {
         const body = await response.json();
@@ -51,32 +65,38 @@ function GetProfileUser() {
       }
     };
     loadUserInfo();
-  }, [formState, userId, userBirthday]);
-
-    
+  }, [formState, id, userBirthday]);
 
   const birth = moment(userInfo.userBirthday).format("YYYY-MM-DD");
   const age = getAge(birth);
   const category = categories(age);
   return (
     <>
-      {userRol === "Player" ? <div>{userInfo.userNumber}</div> : ""}
+      {userInfo.userRol === "Player" ? <div>{userInfo.userNumber}</div> : ""}
       <div>{userInfo.userName}</div>
       <div>
-        <img
-          src={`/images/profiles/${userInfo.userImage}`}
-          alt="Imagen de perfil"
-          className="profileimage"
-        ></img>
+        {userInfo.userImage ? (
+          <img
+            src={`/images/profiles/${userInfo.userImage}`}
+            alt="Imagen de perfil"
+            className="profileimage"
+          ></img>
+        ) : (
+          <img
+            src={`/images/profiles/image-default.png`}
+            alt="Imagen de perfil"
+            className="profileimage"
+          ></img>
+        )}
       </div>
-      {userRol === "Player" ? (
+      {userInfo.userRol === "Player" ? (
         <div>
           Edad: {age} años <span>({category})</span>
         </div>
       ) : (
         ""
       )}
-      {userRol === "Player" ? (
+      {userInfo.userRol === "Player" ? (
         <div>Posición: {userInfo.userPosition} </div>
       ) : (
         ""
@@ -86,8 +106,9 @@ function GetProfileUser() {
       <div>
         <p>{userInfo.userDescription}</p>
       </div>
+      <GetSkills id={id} />
     </>
   );
 }
 
-export { GetProfileUser };
+export { GetMyProfile, GetUserProfile };

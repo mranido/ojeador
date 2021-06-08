@@ -21,7 +21,7 @@ router
   .get("/:id/activation", controller.activation)
   .post("/login", controller.login)
   .get("/profiles/:id", controller.get_profile)
-  .get("/skills", controller.getSkills)
+  .get("/skills/:id", controller.getSkills)
   .put(
     "/profiles/update_player/:id",
     accessAuth.registred,
