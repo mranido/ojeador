@@ -19,7 +19,7 @@ async function getAllUsersProfile(req, res, next) {
     res.status(200).json({
       user,
     });
-    response.success(req, res, { user }, 201);
+    // response.success(req, res, { user }, 201);
   } catch (error) {
     next(error);
   }

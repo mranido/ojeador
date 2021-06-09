@@ -4,9 +4,6 @@ import { useState } from "react";
 export function MainPage() {
   const [user, setUser] = useState([]);
   const [userVideo, setUserVideo] = useState([]);
-  const [userId, setUserId] = useState("");
-  const [userImage, setUserImage] = useState("");
-  const [videoIduser, setVideoIduser] = useState("");
   const [userInfoReloader, setUserInfoReloader] = useState(0);
   const refreshUserInfo = () => setUserInfoReloader(Math.random());
 
@@ -14,31 +11,22 @@ export function MainPage() {
     const loadVideos = async () => {
       const response = await fetch(`http://localhost:8000/api/v1/videos/`);
       if (response.ok) {
-        const body2 = await response.json();
-        setUserVideo(body2);
-        setVideoIduser(body2.videoIduser);
+        const body = await response.json();
+        setUserVideo(body);
       }
     };
     loadVideos();
   }, []);
 
-  useEffect(() => {
-    const loadUserInfo = async () => {
-      const response = await fetch(
-        `http://localhost:8000/api/v1/users/profiles/`
-      );
-      if (response.ok) {
-        const body = await response.json();
-        setUser(body.user);
-      }
-    };
-    loadUserInfo();
-  }, []);
-
-  console.log(user);
   let videoUrl = userVideo
     .map((i) => {
-      return { videoUrl: i.videoUrl, videoIduser: i.videoIduser };
+      return {
+        videoUrl: i.videoUrl,
+        videoIduser: i.videoIduser,
+        userName: i.userName,
+        userImage: i.userImage,
+        userNumber: i.userNumber,
+      };
     })
     .reverse();
 
@@ -57,7 +45,24 @@ export function MainPage() {
               >
                 {" "}
               </video>
-              <p>{url.videoIduser}</p>
+              <p>
+                <span>
+                  {url.userImage ? (
+                    <img
+                      src={`/images/profiles/${url.userImage}`}
+                      alt="Imagen de perfil"
+                      className="image"
+                    ></img>
+                  ) : (
+                    <img
+                      src={`/images/profiles/image-default.png`}
+                      alt="Imagen de perfil"
+                      className="image"
+                    ></img>
+                  )}{" "}
+                </span>{" "}
+                {url.userName}
+              </p>
             </li>
           );
         })}
