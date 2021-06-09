@@ -12,7 +12,7 @@ async function getallVideos(req, res, next) {
       return response.error(req, res, "No hay videos", 409);
     }
 
-    response.success(req, res, { video: videos }, 201);
+    res.status(200).send(videos);
   } catch (error) {
     next(error);
   }

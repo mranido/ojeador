@@ -26,7 +26,7 @@ function GetSkills({ id }) {
       }
     };
     loadSkillInfo();
-  }, [userId]);
+  }, [userId, id]);
   useEffect(() => {
     const loadPuntuationInfo = async () => {
       const response = await fetch(
@@ -38,7 +38,7 @@ function GetSkills({ id }) {
       }
     };
     loadPuntuationInfo();
-  }, [userId]);
+  }, [userId, id]);
 
   const userRatings = userInfo.map((skill) => {
     const playerSkill = rating.find((r) => r.skillName === skill.skillName);

@@ -2,16 +2,17 @@ import React from "react";
 // import "./App.css";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Profile from "./pages/Profile"
+import Profile from "./pages/Profile";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import {AuthProvider} from "./components/AuthContext";
+import { AuthProvider } from "./components/AuthContext";
 import { Header } from "./components/Header";
+import { MainPage } from "./components/MainPage";
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-      <Header/>
+        <Header />
         <div>
           <Switch>
             <Route path="/register">
@@ -22,6 +23,9 @@ function App() {
             </Route>
             <Route path="/profile">
               <Profile />
+            </Route>
+            <Route path="/">
+              <MainPage />
             </Route>
           </Switch>
         </div>
