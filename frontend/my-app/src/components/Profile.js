@@ -36,10 +36,10 @@ function Profile() {
         <Route path={`${path}/logout`}>
           <Logout />
         </Route>
-        <Route path={`${path}/user-profile`}>
+        <Route exact path={`${path}/user-profile`}>
           <GetMyProfile />
         </Route>
-        <Route path={`${path}/user/:id`}>
+        <Route exact path={`${path}/user/:id`}>
           <GetUserProfile />
         </Route>
       </Switch>

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./../style/MainPage.css";
 
 export function MainPage() {
@@ -23,6 +24,7 @@ export function MainPage() {
   let videoUrl = userVideo
     .map((i) => {
       return {
+        userId: i.userId,
         videoUrl: i.videoUrl,
         videoIduser: i.videoIduser,
         userName: i.userName,
@@ -62,17 +64,21 @@ export function MainPage() {
                 <div className="container-info">
                   <div>
                     {url.userImage ? (
-                      <img
-                        src={`/images/profiles/${url.userImage}`}
-                        alt="Imagen de perfil"
-                        className="image"
-                      ></img>
+                      <Link to={`/profile/user/${url.userId}`}>
+                        <img
+                          src={`/images/profiles/${url.userImage}`}
+                          alt="Imagen de perfil"
+                          className="image"
+                        ></img>
+                      </Link>
                     ) : (
-                      <img
-                        src={`/images/profiles/image-default.png`}
-                        alt="Imagen de perfil"
-                        className="image"
-                      ></img>
+                      <Link to={`/profile/user/${url.userId}`}>
+                        <img
+                          src={`/images/profiles/image-default.png`}
+                          alt="Imagen de perfil"
+                          className="image"
+                        ></img>
+                      </Link>
                     )}{" "}
                   </div>{" "}
                   <div>

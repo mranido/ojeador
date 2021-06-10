@@ -1,15 +1,16 @@
 import { useState, useEffect, useContext } from "react";
 import React from "react";
-import { AuthContext } from "./AuthContext";
-import jwt_decode from "jwt-decode";
+import { useParams } from "react-router-dom";
+//import { AuthContext } from "./AuthContext";
+//import jwt_decode from "jwt-decode";
 import { FaStar } from "react-icons/fa";
 
 function GetSkills({ id }) {
   const [userInfo, setUserInfo] = useState([]);
-  const [token, setToken] = useContext(AuthContext);
+  //const [token, setToken] = useContext(AuthContext);
   const [hover, setHover] = useState(null);
-  const decodedToken = jwt_decode(token);
-  const { userId, userRol } = decodedToken;
+  //const decodedToken = jwt_decode(token);
+  //const { userId, userRol } = decodedToken;
   const [formState, setFormState] = useState("");
   const [rating, setRating] = useState([]);
   const [userInfoReloader, setUserInfoReloader] = useState(0);
@@ -26,7 +27,7 @@ function GetSkills({ id }) {
       }
     };
     loadSkillInfo();
-  }, [userId, id]);
+  }, [id]);
   useEffect(() => {
     const loadPuntuationInfo = async () => {
       const response = await fetch(
@@ -38,7 +39,7 @@ function GetSkills({ id }) {
       }
     };
     loadPuntuationInfo();
-  }, [userId, id]);
+  }, [id]);
 
   const userRatings = userInfo.map((skill) => {
     const playerSkill = rating.find((r) => r.skillName === skill.skillName);
@@ -56,13 +57,14 @@ function GetSkills({ id }) {
       <ul style={{ listStyle: "none", paddingLeft: 0 }}>
         {userRatings.map((rating, index) => {
           return (
-            <li key={rating.skill}>
+            <li key={rating.skill + index + rating.value}>
               {rating.skill}
               {Array(5)
                 .fill()
                 .map((item, index) => {
                   return (
                     <FaStar
+                      key={Math.random()}
                       className="star"
                       size={25}
                       color={rating.value > index ? "#5ACA75" : "#e4e5e9"}

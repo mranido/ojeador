@@ -123,6 +123,7 @@ function GetProfile({ id }) {
             .map((item, index) => {
               return (
                 <FaStar
+                  key={Math.random()}
                   className="star"
                   size={25}
                   color={Number(avgPunt()) > index ? "#5ACA75" : "#e4e5e9"}
