@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
+import { FaStar } from "react-icons/fa";
+import "./../style/MainPage.css";
 
 export function MainPage() {
   const [user, setUser] = useState([]);
@@ -26,6 +28,7 @@ export function MainPage() {
         userName: i.userName,
         userImage: i.userImage,
         userNumber: i.userNumber,
+        avgMedia: i.avgMedia,
       };
     })
     .reverse();
@@ -45,24 +48,36 @@ export function MainPage() {
               >
                 {" "}
               </video>
-              <p>
-                <span>
-                  {url.userImage ? (
-                    <img
-                      src={`/images/profiles/${url.userImage}`}
-                      alt="Imagen de perfil"
-                      className="image"
-                    ></img>
-                  ) : (
-                    <img
-                      src={`/images/profiles/image-default.png`}
-                      alt="Imagen de perfil"
-                      className="image"
-                    ></img>
-                  )}{" "}
-                </span>{" "}
-                {url.userName}
-              </p>
+              <div>
+                <div className="container-info">
+                  <div>
+                    {url.userImage ? (
+                      <img
+                        src={`/images/profiles/${url.userImage}`}
+                        alt="Imagen de perfil"
+                        className="image"
+                      ></img>
+                    ) : (
+                      <img
+                        src={`/images/profiles/image-default.png`}
+                        alt="Imagen de perfil"
+                        className="image"
+                      ></img>
+                    )}{" "}
+                  </div>{" "}
+                  <div>
+                    <div>{url.userName}</div>
+                    {url.avgMedia ? (
+                      <div>
+                        {url.avgMedia}
+                        <FaStar color="#5ACA75"></FaStar>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
+              </div>
             </li>
           );
         })}

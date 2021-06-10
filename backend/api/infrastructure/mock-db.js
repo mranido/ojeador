@@ -157,7 +157,7 @@ module.exports = {
   },
   getAllAverageRating: async () => {
     connectionDB = await getConnection();
-    const sql = `select a.userName, truncate(avg(e.ratingValue),1) as averagePuntuation
+    const sql = `select a.*, truncate(avg(e.ratingValue),1) as averagePuntuation
     from users a left join positions b
     on a.userPosition = b.positionName
     left join positionsSkills c
@@ -165,7 +165,8 @@ module.exports = {
     right join skills d 
     on c.positionSkillSkillId = d.skillId
     right join ratings e
-    on e.ratingPositionSkillId = c.positionSkillId`;
+    on e.ratingPositionSkillId = c.positionSkillId
+    where a.userId = e.ratingIdUser`;
     const [result] = await connectionDB.query(sql);
     return result;
   },

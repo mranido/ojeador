@@ -1,5 +1,6 @@
 import { useState } from "react";
 import React from "react";
+import "./../style/Register.css";
 
 export function RegisterForm() {
   const [userRol, setUserRol] = useState("Scout");
@@ -41,9 +42,14 @@ export function RegisterForm() {
   return (
     <div className="register-wrapper">
       <div className="register">
-        <p>Registro</p>
+        <h1>Registro</h1>
+        <p>
+          Bienvenido a Ojeador. Regístrate para valorar y hacer y recibir
+          ofertas
+        </p>
 
         <form onSubmit={handleSubmit}>
+          <label>Rol</label>
           <select onChange={(e) => setUserRol(e.target.value)} value={userRol}>
             <option value="Scout" key="Scout">
               Ojeador
@@ -53,6 +59,8 @@ export function RegisterForm() {
             </option>
           </select>
           <label>
+            {" "}
+            Nombre y Apellidos
             <input
               className="register-form-input"
               type="text"
@@ -63,6 +71,8 @@ export function RegisterForm() {
             />
           </label>
           <label>
+            {" "}
+            Email
             <input
               className="register-form-input"
               type="email"
@@ -73,6 +83,8 @@ export function RegisterForm() {
             />
           </label>
           <label>
+            {" "}
+            Contraseña
             <input
               className="register-form-input"
               type="password"
@@ -83,6 +95,8 @@ export function RegisterForm() {
             />
           </label>
           <label>
+            {" "}
+            Repita la Contraseña
             <input
               className="register-form-input"
               type="password"

@@ -2,7 +2,6 @@ import React from "react";
 import logo from "./../imagesMenu/ojeador.svg";
 import { Link } from "react-router-dom";
 import "./../style/Header.css";
-import { FaRegBell } from "react-icons/fa";
 
 function Header() {
   return (
