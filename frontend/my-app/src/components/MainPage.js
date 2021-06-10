@@ -34,8 +34,18 @@ export function MainPage() {
     .reverse();
 
   return (
-    <div>
-      <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <ul
+        style={{
+          listStyle: "none",
+          paddingLeft: 0,
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+          flexGrow: "1",
+          maxWidth: "320px",
+        }}
+      >
         {videoUrl.map((url, index) => {
           return (
             <li key={url.videoUrl}>
@@ -43,8 +53,8 @@ export function MainPage() {
                 controls
                 src={`/videos/${url.videoUrl}`}
                 type="video/mp4"
-                width="320"
-                height="180"
+                width="100%"
+                style={{ borderRadius: "8%" }}
               >
                 {" "}
               </video>

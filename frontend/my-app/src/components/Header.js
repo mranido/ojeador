@@ -7,14 +7,14 @@ function Header() {
   return (
     <>
       <header className="logo-background">
-        <section className="logo">
+        <section className="logo" style={{ minWidth: "470px", width: "100%" }}>
           <Link
             to="/"
             style={{
               textDecorationLine: "none",
               color: "#272833",
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "flex-start",
             }}
           >
             <img
@@ -31,7 +31,6 @@ function Header() {
                 fontFamily: "monospace",
                 fontWeight: "bold",
                 fontSize: "6rem",
-                alignContent: "center",
               }}
             >
               jeador
