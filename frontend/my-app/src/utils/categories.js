@@ -12,7 +12,6 @@ export const categories = (userAge) => {
   } else if (userAge >= 16 && userAge <= 18) {
     return "Juvenil";
   } else {
-    return "Edad no válida";
+    return "Categoría no encontrada";
   }
 };
-

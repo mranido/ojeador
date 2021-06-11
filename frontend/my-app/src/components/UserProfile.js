@@ -136,7 +136,7 @@ function GetProfile({ id }) {
       )}
       {userInfo.userRol === "Player" ? (
         <div>
-          Edad: {age} años <span>({category})</span>
+          Edad: {age > 0 ? age : "-"} años <span>({category})</span>
         </div>
       ) : (
         ""

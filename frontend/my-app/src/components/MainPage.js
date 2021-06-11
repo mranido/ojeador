@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
+import { AuthContext } from "./AuthContext";
+import { decodeTokenData } from "../utils/decodeToken";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./../style/MainPage.css";
@@ -9,6 +11,16 @@ export function MainPage() {
   const [userVideo, setUserVideo] = useState([]);
   const [userInfoReloader, setUserInfoReloader] = useState(0);
   const refreshUserInfo = () => setUserInfoReloader(Math.random());
+  const [token] = useContext(AuthContext);
+  const decodedToken = () => {
+    if (!decodeTokenData(token)) {
+      return " ";
+    } else {
+      return decodeTokenData(token).userRol;
+    }
+  };
+
+  const userRol = decodedToken();
 
   useEffect(() => {
     const loadVideos = async () => {
@@ -92,6 +104,7 @@ export function MainPage() {
                       ""
                     )}
                   </div>
+                  {userRol === "Scout" ? <button>Contacta</button> : ""}
                 </div>
               </div>
             </li>
