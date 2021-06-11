@@ -3,6 +3,7 @@ import { AuthContext } from "./AuthContext";
 import { useDetectOutsideClick } from "./../hooks/useDetectedOutsideClick";
 import "./../style/Menu.css";
 import { decodeTokenData } from "../utils/decodeToken";
+import LogOut from "./Logout";
 
 const Menu = () => {
   const dropdownRef = useRef(null);
@@ -10,8 +11,16 @@ const Menu = () => {
   const onClick = () => setIsActive(!isActive);
   const [token] = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState([]);
-  const decodedToken = decodeTokenData(token);
-  const { userId } = decodedToken;
+
+  const decodedToken = () => {
+    if (!decodeTokenData(token)) {
+      return " ";
+    } else {
+      return decodeTokenData(token).userId;
+    }
+  };
+
+  const userId = decodedToken();
 
   useEffect(() => {
     const loadUserInfo = async () => {
@@ -27,7 +36,7 @@ const Menu = () => {
   }, [userId]);
   return (
     <>
-      {!decodedToken ? (
+      {token === "" ? (
         <div className="container-menu">
           <div className="menu-container">
             <button onClick={onClick} className="menu-trigger">
@@ -82,7 +91,7 @@ const Menu = () => {
                   <a href="/profile/user-profile">Ver tu Perfil</a>
                 </li>
                 <li>
-                  <a href="/">Cerrar sesión</a>
+                  <a href="/login">Cerrar sesión</a>
                 </li>
               </ul>
             </nav>
