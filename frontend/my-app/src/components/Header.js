@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./../imagesMenu/ojeador.svg";
 import { Link } from "react-router-dom";
 import "./../style/Header.css";
+import Menu from "./Menu";
 
 function Header() {
   return (
@@ -15,6 +16,7 @@ function Header() {
               color: "#272833",
               display: "flex",
               justifyContent: "flex-start",
+              width: "fit-content",
             }}
           >
             <img
@@ -37,6 +39,9 @@ function Header() {
             </span>
           </Link>
         </section>
+        <div>
+          <Menu></Menu>
+        </div>
       </header>
     </>
   );

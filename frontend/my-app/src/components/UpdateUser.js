@@ -12,7 +12,7 @@ function UpdateUser() {
   const [userLocation, setUserLocation] = useState("");
   const [userTeam, setUserTeam] = useState("");
   const [userNumber, setUserNumber] = useState("");
-  const [userBirthday, setUserBirthday] = useState("");
+  const [userBirthday, setUserBirthday] = useState(new Date());
   const [userPosition, setUserPosition] = useState("Portero");
   const [userDescription, setUserDescription] = useState("");
   const [response, setResponse] = useState("");

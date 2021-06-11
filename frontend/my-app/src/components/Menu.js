@@ -1,57 +1,95 @@
-import { useEffect, useContext } from "react";
+import React, { useRef, useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
-import { Link } from "react-router-dom";
-import Logo from "../imagesMenu/ojeador.svg";
-import jwt_decode from "jwt-decode";
-import Menucheck from "../utils/Menucheck";
+import { useDetectOutsideClick } from "./../hooks/useDetectedOutsideClick";
+import "./../style/Menu.css";
+import { decodeTokenData } from "../utils/decodeToken";
 
 const Menu = () => {
+  const dropdownRef = useRef(null);
+  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
+  const onClick = () => setIsActive(!isActive);
   const [token] = useContext(AuthContext);
-
-  const currentPage = window.location.pathname;
+  const [userInfo, setUserInfo] = useState([]);
+  const decodedToken = decodeTokenData(token);
+  const { userId } = decodedToken;
 
   useEffect(() => {
-    Menucheck();
-  }, []);
-
-  const toggleMenu = (e) => {
-    e.preventDefault();
-    const menu = document.getElementById("menu");
-    menu.classList.toggle("hidden");
-  };
-
+    const loadUserInfo = async () => {
+      const response = await fetch(
+        `http://localhost:8000/api/v1/users/profiles/${userId}`
+      );
+      if (response.ok) {
+        const body = await response.json();
+        setUserInfo(body.user);
+      }
+    };
+    loadUserInfo();
+  }, [userId]);
   return (
-    <aside id="menu" className="hidden">
-      <button onClick={toggleMenu}></button>
-      <img src={Logo} alt="Ojeador App" />
-      {token === " " ? (
-        <ul>
-          {currentPage !== "/login" && (
-            <li>
-              <Link to="/login">Iniciar sesión</Link>
-            </li>
-          )}
-          {currentPage !== "/register" && (
-            <li>
-              <Link to="/register">Regístrate</Link>
-            </li>
-          )}
-        </ul>
+    <>
+      {!decodedToken ? (
+        <div className="container-menu">
+          <div className="menu-container">
+            <button onClick={onClick} className="menu-trigger">
+              <img
+                src={`/images/profiles/image-default.png`}
+                className="menu-image"
+                alt="User avatar"
+              />
+            </button>
+            <nav
+              ref={dropdownRef}
+              className={`menu ${isActive ? "active" : "inactive"}`}
+            >
+              <ul>
+                <li>
+                  <a href="/login">Iniciar sesión</a>
+                </li>
+                <li>
+                  <a href="/register">Regístrate</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
       ) : (
-        <ul>
-          {currentPage !== "/login" && (
-            <li>
-              <Link to="/login">Perfil</Link>
-            </li>
-          )}
-          {currentPage !== "/logout" && (
-            <li>
-              <Link to="/"></Link>
-            </li>
-          )}
-        </ul>
+        <div className="container-menu">
+          <div className="menu-container">
+            <button onClick={onClick} className="menu-trigger">
+              {userInfo.userImage ? (
+                <img
+                  src={`/images/profiles/${userInfo.userImage}`}
+                  className="menu-image"
+                  alt="User avatar"
+                />
+              ) : (
+                <img
+                  src={`/images/profiles/image-default.png`}
+                  className="menu-image"
+                  alt="User avatar"
+                />
+              )}
+            </button>
+            <nav
+              ref={dropdownRef}
+              className={`menu ${isActive ? "active" : "inactive"}`}
+            >
+              <ul>
+                <li>
+                  <a href="/profile/update-user-profile">Cambiar Perfil</a>
+                </li>
+                <li>
+                  <a href="/profile/user-profile">Ver tu Perfil</a>
+                </li>
+                <li>
+                  <a href="/">Cerrar sesión</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
       )}
-    </aside>
+    </>
   );
 };
 
