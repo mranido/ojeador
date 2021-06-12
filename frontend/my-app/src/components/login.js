@@ -1,13 +1,20 @@
 import React, { useContext } from "react";
 import { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
-import  {AuthContext} from "./AuthContext";
+import { AuthContext } from "./AuthContext";
+import { AiFillEye } from "react-icons/ai";
+import "./../style/Login.css";
+const eye = <AiFillEye />;
 
 function LoginForm() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [token, setToken] = useContext(AuthContext);
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -43,31 +50,41 @@ function LoginForm() {
         <div className="login-wrapper">
           <div className="login">
             <Link to="/"></Link>
-
-            <p>Mi Cuenta</p>
+            <h1>Iniciar sesión</h1>
+            <p>Bienvenido a Ojeador. Accede con tu credenciales</p>
 
             <form onSubmit={handleSubmit}>
-              <label>
-                <input
-                  className="form-input"
-                  type="email"
-                  name="userEmail"
-                  value={userEmail}
-                  onChange={(e) => setUserEmail(e.target.value)}
-                  placeholder="Email"
-                />
-              </label>
-              <label>
-                <input
-                  className="form-input"
-                  type="password"
-                  name="userPassword"
-                  value={userPassword}
-                  onChange={(e) => setUserPassword(e.target.value)}
-                  placeholder="Introduzca tu contraseña"
-                />
-              </label>
-
+              <div>
+                <label>
+                  Email *
+                  <div>
+                    <input
+                      className="form-input"
+                      type="email"
+                      name="userEmail"
+                      value={userEmail}
+                      onChange={(e) => setUserEmail(e.target.value)}
+                      placeholder="Email"
+                    />
+                  </div>
+                </label>
+              </div>
+              <div>
+                <label>
+                  Contraseña
+                  <div className="pass-wrapper">
+                    <input
+                      className="form-input"
+                      type={passwordShown ? "text" : "password"}
+                      name="userPassword"
+                      value={userPassword}
+                      onChange={(e) => setUserPassword(e.target.value)}
+                      placeholder="Introduzca tu contraseña"
+                    />
+                    <i onClick={togglePasswordVisiblity}>{eye}</i>{" "}
+                  </div>
+                </label>
+              </div>
               <div className="not-registered">
                 <Link to="/register">
                   <p>¿Aún no estás registrado?</p>

@@ -67,7 +67,8 @@ export function MainPage() {
                 controls
                 src={`/videos/${url.videoUrl}`}
                 type="video/mp4"
-                width="320px"
+                width="256px"
+                height="144px"
                 style={{ borderRadius: "6%" }}
               >
                 {" "}

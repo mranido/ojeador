@@ -1,0 +1,38 @@
+.pass-wrapper {
+  position: relative;
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.form-button button {
+  width: 80%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  color: white;
+  background-color: #5aca75;
+}
+
+i {
+  position: absolute;
+  top: 38%;
+  right: 2%;
+}
+
+i:hover {
+  color: #5aca75;
+  cursor: pointer;
+}
+
+.form-input {
+  margin: 0 auto;
+  background-color: #f1f2f5;
+  opacity: 50%;
+  color: black;
+  width: 328px;
+  height: 40px;
+  font-size: 22px;
+  margin-bottom: 14px;
+  padding: 8px 16px 8px 16px;
+}

@@ -48,7 +48,7 @@ export const UploadProfileImage = () => {
 
       const { fileName, filePath } = res.data;
 
-      setUploadedFile('Imagen subida correctamente');
+      setUploadedFile("Imagen subida correctamente");
 
       setMessage("File Uploaded");
     } catch (err) {

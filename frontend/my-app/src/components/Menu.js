@@ -91,7 +91,9 @@ const Menu = () => {
                   <a href="/profile/user-profile">Ver tu Perfil</a>
                 </li>
                 <li>
-                  <a href="/login">Cerrar sesión</a>
+                  <a href="/login" onClick={LogOut}>
+                    Cerrar sesión
+                  </a>
                 </li>
               </ul>
             </nav>

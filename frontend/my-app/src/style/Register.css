@@ -32,7 +32,6 @@
 }
 
 .not-registered p {
-  display: flex;
   justify-content: center;
   margin-top: 40px;
   color: black;
