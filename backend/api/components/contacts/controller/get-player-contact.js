@@ -6,7 +6,7 @@ const response = require("../../../routes/response");
 
 async function getPlayerContact(req, res, next) {
   try {
-    let { userId, userRole } = req.auth;
+    let { userId, userRol } = req.auth;
     userId = req.params.id;
     const contactPlayerId = userId;
 
