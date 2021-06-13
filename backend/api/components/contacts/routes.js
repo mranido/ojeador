@@ -6,8 +6,17 @@ const router = routerx();
 const controller = require("./controller");
 
 router
-  .post("/user/:id/contact/", accessAuth.onlyScout, controller.createContact)
-  .post("/user/:id/contact/:contactid", controller.acceptContact)
-  .delete("/user/:id/contact/:contactid", controller.rejectContact);
-
+  .post("/user/:id", accessAuth.onlyScout, controller.createContact)
+  .post(
+    "/user/:id/contact/:contactid",
+    accessAuth.registred,
+    controller.acceptContact
+  )
+  .delete(
+    "/user/:id/contact/:contactid",
+    accessAuth.registred,
+    controller.rejectContact
+  )
+  .get("/scout/:id/", accessAuth.registred, controller.getScoutContact)
+  .get("/player/:id/", accessAuth.registred, controller.getPlayerContact);
 module.exports = router;

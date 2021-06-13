@@ -43,6 +43,15 @@ module.exports = {
     const [result] = await connectionDB.query(sql);
     return result;
   },
+  findAllWithCondition: async (params, tableName) => {
+    connectionDB = await getConnection();
+    const { columnSet, values } = multipleColumnSet(params);
+
+    const sql = `SELECT * FROM ${tableName} WHERE ${columnSet}`;
+
+    const [result] = await connectionDB.query(sql, [...values]);
+    return result;
+  },
 
   findOne: async (params, tableName) => {
     connectionDB = await getConnection();

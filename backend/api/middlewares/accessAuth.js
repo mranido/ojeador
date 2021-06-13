@@ -24,6 +24,7 @@ const accessAuth = {
 
       const { userId, userName, userEmail, userRol } =
         accessAuth.decodedToken(authNoBearer);
+      req.auth = { userId, userName, userEmail, userRol };
       console.log(accessAuth.decodedToken(authNoBearer));
       console.log(userId);
       if (userId !== Number(req.params.id)) {
@@ -58,11 +59,10 @@ const accessAuth = {
 
       const { userId, userName, userEmail, userRol } =
         accessAuth.decodedToken(authNoBearer);
-      console.log(accessAuth.decodedToken(authNoBearer));
-      console.log(userId);
+      req.auth = { userId, userName, userEmail, userRol };
       if (userRol !== "Scout") {
         return res.status(401).send({
-          message: "No tienes permiso para relizar dicha petición",
+          message: "Sólo los ojeadores pueden enviar contrataciones",
         });
       }
       next();

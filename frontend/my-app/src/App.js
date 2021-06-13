@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./components/AuthContext";
 import { Header } from "./components/Header";
 import { MainPage } from "./components/MainPage";
+import { CreateContact } from "./components/CreateContact";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route exact path="/">
               <MainPage />
+            </Route>
+            <Route path="/contact">
+              <CreateContact />
             </Route>
           </Switch>
         </div>

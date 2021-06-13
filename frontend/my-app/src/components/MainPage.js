@@ -62,7 +62,7 @@ export function MainPage() {
       >
         {videoUrl.map((url, index) => {
           return (
-            <li key={url.videoUrl}>
+            <li key={url.videoUrl} prop={url.userId}>
               <video
                 controls
                 src={`/videos/${url.videoUrl}`}
@@ -105,7 +105,22 @@ export function MainPage() {
                       ""
                     )}
                   </div>
-                  {userRol === "Scout" ? <button>Contacta</button> : ""}
+                  {userRol === "Scout" ? (
+                    <Link
+                      to={{
+                        pathname: "/contact",
+                        state: {
+                          id: url.userId,
+                          image: url.userImage,
+                          userName: url.userName,
+                        },
+                      }}
+                    >
+                      <button>Contacta</button>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </li>

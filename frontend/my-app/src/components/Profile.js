@@ -5,6 +5,7 @@ import { UpdateUser } from "./UpdateUser";
 import { UploadVideo } from "./UploadVideo";
 import Logout from "./Logout";
 import { GetMyProfile, GetUserProfile } from "./UserProfile";
+import { CreateContact } from "./CreateContact";
 
 function Profile() {
   let { path, url } = useRouteMatch();
