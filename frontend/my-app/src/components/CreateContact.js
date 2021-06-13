@@ -32,11 +32,19 @@ export const CreateContact = () => {
     <div>
       <h1>Contacta con el Jugador</h1>
       <p>{userName}</p>
-      <img
-        src={`/images/profiles/${data.state.image}`}
-        alt="Foto del usuario"
-        className="menu-image"
-      ></img>
+      {data.state.image ? (
+        <img
+          src={`/images/profiles/${data.state.image}`}
+          alt="Foto del usuario"
+          className="menu-image"
+        ></img>
+      ) : (
+        <img
+          src={`/images/profiles/image-default.png`}
+          alt="Foto del usuario"
+          className="menu-image"
+        ></img>
+      )}
       <form id={"requestPopUp"} onSubmit={handleSubmit}>
         <label htmlFor="contactDescription">
           Descripción
