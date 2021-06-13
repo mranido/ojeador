@@ -14,12 +14,8 @@ function Profile() {
   return (
     <div className="profile-buttons">
       <div className="buttons-wrapper">
-        <Link to={`${url}/update-user-profile`}>
-          <button type="submit">Cambiar Perfil</button>
-        </Link>
-        <Link to={`${url}/upload-video`}>
-          <button type="submit">Subir Vídeos</button>
-        </Link>
+        <Link to={`${url}/update-user-profile`}></Link>
+        <Link to={`${url}/upload-video`}></Link>
       </div>
 
       <Switch>

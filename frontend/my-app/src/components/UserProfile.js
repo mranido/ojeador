@@ -17,7 +17,21 @@ function GetMyProfile() {
   const decodedToken = jwt_decode(token);
   const { userId } = decodedToken;
 
-  return <GetProfile id={userId} />;
+  return (
+    <>
+      <GetProfile id={userId} />
+      <div className="form-button">
+        <button className="button0">
+          <a href="/profile/update-user-profile">Edita tu Perfil</a>
+        </button>
+      </div>
+      <div className="form-button">
+        <button className="button1">
+          <a href="/profile/upload-video">Sube un vídeo</a>
+        </button>
+      </div>
+    </>
+  );
 }
 
 function GetUserProfile() {

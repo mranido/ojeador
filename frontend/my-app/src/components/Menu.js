@@ -85,6 +85,9 @@ const Menu = () => {
             >
               <ul>
                 <li>
+                  <a href="/profile/notifications">Solicitudes</a>
+                </li>
+                <li>
                   <a href="/profile/update-user-profile">Cambiar Perfil</a>
                 </li>
                 <li>

@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
-import axios from "axios";
 
 export const CreateContact = () => {
   const [token] = useContext(AuthContext);
