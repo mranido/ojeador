@@ -6,6 +6,7 @@ import { UploadVideo } from "./UploadVideo";
 import Logout from "./Logout";
 import { GetMyProfile, GetUserProfile } from "./UserProfile";
 import { CreateContact } from "./CreateContact";
+import "./../style/Profile.css";
 
 function Profile() {
   let { path, url } = useRouteMatch();
@@ -18,12 +19,6 @@ function Profile() {
         </Link>
         <Link to={`${url}/upload-video`}>
           <button type="submit">Subir Vídeos</button>
-        </Link>
-        <Link to={`${url}/logout`}>
-          <button type="submit">Logout</button>
-        </Link>
-        <Link to={`${url}/user-profile`}>
-          <button type="submit">Profile</button>
         </Link>
       </div>
 

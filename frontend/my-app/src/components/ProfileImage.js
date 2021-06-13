@@ -4,7 +4,6 @@ import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
 import "./../style/ProfileImage.css";
 
-
 function ProfileImage(props) {
   const [token, setToken] = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState("");
@@ -12,7 +11,7 @@ function ProfileImage(props) {
   const decodedToken = jwt_decode(token);
   const { userId } = decodedToken;
 
-  const { userInfoReloader,id } = props;
+  const { userInfoReloader, id } = props;
 
   useEffect(() => {
     const loadUserInfo = async () => {
@@ -28,18 +27,18 @@ function ProfileImage(props) {
       if (response.ok) {
         const body = await response.json();
         setUserInfo(body);
-        setUserImage(body.userImage)
+        setUserImage(body.userImage);
       }
     };
     loadUserInfo();
   }, [userInfoReloader, userId]);
 
-
-  if(userInfo) {
+  if (userInfo) {
     return userInfo.user.userImage ? (
       <Link id={id} to={"/profile/user-profile"}>
         <div>{userInfo.user.userName}</div>
-        <img className='profileimage'
+        <img
+          className="profileimage"
           src={`/images/profiles/${userInfo.user.userImage}`}
           alt="Foto de Perfil"
         ></img>
@@ -53,7 +52,8 @@ function ProfileImage(props) {
         ></img>
       </Link>
     );
-  } else{return ''};
-
+  } else {
+    return "";
+  }
 }
 export default ProfileImage;

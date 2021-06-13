@@ -58,7 +58,7 @@ function LoginForm() {
               <div>
                 <label>
                   Email <span>*</span>
-                  <div>
+                  <div className="email">
                     <input
                       className="form-input"
                       type="email"

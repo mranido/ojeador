@@ -14,6 +14,7 @@ label > span {
 .pass-wrapper {
   position: relative;
   display: flex;
+  flex-grow: 1;
 }
 
 .form-button {
@@ -34,7 +35,7 @@ label > span {
 
 i {
   position: absolute;
-  top: 33%;
+  top: 20%;
   right: 5%;
   color: var(--color-de-ojo);
 }
@@ -45,13 +46,15 @@ i:hover {
 }
 
 .form-input {
+  flex-grow: 1;
   border-radius: 4px;
-  margin: 0 auto var(--gris-oscuro-borde);
+  margin: 0 auto;
+  border: var(--gris-oscuro-borde);
   background-color: var(--gris);
   opacity: 50%;
   color: var(--color-de-ojo);
-  width: 328px;
-  height: 40px;
+  width: 80%;
+  height: 4vh;
   font-size: 18px;
   margin-bottom: 14px;
   padding: 8px 16px 8px 16px;
@@ -59,8 +62,15 @@ i:hover {
 .login-wrapper {
   display: flex;
   justify-content: center;
+  flex-grow: 1;
   align-items: center;
 }
 .login {
   display: inline-block;
+  width: 80%;
+}
+.email {
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
 }
