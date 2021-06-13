@@ -8,40 +8,25 @@ function Header() {
   return (
     <>
       <header className="logo-background">
-        <section className="logo" style={{ minWidth: "470px", width: "100%" }}>
+        <section className="logo">
           <Link
             to="/"
             style={{
               textDecorationLine: "none",
-              color: "#272833",
+              color: "#111116",
               display: "flex",
+              margin: "1rem",
               justifyContent: "flex-start",
-              width: "fit-content",
+              width: "auto",
             }}
           >
-            <img
-              src={logo}
-              style={{
-                backgroundColor: "#FFFFFF",
-                color: "#272833",
-                borderRadius: "50%",
-              }}
-              alt="Logo"
-            />
-            <span
-              style={{
-                fontFamily: "monospace",
-                fontWeight: "bold",
-                fontSize: "6rem",
-              }}
-            >
-              jeador
-            </span>
+            <img src={logo} alt="Logo" />
+            <span>jeador</span>
           </Link>
+          <div>
+            <Menu></Menu>
+          </div>
         </section>
-        <div>
-          <Menu></Menu>
-        </div>
       </header>
     </>
   );

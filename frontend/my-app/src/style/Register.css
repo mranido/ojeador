@@ -1,3 +1,7 @@
+:root {
+  --blue-link: #0b5fff;
+}
+
 .register-wrapper {
   background-color: rgb(238, 236, 236);
   height: 100vh;
@@ -32,9 +36,12 @@
 }
 
 .not-registered p {
-  justify-content: center;
-  margin-top: 40px;
-  color: black;
+  margin-top: 10px;
+  color: var(--blue-link);
+}
+.not-registered > a {
+  text-decoration: none;
+  width: 100%;
 }
 
 .register-form-button {

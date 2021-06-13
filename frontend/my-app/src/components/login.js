@@ -51,12 +51,13 @@ function LoginForm() {
           <div className="login">
             <Link to="/"></Link>
             <h1>Iniciar sesión</h1>
-            <p>Bienvenido a Ojeador. Accede con tu credenciales</p>
+            <p>Bienvenido a Ojeador.</p>
+            <p>Accede con tu credenciales:</p>
 
             <form onSubmit={handleSubmit}>
               <div>
                 <label>
-                  Email *
+                  Email <span>*</span>
                   <div>
                     <input
                       className="form-input"
@@ -71,7 +72,7 @@ function LoginForm() {
               </div>
               <div>
                 <label>
-                  Contraseña
+                  Contraseña <span>*</span>
                   <div className="pass-wrapper">
                     <input
                       className="form-input"
@@ -79,7 +80,7 @@ function LoginForm() {
                       name="userPassword"
                       value={userPassword}
                       onChange={(e) => setUserPassword(e.target.value)}
-                      placeholder="Introduzca tu contraseña"
+                      placeholder="Introduce tu contraseña"
                     />
                     <i onClick={togglePasswordVisiblity}>{eye}</i>{" "}
                   </div>
