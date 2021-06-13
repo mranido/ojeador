@@ -13,6 +13,8 @@ export const UploadProfileImage = () => {
   const { userId, userRol } = decodedToken;
   const [message, setMessage] = useState("");
   const [uploadPercentage, setUploadPercentage] = useState(0);
+  const [userInfoReloader, setUserInfoReloader] = useState(0);
+  const refreshUserInfo = () => setUserInfoReloader(Math.random());
 
   console.log(userId);
   const onFileChange = (e) => {
@@ -44,13 +46,14 @@ export const UploadProfileImage = () => {
       );
 
       // Clear percentage
-      setTimeout(() => setUploadPercentage(0), 10000);
+      setTimeout(() => setUploadPercentage(0), 1000);
 
       const { fileName, filePath } = res.data;
 
       setUploadedFile("Imagen subida correctamente");
 
-      setMessage("File Uploaded");
+      setMessage("Imagen de Pefil cambiada correctamente");
+      refreshUserInfo();
     } catch (err) {
       if (err.response.status === 500) {
         setMessage("There was a problem with the server");
@@ -75,6 +78,7 @@ export const UploadProfileImage = () => {
       ) : (
         <Redirect to="/profile" />
       )}
+      {message ? <div>{message}</div> : ""}
     </>
   );
 };

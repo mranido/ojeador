@@ -8,6 +8,9 @@ export const CreateContact = () => {
   const [response, setResponse] = useState("");
   const [contactDescription, setContactDescription] = useState("");
   let data = useLocation();
+
+  const [userInfoReloader, setUserInfoReloader] = useState(0);
+  const refreshUserInfo = () => setUserInfoReloader(Math.random());
   let userName = data.state.userName;
 
   async function handleSubmit(event) {
@@ -27,6 +30,7 @@ export const CreateContact = () => {
     if (respuesta.ok) {
       setResponse("Mensaje de contratación enviada");
     }
+    refreshUserInfo();
   }
   return (
     <div>
@@ -56,6 +60,7 @@ export const CreateContact = () => {
         </label>
         <button type="submit">Enviar</button>
       </form>
+      {response && <div>{response}</div>}
     </div>
   );
 };
