@@ -6,7 +6,7 @@ const response = require("../../../routes/response");
 
 async function getScoutContact(req, res, next) {
   try {
-    let { userId, userRole } = req.auth;
+    let { userId, userRol } = req.auth;
     userId = req.params.id;
     const contactScoutId = userId;
 

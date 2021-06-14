@@ -18,5 +18,6 @@ router
     controller.rejectContact
   )
   .get("/scout/:id/", accessAuth.registred, controller.getScoutContact)
-  .get("/player/:id/", accessAuth.registred, controller.getPlayerContact);
+  .get("/player/:id/", accessAuth.registred, controller.getPlayerContact)
+  .get("/:id/:contactId", accessAuth.registred, controller.getContactById);
 module.exports = router;
