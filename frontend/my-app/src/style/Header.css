@@ -1,11 +1,3 @@
-:root {
-  --verde: #5aca75;
-  --gris: #f1f2f5;
-  --gris-oscuro-borde: #e7e7ed;
-  --color-de-ojo: #6b6c7e;
-  --warning-red: #b95000;
-  --black: #111116;
-}
 .logo {
   background-color: var(--verde);
   display: flex;
@@ -29,11 +21,16 @@ section img {
   color: var(--black);
   flex-grow: 1 1;
 }
-a {
+
+.link {
+  text-decoration: none;
+  color: var(--black);
   display: flex;
+  margin: 1rem;
   justify-content: flex-start;
-  width: 5%;
+  width: fit-content;
 }
+
 .logo-background div {
   display: flex;
 }

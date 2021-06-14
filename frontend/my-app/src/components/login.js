@@ -91,9 +91,14 @@ function LoginForm() {
                   <p>¿Aún no estás registrado?</p>
                 </Link>
               </div>
-
               <div className="form-button">
-                <button type="submit">Enviar</button>
+                <button
+                  id="#acept-button"
+                  className="acept-button"
+                  type="submit"
+                >
+                  Enviar
+                </button>
               </div>
               {errorMsg && <div>{errorMsg}</div>}
             </form>
