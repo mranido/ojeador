@@ -1,8 +1,7 @@
 .form-button {
   display: flex;
 }
-
-#acept-button {
+.button0 {
   display: flex;
   flex-grow: 1;
   justify-content: center;
@@ -14,26 +13,27 @@
   color: white;
   background-color: var(--verde);
 }
-botonResaltado {
-  appearance: auto;
-  text-rendering: auto;
-  color: -internal-light-dark(black, white);
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  display: inline-block;
-  text-align: center;
-  align-items: flex-start;
-  cursor: default;
-  background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
-  box-sizing: border-box;
-  margin: 0em;
-  font: 400 13.3333px Arial;
-  padding: 1px 6px;
-  border-width: 2px;
-  border-style: outset;
-  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-  border-image: initial;
+.button1 {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  font-size: large;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border: solid 0.5px var(--verde);
+  border-radius: 5px;
+  color: var(--verde);
+  background-color: white;
+}
+.button2 {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  font-size: large;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border: solid 0.5px var(--verde);
+  border-radius: 5px;
+  color: var(--verde);
+  background-color: white;
 }

@@ -70,9 +70,11 @@ export const UploadProfileImage = () => {
           <form onSubmit={uploadFile}>
             <div>
               <label>Selecciona Foto de Perfil</label>
-              <input type="file" onChange={onFileChange} />
+              <input className="subidor" type="file" onChange={onFileChange} />
             </div>
-            <button type="submit">Cambiar Foto</button>
+            <button type="submit" className="button2">
+              Cambiar Foto
+            </button>
           </form>
         </div>
       ) : (

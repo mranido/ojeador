@@ -108,7 +108,11 @@ function UpdateUser() {
     <div className="updateuser-container">
       <div className="update-user-wrapper">
         <p className="update-user-wrapper-p">EDITAR USUARIO</p>
-        <ProfileImage id="avatar-profile" userInfoReloader={userInfoReloader} />
+        <ProfileImage
+          className="profileimage"
+          id="avatar-profile"
+          userInfoReloader={userInfoReloader}
+        />
         <div className="upload-image-wrapper">
           <div className="upload-image">
             <UploadProfileImage />

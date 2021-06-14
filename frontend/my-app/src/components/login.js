@@ -92,11 +92,7 @@ function LoginForm() {
                 </Link>
               </div>
               <div className="form-button">
-                <button
-                  id="#acept-button"
-                  className="acept-button"
-                  type="submit"
-                >
+                <button className="button0" type="submit">
                   Enviar
                 </button>
               </div>
