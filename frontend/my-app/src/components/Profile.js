@@ -3,6 +3,7 @@ import React from "react";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import { UpdateUser } from "./UpdateUser";
 import { UploadVideo } from "./UploadVideo";
+import { Notification } from "./Notifications";
 import Logout from "./Logout";
 import { GetMyProfile, GetUserProfile } from "./UserProfile";
 import { CreateContact } from "./CreateContact";
@@ -33,6 +34,9 @@ function Profile() {
         </Route>
         <Route exact path={`${path}/user/:id`}>
           <GetUserProfile />
+        </Route>
+        <Route exact path={`${path}/notifications`}>
+          <Notification />
         </Route>
       </Switch>
     </div>

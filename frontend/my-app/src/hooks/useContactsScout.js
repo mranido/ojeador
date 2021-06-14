@@ -6,20 +6,23 @@ const useContactScout = () => {
   const [token] = useContext(AuthContext);
   const decodedToken = jwt_decode(token);
   const { userId } = decodedToken;
-  const [contacts, setContacts] = useState([]);
+  const [contactScout, setContactScout] = useState([]);
 
   useEffect(() => {
     const getContacts = async () => {
-      const res = await fetch(`http://localhost:8000/scout/${userId}`, {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `${token}`,
-        },
-      });
+      const res = await fetch(
+        `http://localhost:8000/api/v1/contact/scout/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const fetchedNotifications = await res.json();
-      setContacts(fetchedNotifications);
+      setContactScout(fetchedNotifications);
     };
 
     getContacts();
@@ -30,7 +33,7 @@ const useContactScout = () => {
     };
   }, [token, userId]);
 
-  return [contacts, setContacts];
+  return [contactScout, setContactScout];
 };
 
 export default useContactScout;

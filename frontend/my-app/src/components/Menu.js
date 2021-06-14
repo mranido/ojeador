@@ -84,9 +84,15 @@ const Menu = () => {
               className={`menu ${isActive ? "active" : "inactive"}`}
             >
               <ul>
-                <li>
-                  <a href="/profile/notifications">Solicitudes</a>
-                </li>
+                {userInfo.userRol === "Player" ? (
+                  <li>
+                    <a href="/profile/notifications">Solicitudes recibidas</a>
+                  </li>
+                ) : (
+                  <li>
+                    <a href="/profile/notifications">Solicitudes enviadas</a>
+                  </li>
+                )}
                 <li>
                   <a href="/profile/update-user-profile">Cambiar Perfil</a>
                 </li>

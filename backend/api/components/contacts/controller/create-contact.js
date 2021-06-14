@@ -38,6 +38,7 @@ async function createContact(req, res, next) {
     const contactDB = {
       contactScoutId,
       contactPlayerId,
+      contactTitle,
       contactDescription,
     };
 
@@ -45,7 +46,7 @@ async function createContact(req, res, next) {
 
     await sendEmailContact(userName, userEmail);
 
-    response.success(req, res, contactDB, 201);
+    res.send(contactDB).status(201);
   } catch (error) {
     next(error);
   }

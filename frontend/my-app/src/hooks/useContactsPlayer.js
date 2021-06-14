@@ -3,23 +3,26 @@ import { AuthContext } from "../components/AuthContext";
 import jwt_decode from "jwt-decode";
 
 const useContactPlayer = () => {
-  const [token] = useContext(AuthContext);
+  const [token, setToken] = useContext(AuthContext);
   const decodedToken = jwt_decode(token);
   const { userId } = decodedToken;
-  const [contacts, setContacts] = useState([]);
+  const [contactPlayer, setContactPlayer] = useState([]);
 
   useEffect(() => {
     const getContacts = async () => {
-      const res = await fetch(`http://localhost:8000/player/${userId}`, {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `${token}`,
-        },
-      });
+      const res = await fetch(
+        `http://localhost:8000/api/v1/contact/player/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const fetchedNotifications = await res.json();
-      setContacts(fetchedNotifications);
+      setContactPlayer(fetchedNotifications);
     };
 
     getContacts();
@@ -30,7 +33,7 @@ const useContactPlayer = () => {
     };
   }, [token, userId]);
 
-  return [contacts, setContacts];
+  return [contactPlayer, setContactPlayer];
 };
 
 export default useContactPlayer;
