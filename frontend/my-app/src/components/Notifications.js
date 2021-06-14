@@ -59,32 +59,32 @@ export function Notification(props) {
             <ul>
               {contactsPlayer.map((i) => {
                 return (
-                  <Link to={`/${i.playerId}/${i.contactId}`}>
+                  <div>
                     <div>
-                      <div>
-                        {i.scoutImage ? (
-                          <Link to={`/profile/user/${i.scoutId}`}>
-                            <img
-                              src={`/images/profiles/${i.scoutImage}`}
-                              alt="Imagen de perfil"
-                              className="image"
-                            ></img>
-                          </Link>
-                        ) : (
-                          <Link to={`/profile/user/${i.scoutImage}`}>
-                            <img
-                              src={`/images/profiles/image-default.png`}
-                              alt="Imagen de perfil"
-                              className="image"
-                            ></img>
-                          </Link>
-                        )}{" "}
-                      </div>
-                      <p>{i.contactTitle}</p>
-                      <p>{i.scoutName}</p>
-                      {i.contactStatus ? <p>{i.contactStatus}</p> : ""}
+                      {i.scoutImage ? (
+                        <Link to={`/profile/user/${i.scoutId}`}>
+                          <img
+                            src={`/images/profiles/${i.scoutImage}`}
+                            alt="Imagen de perfil"
+                            className="image"
+                          ></img>
+                        </Link>
+                      ) : (
+                        <Link to={`/profile/user/${i.scoutImage}`}>
+                          <img
+                            src={`/images/profiles/image-default.png`}
+                            alt="Imagen de perfil"
+                            className="image"
+                          ></img>
+                        </Link>
+                      )}{" "}
                     </div>
-                  </Link>
+                    <Link to={`/${i.playerId}/${i.contactId}`}>
+                      <p>{i.contactTitle}</p>
+                    </Link>
+                    <p>{i.scoutName}</p>
+                    {i.contactStatus ? <p>{i.contactStatus}</p> : ""}
+                  </div>
                 );
               })}{" "}
             </ul>
@@ -97,32 +97,32 @@ export function Notification(props) {
             <ul>
               {contactsScout.map((i) => {
                 return (
-                  <Link to={`/${i.scoutId}/${i.contactId}`}>
+                  <div>
                     <div>
-                      <div>
-                        {i.playerImage ? (
-                          <Link to={`/profile/user/${i.playerId}`}>
-                            <img
-                              src={`/images/profiles/${i.playerImage}`}
-                              alt="Imagen de perfil"
-                              className="image"
-                            ></img>
-                          </Link>
-                        ) : (
-                          <Link to={`/profile/user/${i.playerId}`}>
-                            <img
-                              src={`/images/profiles/image-default.png`}
-                              alt="Imagen de perfil"
-                              className="image"
-                            ></img>
-                          </Link>
-                        )}{" "}
-                      </div>
-                      <p>{i.contactTitle}</p>
-                      <p>{i.playerName}</p>
-                      {i.contactStatus ? <p>{i.contactStatus}</p> : ""}
+                      {i.playerImage ? (
+                        <Link to={`/profile/user/${i.playerId}`}>
+                          <img
+                            src={`/images/profiles/${i.playerImage}`}
+                            alt="Imagen de perfil"
+                            className="image"
+                          ></img>
+                        </Link>
+                      ) : (
+                        <Link to={`/profile/user/${i.playerId}`}>
+                          <img
+                            src={`/images/profiles/image-default.png`}
+                            alt="Imagen de perfil"
+                            className="image"
+                          ></img>
+                        </Link>
+                      )}{" "}
                     </div>
-                  </Link>
+                    <Link to={`/${i.scoutId}/${i.contactId}`}>
+                      <p>{i.contactTitle}</p>
+                    </Link>
+                    <p>{i.playerName}</p>
+                    {i.contactStatus ? <p>{i.contactStatus}</p> : ""}
+                  </div>
                 );
               })}{" "}
             </ul>
