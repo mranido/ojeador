@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import ProfileImage from "./ProfileImage";
 import { UploadProfileImage } from "./UploadProfileImage";
 import moment from "moment";
+import "./../style/Button.css";
 
 function UpdateUser() {
   const [userName, setUserName] = useState("");
@@ -107,7 +108,7 @@ function UpdateUser() {
   return (
     <div className="updateuser-container">
       <div className="update-user-wrapper">
-        <p className="update-user-wrapper-p">EDITAR USUARIO</p>
+        <p className="update-user-wrapper-p">Edita tu Perfil</p>
         <ProfileImage
           className="profileimage"
           id="avatar-profile"
@@ -226,7 +227,9 @@ function UpdateUser() {
               />
             </label>
             <div className="update-user-button">
-              <button type="submit">Guardar cambios</button>
+              <button className="button0" type="submit">
+                Guardar cambios
+              </button>
             </div>
           </form>
           <div className="response-message-player">

@@ -1,5 +1,4 @@
-.profileimage,
-#avatar-profile img {
+.profileimage {
   border-radius: 50%;
   width: 220px;
   height: 220px;
@@ -13,4 +12,7 @@
 .subidor {
   display: block;
   margin: 2vh auto;
+}
+.update-user-wrapper-p {
+  font-weight: bold;
 }

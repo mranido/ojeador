@@ -1,6 +1,8 @@
 import { useState } from "react";
 import React from "react";
 import "./../style/Register.css";
+import "./../style/Button.css";
+import "./../style/FormInput.css";
 
 export function RegisterForm() {
   const [userRol, setUserRol] = useState("Scout");
@@ -44,25 +46,30 @@ export function RegisterForm() {
       <div className="register">
         <h1>Registro</h1>
         <p>
-          Bienvenido a Ojeador. Regístrate para valorar y hacer y recibir
+          Bienvenido a Ojeador. Regístrate para valorar y hacer o recibir
           ofertas
         </p>
 
         <form onSubmit={handleSubmit}>
-          <label>Rol</label>
-          <select onChange={(e) => setUserRol(e.target.value)} value={userRol}>
-            <option value="Scout" key="Scout">
-              Ojeador
-            </option>
-            <option value="Player" key="Player">
-              Jugador
-            </option>
-          </select>
+          <label className="rol">
+            Rol<span>*</span>
+            <select
+              onChange={(e) => setUserRol(e.target.value)}
+              value={userRol}
+            >
+              <option value="Scout" key="Scout">
+                Ojeador
+              </option>
+              <option value="Player" key="Player">
+                Jugador
+              </option>
+            </select>
+          </label>
           <label>
             {" "}
-            Nombre y Apellidos
+            Nombre<span>*</span>
             <input
-              className="register-form-input"
+              className="form-input"
               type="text"
               name="userName"
               placeholder="Nombre y Apellido"
@@ -72,9 +79,9 @@ export function RegisterForm() {
           </label>
           <label>
             {" "}
-            Email
+            Email<span>*</span>
             <input
-              className="register-form-input"
+              className="form-input"
               type="email"
               name="userEmail"
               placeholder="Email"
@@ -84,9 +91,9 @@ export function RegisterForm() {
           </label>
           <label>
             {" "}
-            Contraseña
+            Contraseña<span>*</span>
             <input
-              className="register-form-input"
+              className="form-input"
               type="password"
               name="userPassword"
               placeholder="Password"
@@ -96,9 +103,9 @@ export function RegisterForm() {
           </label>
           <label>
             {" "}
-            Repita la Contraseña
+            Repita la Contraseña<span>*</span>
             <input
-              className="register-form-input"
+              className="form-input"
               type="password"
               name="userPassword"
               placeholder="Repetir Password"
@@ -107,8 +114,10 @@ export function RegisterForm() {
             />
           </label>
 
-          <div className="register-form-button">
-            <button type="submit">Enviar</button>
+          <div className="form-button">
+            <button type="submit" className="button0">
+              Enviar
+            </button>
           </div>
           <div className="response-message">
             {errorMsg && <div>{errorMsg}</div>}
