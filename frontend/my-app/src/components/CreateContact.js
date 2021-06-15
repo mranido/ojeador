@@ -6,6 +6,7 @@ export const CreateContact = () => {
   const [token] = useContext(AuthContext);
   const [response, setResponse] = useState("");
   const [contactDescription, setContactDescription] = useState("");
+  const [contactTitle, setContactTitle] = useState("");
   let data = useLocation();
 
   const [userInfoReloader, setUserInfoReloader] = useState(0);
@@ -14,7 +15,10 @@ export const CreateContact = () => {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const newcontact = { contactDescription: contactDescription };
+    const newcontact = {
+      contactDescription: contactDescription,
+      contactTitle: contactTitle,
+    };
     const respuesta = await fetch(
       `http://localhost:8000/api/v1/contact/user/${data.state.id}`,
       {
@@ -49,8 +53,16 @@ export const CreateContact = () => {
         ></img>
       )}
       <form id={"requestPopUp"} onSubmit={handleSubmit}>
+        <label htmlFor="contactTitle">
+          Título de la Oferta
+          <textarea
+            id="contactTitle"
+            value={contactTitle}
+            onChange={(e) => setContactTitle(e.target.value)}
+          />
+        </label>
         <label htmlFor="contactDescription">
-          Descripción
+          Escriba tu propuesta
           <textarea
             id="contactDescription"
             value={contactDescription}

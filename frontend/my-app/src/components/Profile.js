@@ -3,11 +3,11 @@ import React from "react";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import { UpdateUser } from "./UpdateUser";
 import { UploadVideo } from "./UploadVideo";
-import { Notification } from "./Notifications";
 import Logout from "./Logout";
+import { Notification } from "./Notifications";
 import { GetMyProfile, GetUserProfile } from "./UserProfile";
-import { CreateContact } from "./CreateContact";
 import "./../style/Profile.css";
+import { NotificationsById } from "./NotificationById";
 
 function Profile() {
   let { path, url } = useRouteMatch();
@@ -37,6 +37,9 @@ function Profile() {
         </Route>
         <Route exact path={`${path}/notifications`}>
           <Notification />
+        </Route>
+        <Route path={`${path}/notifications/:contactId`}>
+          <NotificationsById />
         </Route>
       </Switch>
     </div>

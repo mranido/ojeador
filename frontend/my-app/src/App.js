@@ -8,6 +8,7 @@ import { AuthProvider } from "./components/AuthContext";
 import { Header } from "./components/Header";
 import { MainPage } from "./components/MainPage";
 import { CreateContact } from "./components/CreateContact";
+import { Notification } from "./components/Notifications";
 
 function App() {
   return (

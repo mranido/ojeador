@@ -17,7 +17,7 @@ async function createContact(req, res, next) {
     const contactPlayerId = req.params.id;
 
     await schema.create.validateAsync(req.body);
-    const { contactDescription } = req.body;
+    const { contactDescription, contactTitle } = req.body;
 
     const player = await model.findOne({ userId: contactPlayerId }, TABLE2);
     if (!player) {
