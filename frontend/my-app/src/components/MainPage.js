@@ -48,28 +48,16 @@ export function MainPage() {
     .reverse();
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <ul
-        style={{
-          listStyle: "none",
-          paddingLeft: 0,
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: "column",
-          flexGrow: "1",
-          maxWidth: "320px",
-        }}
-      >
+    <div className="wrap-centra-column">
+      <ul className="tag-information">
         {videoUrl.map((url, index) => {
           return (
             <li key={url.videoUrl} prop={url.userId}>
               <video
+                className="video"
                 controls
                 src={`/videos/${url.videoUrl}`}
                 type="video/mp4"
-                width="256px"
-                height="144px"
-                style={{ borderRadius: "6%" }}
               >
                 {" "}
               </video>

@@ -9,17 +9,7 @@ function Header() {
     <>
       <header className="logo-background">
         <section className="logo">
-          <Link
-            to="/"
-            style={{
-              textDecorationLine: "none",
-              color: "#111116",
-              display: "flex",
-              margin: "1rem",
-              justifyContent: "flex-start",
-              width: "auto",
-            }}
-          >
+          <Link className="link" to="/">
             <img src={logo} alt="Logo" />
             <span>jeador</span>
           </Link>
