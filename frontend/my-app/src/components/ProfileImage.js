@@ -35,22 +35,22 @@ function ProfileImage(props) {
 
   if (userInfo) {
     return userInfo.user.userImage ? (
-      <Link id={id} to={"/profile/user-profile"}>
+      <>
         <div>{userInfo.user.userName}</div>
         <img
           className="profileimage"
           src={`/images/profiles/${userInfo.user.userImage}`}
           alt="Foto de Perfil"
         ></img>
-      </Link>
+      </>
     ) : (
-      <Link id={id} to={"./profile/user-profile"}>
+      <>
         <div>{userInfo.user.userName}</div>{" "}
         <img
           src={`/images/profiles/image-default.png`}
           alt="Foto por defecto"
         ></img>
-      </Link>
+      </>
     );
   } else {
     return "";

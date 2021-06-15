@@ -63,7 +63,7 @@ export function Notification({ contactId }) {
             <ul>
               {contactsPlayer.map((i) => {
                 return (
-                  <div>
+                  <div key={i.contactId}>
                     <div>
                       {i.scoutImage ? (
                         <Link to={`/profile/user/${i.scoutId}`}>
@@ -105,7 +105,7 @@ export function Notification({ contactId }) {
             <ul>
               {contactsScout.map((i) => {
                 return (
-                  <div>
+                  <div key={i.contactId}>
                     <div>
                       {i.playerImage ? (
                         <Link to={`/profile/user/${i.playerId}`}>

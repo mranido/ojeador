@@ -43,7 +43,7 @@ export function NotificationsById() {
   const acceptContact = async (e) => {
     e.preventDefault();
     await fetch(
-      `http://localhost:8000/contact/user/${playerId}/accept/${contactId}`,
+      `http://localhost:8000/api/v1/contact/user/${playerId}/accept/${contactId}`,
       {
         method: "POST",
         headers: {
@@ -58,12 +58,12 @@ export function NotificationsById() {
   const rejectContact = async (e) => {
     e.preventDefault();
     await fetch(
-      `http://localhost:8000/contact/user/${playerId}/reject/${contactId}`,
+      `http://localhost:8000/api/v1/contact/user/${playerId}/reject/${contactId}`,
       {
         method: "POST",
         headers: {
           "Content-type": "application/json",
-          Authorization: `${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
