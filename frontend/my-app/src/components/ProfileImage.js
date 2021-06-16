@@ -3,6 +3,7 @@ import { AuthContext } from "./AuthContext";
 import jwt_decode from "jwt-decode";
 import { Link } from "react-router-dom";
 import "./../style/ProfileImage.css";
+import "./../style/Button.css";
 
 function ProfileImage(props) {
   const [token, setToken] = useContext(AuthContext);
@@ -47,6 +48,7 @@ function ProfileImage(props) {
       <>
         <div>{userInfo.user.userName}</div>{" "}
         <img
+          className="profileimage"
           src={`/images/profiles/image-default.png`}
           alt="Foto por defecto"
         ></img>
