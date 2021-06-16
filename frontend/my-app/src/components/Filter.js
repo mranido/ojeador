@@ -4,7 +4,7 @@ import { useDetectOutsideClick } from "./../hooks/useDetectedOutsideClick";
 import "./../style/Menu.css";
 import { decodeTokenData } from "../utils/decodeToken";
 import LogOut from "./Logout";
-RiFilter2Line;
+// RiFilter2Line;
 
 const Menu = () => {
   const dropdownRef = useRef(null);
