@@ -132,7 +132,7 @@ module.exports = {
   },
   getRating: async (user) => {
     connectionDB = await getConnection();
-    const sql = `select a.userName , b.positionName, d.skillName, truncate(avg(e.ratingValue),1) as userPuntuation
+    const sql = `select a.userName , c.positionSkillId, b.positionName,  d.skillName, truncate(avg(e.ratingValue),1) as userPuntuation
     from users a left join positions b
     on a.userPosition = b.positionName
     left join positionsSkills c
@@ -143,7 +143,7 @@ module.exports = {
     on e.ratingPositionSkillId = c.positionSkillId
     where a.userId = ${user}
     and e.ratingIdUser =${user}
-    group by a.userId, b.positionName, d.skillName`;
+    group by a.userId, b.positionName, d.skillName, c.positionSkillId`;
     const [result] = await connectionDB.query(sql);
     return result;
   },
