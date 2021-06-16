@@ -13,12 +13,7 @@ function Profile() {
   let { path, url } = useRouteMatch();
 
   return (
-    <div className="profile-buttons">
-      <div className="buttons-wrapper">
-        <Link to={`${url}/update-user-profile`}></Link>
-        <Link to={`${url}/upload-video`}></Link>
-      </div>
-
+    <div>
       <Switch>
         <Route path={`${path}/update-user-profile`}>
           <UpdateUser />

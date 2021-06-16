@@ -2,7 +2,7 @@ import Profile from "../components/Profile";
 
 function ProfilePage() {
   return (
-    <div>
+    <div className="profile-wrapper">
       <Profile />
     </div>
   );
