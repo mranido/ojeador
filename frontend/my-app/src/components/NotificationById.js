@@ -4,6 +4,7 @@ import { decodeTokenData } from "../utils/decodeToken";
 import useContactMessage from "../hooks/useContactsById";
 import { useParams } from "react-router-dom";
 import jwtDecode from "jwt-decode";
+import "./../style/Button.css";
 import { status } from "./../utils/status";
 
 export function NotificationsById() {
@@ -112,8 +113,16 @@ export function NotificationsById() {
           <h2>Título: {contactTitle}</h2>
           <h3>Asunto</h3>
           <p>{message}</p>
-          <button onClick={acceptContact}>Aceptar</button>
-          <button onClick={rejectContact}>Rechazar</button>
+          <div className="form-button">
+            <button className="button0" onClick={acceptContact}>
+              Aceptar
+            </button>
+          </div>
+          <div className="form-button">
+            <button className="button1" onClick={rejectContact}>
+              Rechazar
+            </button>
+          </div>
           <p>Estado de la oferta: {status(contactStatus)}</p>
         </div>
       )}

@@ -2,12 +2,9 @@ import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { AuthContext } from "./AuthContext";
 import jwt_decode from "jwt-decode";
-import ProfileImage from "./ProfileImage";
-import { UploadProfileImage } from "./UploadProfileImage";
 import { getAge } from "../utils/getAge";
 import moment from "moment";
 import { categories } from "../utils/categories";
-import Menu from "./Menu";
 import { GetSkills } from "./Skills";
 import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
@@ -112,7 +109,7 @@ function GetProfile({ id }) {
   const age = getAge(birth);
   const category = categories(age);
   return (
-    <>
+    <div>
       {userInfo.userRol === "Player" ? <div>{userInfo.userNumber}</div> : ""}
       <div>{userInfo.userName}</div>
       <div>
@@ -167,7 +164,7 @@ function GetProfile({ id }) {
         <p>{userInfo.userDescription}</p>
       </div>
       {userInfo.userRol === "Player" ? <GetSkills id={id} /> : ""}
-    </>
+    </div>
   );
 }
 
