@@ -4,6 +4,8 @@ import { Redirect, Link } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import { AiFillEye } from "react-icons/ai";
 import "./../style/Login.css";
+import "./../style/FormInput.css";
+
 const eye = <AiFillEye />;
 
 function LoginForm() {

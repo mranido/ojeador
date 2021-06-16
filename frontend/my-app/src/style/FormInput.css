@@ -1,0 +1,18 @@
+.form-input,
+.rol select {
+  display: flex;
+  flex-grow: 1;
+  border-radius: 4px;
+  margin: 0 auto;
+  border: var(--gris-oscuro-borde);
+  background-color: var(--gris-claro);
+  opacity: 50%;
+  color: var(--gris-oscuro-contenido);
+  width: 95%;
+  font-size: 18px;
+  margin-bottom: 2vh;
+  padding: 8px 8px;
+}
+label > span {
+  color: var(--warning-red);
+}

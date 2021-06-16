@@ -1,39 +1,40 @@
 .form-button {
   display: flex;
+  justify-content: center;
+  width: 100%;
 }
 .button0 {
-  display: flex;
   flex-grow: 1;
   justify-content: center;
   font-size: large;
-  font-weight: 700;
-  padding: 0.5rem 1rem;
+  font-weight: 500;
   border: none;
+  padding: 0.5rem 0.5rem;
   border-radius: 5px;
+  margin: 1vh 0;
   color: white;
   background-color: var(--verde);
 }
 .button1 {
-  display: flex;
   flex-grow: 1;
   justify-content: center;
   font-size: large;
-  font-weight: 700;
-  padding: 0.5rem 1rem;
-  border: solid 0.5px var(--verde);
+  font-weight: 500;
+  border: solid 3.5px var(--verde);
   border-radius: 5px;
-  color: var(--verde);
+  margin-top: 2rem;
+  color: var(--verde-oscuro);
   background-color: white;
+  text-decoration: none;
 }
 .button2 {
-  display: flex;
   flex-grow: 1;
   justify-content: center;
   font-size: large;
-  font-weight: 700;
-  padding: 0.5rem 1rem;
+  font-weight: 500;
   border: solid 0.5px var(--verde);
   border-radius: 5px;
   color: var(--verde);
   background-color: white;
+  text-decoration: none;
 }

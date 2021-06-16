@@ -11,6 +11,7 @@ import Menu from "./Menu";
 import { GetSkills } from "./Skills";
 import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import "./../style/Button.css";
 
 function GetMyProfile() {
   const [token, setToken] = useContext(AuthContext);
