@@ -3,11 +3,11 @@ import { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import { AiFillEye } from "react-icons/ai";
+import { RiFilter2Line } from "react-icons/ri";
 import "./../style/Login.css";
 import "./../style/FormInput.css";
 
 const eye = <AiFillEye />;
-
 function LoginForm() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
