@@ -1,0 +1,27 @@
+.container-offer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-offer a {
+  text-decoration: none;
+}
+
+.container-offer p {
+  margin: 2% auto;
+}
+
+.offerul ul {
+  margin: 0;
+  padding: 0;
+}
+
+.main-container-offer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--gris-oscuro-borde);
+  margin: 2%;
+}

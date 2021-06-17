@@ -109,58 +109,73 @@ function GetProfile({ id }) {
   const age = getAge(birth);
   const category = categories(age);
   return (
-    <div>
-      {userInfo.userRol === "Player" ? <div>{userInfo.userNumber}</div> : ""}
-      <div>{userInfo.userName}</div>
-      <div>
-        {userInfo.userImage ? (
-          <img
-            src={`/images/profiles/${userInfo.userImage}`}
-            alt="Imagen de perfil"
-            className="profileimage"
-          ></img>
+    <div className="name-team">
+      <div className="position-name">
+        {userInfo.userRol === "Player" ? (
+          <div className="profilenumber">{userInfo.userNumber}</div>
         ) : (
-          <img
-            src={`/images/profiles/image-default.png`}
-            alt="Imagen de perfil"
-            className="profileimage"
-          ></img>
+          ""
+        )}
+        <div className="profilename">{userInfo.userName}</div>
+      </div>
+      <div className="imageandpuntuation">
+        <div className="containerprofileimage">
+          {userInfo.userImage ? (
+            <img
+              src={`/images/profiles/${userInfo.userImage}`}
+              alt="Imagen de perfil"
+              className="profileimage"
+            ></img>
+          ) : (
+            <img
+              src={`/images/profiles/image-default.png`}
+              alt="Imagen de perfil"
+              className="profileimage"
+            ></img>
+          )}
+        </div>
+        {avgPunt() && userInfo.userRol === "Player" ? (
+          <div>
+            {Number(avgPunt())}
+            {Array(5)
+              .fill()
+              .map((item, index) => {
+                return (
+                  <FaStar
+                    key={Math.random()}
+                    className="star"
+                    size={20}
+                    color={Number(avgPunt()) > index ? "#5ACA75" : "#e4e5e9"}
+                  />
+                );
+              })}
+          </div>
+        ) : (
+          ""
         )}
       </div>
-      {avgPunt() && userInfo.userRol === "Player" ? (
-        <div>
-          {Number(avgPunt())}
-          {Array(5)
-            .fill()
-            .map((item, index) => {
-              return (
-                <FaStar
-                  key={Math.random()}
-                  className="star"
-                  size={25}
-                  color={Number(avgPunt()) > index ? "#5ACA75" : "#e4e5e9"}
-                />
-              );
-            })}
+      {userInfo.userRol === "Player" ? (
+        <div className="space">
+          Edad: <span className="bold"> {age > 0 ? age : "-"} años </span>
+          <span className="bold">({category})</span>
         </div>
       ) : (
         ""
       )}
       {userInfo.userRol === "Player" ? (
-        <div>
-          Edad: {age > 0 ? age : "-"} años <span>({category})</span>
+        <div className="space">
+          Posición: <span className="bold"> {userInfo.userPosition}</span>{" "}
         </div>
       ) : (
         ""
       )}
-      {userInfo.userRol === "Player" ? (
-        <div>Posición: {userInfo.userPosition} </div>
-      ) : (
-        ""
-      )}
-      <div>Equipo: {userInfo.userTeam} </div>
-      <div>Localidad: {userInfo.userLocation} </div>
-      <div>
+      <div className="space">
+        Equipo: <span className="bold"> {userInfo.userTeam} </span>{" "}
+      </div>
+      <div className="space">
+        Localidad: <span className="bold"> {userInfo.userLocation} </span>{" "}
+      </div>
+      <div className="space">
         <p>{userInfo.userDescription}</p>
       </div>
       {userInfo.userRol === "Player" ? <GetSkills id={id} /> : ""}

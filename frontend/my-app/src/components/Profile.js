@@ -13,7 +13,7 @@ function Profile() {
   let { path, url } = useRouteMatch();
 
   return (
-    <div>
+    <div className="profile-container">
       <Switch>
         <Route path={`${path}/update-user-profile`}>
           <UpdateUser />

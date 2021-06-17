@@ -142,7 +142,6 @@ module.exports = {
     right join ratings e
     on e.ratingPositionSkillId = c.positionSkillId
     where a.userId = ${user}
-    and e.ratingIdUser =${user}
     group by a.userId, b.positionName, d.skillName, c.positionSkillId`;
     const [result] = await connectionDB.query(sql);
     return result;

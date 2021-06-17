@@ -16,9 +16,11 @@ function GetSkills({ id }) {
   const [rating, setRating] = useState([]);
   const [userInfoReloader, setUserInfoReloader] = useState(0);
   const refreshUserInfo = () => setUserInfoReloader(Math.random());
-  // const [token] = useContext(AuthContext);
-  // const decodedToken = jwtDecode(token);
-  // const { userId } = decodedToken;
+  const [token] = useContext(AuthContext);
+  let userId;
+  if (token) {
+    userId = jwtDecode(token).userId;
+  }
 
   useEffect(() => {
     const loadSkillInfo = async () => {
@@ -43,7 +45,7 @@ function GetSkills({ id }) {
       }
     };
     loadPuntuationInfo();
-  }, [id]);
+  }, [id, userInfoReloader]);
   if (!rating) {
     return <p>Cargando</p>;
   }
@@ -59,34 +61,40 @@ function GetSkills({ id }) {
   });
   console.log(userRatings);
 
-  // async function handleSubmit(a, b) {
-  //   const newvote = {
-  //     ratingPositionSkillId: userRatings.ratingPositionSkillId,
-  //     ratingValue: userRatings.value,
-  //   };
-  //   const respuesta = await fetch(
-  //     `http://localhost:8000/api/v1/ratings/user/${userId}/${id}`,
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //         "Content-type": "application/json",
-  //       },
-  //       body: JSON.stringify(newvote),
-  //     }
-  //   );
-  //   if (respuesta.ok) {
-  //     setVotation(respuesta);
-  //     return "Voto realizado con éxito";
-  //   }
-  //   refreshUserInfo();
-  // }
+  async function handleVote({ skill, vote }) {
+    const newvote = {
+      ratingPositionSkillId: skill,
+      ratingValue: vote,
+    };
+
+    const respuesta = await fetch(
+      `http://localhost:8000/api/v1/ratings/user/${userId}/${id}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(newvote),
+      }
+    );
+    if (respuesta.ok) {
+      refreshUserInfo();
+    } else {
+      alert("movida");
+    }
+  }
 
   if (!userRatings) return <p>Cargando...</p>;
 
   return (
     <div>
-      <ul style={{ listStyle: "none", paddingLeft: 0 }}>
+      <ul
+        style={{
+          listStyle: "none",
+          paddingLeft: 0,
+        }}
+      >
         {userRatings.map((rating, index) => {
           return (
             <li key={rating.skill + index + rating.value}>
@@ -98,17 +106,26 @@ function GetSkills({ id }) {
                     <FaStar
                       key={Math.random()}
                       className="star"
-                      size={25}
+                      size={20}
                       value={rating.value}
                       color={rating.value > index ? "#5ACA75" : "#e4e5e9"}
-                      // onClick={() =>
-                      //   handleSubmit(
-                      //     setVotation({
-                      //       ratingValue: rating.value,
-                      //       ratingPositionSkillId: rating.ratingPositionSkillId,
-                      //     })
-                      //   )
-                      // }
+                      onClick={() => {
+                        // setVotation({
+                        //   ratingValue: rating.value,
+                        //   ratingPositionSkillId: rating.ratingPositionSkillId,
+                        // });
+
+                        if (userId) {
+                          handleVote({
+                            skill: rating.ratingPositionSkillId,
+                            vote: index + 1,
+                          });
+                        } else {
+                          alert("fuck you");
+                        }
+
+                        //handleSubmit();
+                      }}
                     />
                   );
                 })}

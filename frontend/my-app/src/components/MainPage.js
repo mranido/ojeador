@@ -12,6 +12,7 @@ export function MainPage() {
   const [userVideo, setUserVideo] = useState([]);
   const [userInfoReloader, setUserInfoReloader] = useState(0);
   const refreshUserInfo = () => setUserInfoReloader(Math.random());
+  const [filter, setFilter] = useState({});
   const [token] = useContext(AuthContext);
   const decodedToken = () => {
     if (!decodeTokenData(token)) {
@@ -34,6 +35,11 @@ export function MainPage() {
     loadVideos();
   }, []);
 
+  useEffect(() => {
+    console.log("filtro actual");
+    console.log(filter);
+  }, [filter]);
+
   let videoUrl = userVideo
     .map((i) => {
       return {
@@ -50,12 +56,12 @@ export function MainPage() {
 
   return (
     <>
-      <Filter />
+      <Filter setFilter={setFilter} />
       <div className="wrap-centra-column">
         <ul className="tag-information">
           {videoUrl.map((url, index) => {
             return (
-              <li key={url.videoUrl} prop={url.userId}>
+              <li key={url.videoUrl} prop={url.userId} className="videosli">
                 <video
                   className="video"
                   controls
@@ -65,36 +71,38 @@ export function MainPage() {
                   {" "}
                 </video>
                 <div>
-                  <div className="container-info">
-                    <div>
-                      {url.userImage ? (
-                        <Link to={`/profile/user/${url.userId}`}>
-                          <img
-                            src={`/images/profiles/${url.userImage}`}
-                            alt="Imagen de perfil"
-                            className="image"
-                          ></img>
-                        </Link>
-                      ) : (
-                        <Link to={`/profile/user/${url.userId}`}>
-                          <img
-                            src={`/images/profiles/image-default.png`}
-                            alt="Imagen de perfil"
-                            className="image"
-                          ></img>
-                        </Link>
-                      )}{" "}
-                    </div>{" "}
-                    <div>
-                      <div>{url.userName}</div>
-                      {url.avgMedia ? (
-                        <div>
-                          {url.avgMedia}
-                          <FaStar color="#5ACA75"></FaStar>
-                        </div>
-                      ) : (
-                        ""
-                      )}
+                  <div className="container-infowithbutton">
+                    <div className="container-info">
+                      <div>
+                        {url.userImage ? (
+                          <Link to={`/profile/user/${url.userId}`}>
+                            <img
+                              src={`/images/profiles/${url.userImage}`}
+                              alt="Imagen de perfil"
+                              className="image"
+                            ></img>
+                          </Link>
+                        ) : (
+                          <Link to={`/profile/user/${url.userId}`}>
+                            <img
+                              src={`/images/profiles/image-default.png`}
+                              alt="Imagen de perfil"
+                              className="image"
+                            ></img>
+                          </Link>
+                        )}{" "}
+                      </div>{" "}
+                      <div>
+                        <div>{url.userName}</div>
+                        {url.avgMedia ? (
+                          <div>
+                            {url.avgMedia}
+                            <FaStar color="#5ACA75"></FaStar>
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </div>
                     </div>
                     {userRol === "Scout" ? (
                       <Link
@@ -107,7 +115,7 @@ export function MainPage() {
                           },
                         }}
                       >
-                        <button>Contacta</button>
+                        <button className="button3">Contacta</button>
                       </Link>
                     ) : (
                       ""

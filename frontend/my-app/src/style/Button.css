@@ -41,6 +41,18 @@
   text-decoration: none;
 }
 
+.button3 {
+  flex-grow: 1;
+  align-self: flex-end;
+  font-size: large;
+  font-weight: 500;
+  border: solid 3.5px var(--gris-oscuro-borde);
+  border-radius: 5px;
+  color: var(--gris-oscuro-contenido);
+  background-color: white;
+  text-decoration: none;
+}
+
 .button0 a {
   text-decoration-line: none;
   text-decoration: none;

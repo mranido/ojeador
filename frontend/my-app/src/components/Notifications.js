@@ -3,8 +3,9 @@ import { status } from "./../utils/status";
 import useContactPlayer from "./../hooks/useContactsPlayer";
 import useContactScout from "./../hooks/useContactsScout";
 import { AuthContext } from "./AuthContext";
+import "./../style/Notification.css";
 import { decodeTokenData } from "../utils/decodeToken";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 export function Notification({ contactId }) {
   const [contactPlayer] = useContactPlayer();
@@ -59,38 +60,42 @@ export function Notification({ contactId }) {
       {userRol === "Player" ? (
         <div>
           <h1>Ofertas Recibidas</h1>
-          <div>
+          <div className="offerul">
             <ul>
               {contactsPlayer.map((i) => {
                 return (
-                  <div key={i.contactId}>
-                    <div>
-                      {i.scoutImage ? (
-                        <Link to={`/profile/user/${i.scoutId}`}>
-                          <img
-                            src={`/images/profiles/${i.scoutImage}`}
-                            alt="Imagen de perfil"
-                            className="image"
-                          ></img>
+                  <div key={i.contactId} className="main-container-offer">
+                    <div className="container-offer">
+                      <div>
+                        {i.scoutImage ? (
+                          <Link to={`/profile/user/${i.scoutId}`}>
+                            <img
+                              src={`/images/profiles/${i.scoutImage}`}
+                              alt="Imagen de perfil"
+                              className="image"
+                            ></img>
+                          </Link>
+                        ) : (
+                          <Link to={`/profile/user/${i.scoutImage}`}>
+                            <img
+                              src={`/images/profiles/image-default.png`}
+                              alt="Imagen de perfil"
+                              className="image"
+                            ></img>
+                          </Link>
+                        )}{" "}
+                      </div>
+                      <div>
+                        <Link to={`/profile/notifications/${i.contactId}`}>
+                          <p>{i.contactTitle}</p>
                         </Link>
-                      ) : (
-                        <Link to={`/profile/user/${i.scoutImage}`}>
-                          <img
-                            src={`/images/profiles/image-default.png`}
-                            alt="Imagen de perfil"
-                            className="image"
-                          ></img>
-                        </Link>
-                      )}{" "}
+                        <p>{i.scoutName}</p>
+                      </div>
                     </div>
-                    <Link to={`/profile/notifications/${i.contactId}`}>
-                      <p>{i.contactTitle}</p>
-                    </Link>
-                    <p>{i.scoutName}</p>
                     {i.contactStatus ? (
                       <p>{status(i.contactStatus)}</p>
                     ) : (
-                      "Pendiente"
+                      <p>Pendiente</p>
                     )}
                   </div>
                 );
@@ -101,39 +106,43 @@ export function Notification({ contactId }) {
       ) : (
         <div>
           <h1>Ofertas Enviadas</h1>
-          <div>
+          <div className="offerul">
             <ul>
               {contactsScout.map((i) => {
                 return (
-                  <div key={i.contactId}>
-                    <div>
-                      {i.playerImage ? (
-                        <Link to={`/profile/user/${i.playerId}`}>
-                          <img
-                            src={`/images/profiles/${i.playerImage}`}
-                            alt="Imagen de perfil"
-                            className="image"
-                          ></img>
+                  <div key={i.contactId} className="main-container-offer">
+                    <div className="container-offer">
+                      <div>
+                        {i.playerImage ? (
+                          <Link to={`/profile/user/${i.playerId}`}>
+                            <img
+                              src={`/images/profiles/${i.playerImage}`}
+                              alt="Imagen de perfil"
+                              className="image"
+                            ></img>
+                          </Link>
+                        ) : (
+                          <Link to={`/profile/user/${i.playerId}`}>
+                            <img
+                              src={`/images/profiles/image-default.png`}
+                              alt="Imagen de perfil"
+                              className="image"
+                            ></img>
+                          </Link>
+                        )}{" "}
+                      </div>
+                      <div>
+                        <Link to={`/profile/notifications/${i.contactId}`}>
+                          <p>{i.contactTitle}</p>
                         </Link>
+                        <p>{i.playerName}</p>
+                      </div>
+                      {i.contactStatus ? (
+                        <p>{status(i.contactStatus)}</p>
                       ) : (
-                        <Link to={`/profile/user/${i.playerId}`}>
-                          <img
-                            src={`/images/profiles/image-default.png`}
-                            alt="Imagen de perfil"
-                            className="image"
-                          ></img>
-                        </Link>
-                      )}{" "}
+                        <p>Pendiente</p>
+                      )}
                     </div>
-                    <Link to={`/profile/notifications/${i.contactId}`}>
-                      <p>{i.contactTitle}</p>
-                    </Link>
-                    <p>{i.playerName}</p>
-                    {i.contactStatus ? (
-                      <p>{status(i.contactStatus)}</p>
-                    ) : (
-                      <p>Pendiente</p>
-                    )}
                   </div>
                 );
               })}{" "}
