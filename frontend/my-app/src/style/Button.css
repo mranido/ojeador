@@ -1,6 +1,9 @@
 .form-button {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
   width: 100%;
 }
 .button0 {
@@ -14,6 +17,7 @@
   margin: 1vh 0;
   color: white;
   background-color: var(--verde);
+  width: 100%;
 }
 .button1 {
   flex-grow: 1;
@@ -27,6 +31,7 @@
   color: var(--verde-oscuro);
   background-color: white;
   text-decoration: none;
+  width: 100%;
 }
 .button2 {
   flex-grow: 1;

@@ -197,6 +197,7 @@ function UpdateUser() {
               <div>
                 <p>Elija su posición</p>
                 <select
+                  className="update-user"
                   onChange={(e) => setUserPosition(e.target.value)}
                   value={userPosition}
                 >

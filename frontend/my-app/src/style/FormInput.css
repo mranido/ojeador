@@ -1,5 +1,7 @@
+.update-user-input,
 .form-input,
-.rol select {
+select,
+textarea {
   display: flex;
   flex-grow: 1;
   border-radius: 4px;
@@ -13,6 +15,7 @@
   margin-bottom: 2vh;
   padding: 8px 8px;
 }
+
 label > span {
   color: var(--warning-red);
 }
