@@ -8,7 +8,7 @@ const accessAuth = require("../../middlewares/accessAuth");
 
 router
   .post(
-    "/user/:id/:voteid/",
+    "/user/:voteid/:id/",
     accessAuth.registred,
     schema.createRating,
     controller.createRating

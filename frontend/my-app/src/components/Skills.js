@@ -68,7 +68,7 @@ function GetSkills({ id }) {
     };
 
     const respuesta = await fetch(
-      `http://localhost:8000/api/v1/ratings/user/${userId}/${id}`,
+      `http://localhost:8000/api/v1/ratings/user/${id}/${userId}`,
       {
         method: "POST",
         headers: {
@@ -78,6 +78,7 @@ function GetSkills({ id }) {
         body: JSON.stringify(newvote),
       }
     );
+
     if (respuesta.ok) {
       refreshUserInfo();
     } else {
@@ -110,11 +111,6 @@ function GetSkills({ id }) {
                       value={rating.value}
                       color={rating.value > index ? "#5ACA75" : "#e4e5e9"}
                       onClick={() => {
-                        // setVotation({
-                        //   ratingValue: rating.value,
-                        //   ratingPositionSkillId: rating.ratingPositionSkillId,
-                        // });
-
                         if (userId) {
                           handleVote({
                             skill: rating.ratingPositionSkillId,

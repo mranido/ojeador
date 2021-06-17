@@ -26,8 +26,9 @@ async function sendEmailRegistration(
     from: config.nodemailer.from,
     to: userEmail,
     subject: "Bienvenido a Ojeador",
-    text: `Hola ${userName}, To confirm the account activate it here: ${linkActivation}`,
-    html: `Hola ${userName}, To confirm the account <a href="${linkActivation}">activate it here</a>`,
+    text: `¡Hola ${userName}!
+    Para confirmar tu cuenta haz click aquí ${linkActivation}`,
+    html: `¡Hola ${userName}! Para confirmar tu cuenta <a href="${linkActivation}">haz click aquí.</a>`,
   };
   console.log("mailMessage", mailMessage);
   const data = await transporter.sendMail(mailMessage);
@@ -67,4 +68,3 @@ module.exports = {
   sendEmailCorrectValidation,
   sendEmailContact,
 };
-

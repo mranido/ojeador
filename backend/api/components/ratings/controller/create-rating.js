@@ -12,8 +12,8 @@ async function createRate(req, res, next) {
 
     const voteId = Number(voteid);
     const {
-      userId: ratingIdUser,
-      voteId: ratingIdVoteUser,
+      voteId: ratingIdUser,
+      userId: ratingIdVoteUser,
       ratingValue,
       ratingPositionSkillId,
     } = req.body;
@@ -33,8 +33,8 @@ async function createRate(req, res, next) {
     }
 
     const ratingDB = {
-      ratingIdUser: userId,
-      ratingIdVoteUser: voteId,
+      ratingIdUser: voteId,
+      ratingIdVoteUser: userId,
       ratingValue,
       ratingPositionSkillId,
     };
