@@ -23,7 +23,7 @@ async function activateUser(req, res, next) {
 
     if (!isActivated) {
       res.send({
-        message: "Cuenta no verificada,  código de verificación expirado.",
+        message: "Cuenta no verificada, código de verificación expirado.",
       });
     }
 
@@ -31,7 +31,9 @@ async function activateUser(req, res, next) {
     const { userName, userEmail } = dataEmail;
     await sendEmailCorrectValidation(userName, userEmail);
 
-    res.send({ message: "account activated" });
+    res.send({
+      message: `Tu cuenta ha sido activada`,
+    });
   } catch (error) {
     next(error);
   }
