@@ -15,7 +15,7 @@ function App() {
     <AuthProvider>
       <Router>
         <Header />
-        <div>
+        <div className="form-button">
           <Switch>
             <Route path="/register">
               <Register />

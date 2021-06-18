@@ -25,10 +25,9 @@ async function sendEmailRegistration(
   const mailMessage = {
     from: config.nodemailer.from,
     to: userEmail,
-    subject: "Bienvenido a Ojeador",
-    text: `¡Hola ${userName}!
-    Para confirmar tu cuenta haz click aquí ${linkActivation}`,
-    html: `¡Hola ${userName}! Para confirmar tu cuenta <a href="${linkActivation}">haz click aquí.</a>`,
+    subject: "Ojeador Bienvenid@",
+    text: `¡Hola ${userName}!\n Para confirmar tu cuenta haz click aquí ${linkActivation}`,
+    html: `¡Hola ${userName}! Para confirmar tu cuenta haz click <a href="${linkActivation}">aquí</a>.`,
   };
   console.log("mailMessage", mailMessage);
   const data = await transporter.sendMail(mailMessage);
@@ -40,9 +39,9 @@ async function sendEmailCorrectValidation(userName, userEmail) {
   const mailMessage = {
     from: config.nodemailer.from,
     to: userEmail,
-    subject: "[Ojeador] Cuenta Activada!",
-    text: `Hi ${userName},\n Your account was be activated. Enjoy our apps`,
-    html: `<p>Hi ${userName},</p><p>Your account was be activated. Enjoy our app!</p>`,
+    subject: "Ojeador Cuenta Activada!",
+    text: `Hola ${userName},\n Tu cuenta está activada.\n Haz click <a href ="http://localhost:3000/login/">aquí</a> para loguearte.\n¡Que disfrutes de Ojeador!`,
+    html: `<p>Hola ${userName},</p><p>Tu cuenta está activada.<p>Haz click <a href ="http://localhost:3000/login/">aquí</a> para loguearte.</p> ¡Que disfrutes de Ojeador!</p>`,
   };
 
   const data = await transporter.sendMail(mailMessage);
@@ -53,9 +52,9 @@ async function sendEmailContact(userName, userEmail, id) {
   const mailMessage = {
     from: config.nodemailer.from,
     to: userEmail,
-    subject: "[Ojeador]Tienes una nueva oferta",
-    text: `Hola ${userName},\n, Tienes una nueva oferta , puedes consultarlo desde <a href ="http://localhost:8000/contact/user/${id}">aquí`,
-    html: `<p>Hi ${userName}\n,<p>Tienes una nueva oferta, puedes consultarla desde <a href="http://localhost:8000/contact/user/${id}">aquí</a></p>`,
+    subject: "Ojeador Tienes una nueva oferta",
+    text: `Hola ${userName},\n tienes una nueva oferta, entra en la aplicación y visualizala.\n Ojalá que sea de tu agrado. Haz click <a href ="http://localhost:3000/login/">aquí</a> para loguearte y ver la oferta`,
+    html: `Hola ${userName}, tienes una nueva oferta, entra en la aplicación y visualizala. <p>Ojalá que sea de tu agrado. Haz click <a href ="http://localhost:3000/login/">aquí</a> para loguearte y ver la oferta</p>`,
   };
 
   const data = await transporter.sendMail(mailMessage);
