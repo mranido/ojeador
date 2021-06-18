@@ -5146,3 +5146,5 @@
 ::1 - - [17/Jun/2021:16:31:02 +0000] "POST /api/v1/ratings/user/10/2 HTTP/1.1" 201 63 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
 ::1 - - [17/Jun/2021:16:31:02 +0000] "GET /api/v1/ratings/user/2 HTTP/1.1" 201 579 "http://localhost:3000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36"
 ::1 - - [17/Jun/2021:16:34:31 +0000] "GET /api/v1/ratings/user/2 HTTP/1.1" - - "-" "PostmanRuntime/7.26.8"
+::1 - - [18/Jun/2021:19:45:34 +0000] "OPTIONS /api/v1/contact/5/8 HTTP/1.1" 204 0 "http://localhost:3000/" "Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Mobile Safari/537.36"
+::1 - - [18/Jun/2021:19:45:34 +0000] "GET /api/v1/contact/5/8 HTTP/1.1" 201 - "http://localhost:3000/" "Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Mobile Safari/537.36"
