@@ -52,9 +52,6 @@ async function loginUser(req, res, next) {
       expiresIn: config.jwt.sesion,
     });
 
-    console.log(tokenPayload);
-    console.log(token);
-
     const tokenData = {
       accessToken: token,
       expiresIn: config.jwt.sesion,
