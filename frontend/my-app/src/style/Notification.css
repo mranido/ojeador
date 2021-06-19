@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .container-offer a {
@@ -14,14 +15,25 @@
 }
 
 .offerul ul {
-  margin: 0;
+  margin-top: 5vh;
   padding: 0;
 }
 
 .main-container-offer {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
   border: 1px solid var(--gris-oscuro-borde);
-  margin: 2%;
+  margin-top: 1vh;
+  border-radius: 5px;
+  padding: 1.5rem 0 0 0;
+}
+
+.separador-img-p {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

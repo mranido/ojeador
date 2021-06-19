@@ -9,6 +9,7 @@ import { GetSkills } from "./Skills";
 import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import "./../style/Button.css";
+import "./../style/Star.css";
 
 function GetMyProfile() {
   const [token, setToken] = useContext(AuthContext);
@@ -46,7 +47,7 @@ function GetProfile({ id }) {
   const [userTeam, setUserTeam] = useState("");
   const [userNumber, setUserNumber] = useState("");
   const [userBirthday, setUserBirthday] = useState("");
-  const [userPosition, setUserPosition] = useState("Portero");
+  const [userPosition, setUserPosition] = useState("Elije tu posición");
   const [userDescription, setUserDescription] = useState("");
   const [response, setResponse] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -135,8 +136,7 @@ function GetProfile({ id }) {
           )}
         </div>
         {avgPunt() && userInfo.userRol === "Player" ? (
-          <div>
-            {Number(avgPunt())}
+          <div className="star">
             {Array(5)
               .fill()
               .map((item, index) => {
@@ -149,6 +149,7 @@ function GetProfile({ id }) {
                   />
                 );
               })}
+            <span>{Number(avgPunt())}</span>
           </div>
         ) : (
           ""

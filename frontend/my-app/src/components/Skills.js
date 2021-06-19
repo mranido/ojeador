@@ -98,33 +98,37 @@ function GetSkills({ id }) {
       >
         {userRatings.map((rating, index) => {
           return (
-            <li key={rating.skill + index + rating.value}>
-              {rating.skill}
-              {Array(5)
-                .fill()
-                .map((item, index) => {
-                  return (
-                    <FaStar
-                      key={Math.random()}
-                      className="star"
-                      size={20}
-                      value={rating.value}
-                      color={rating.value > index ? "#5ACA75" : "#e4e5e9"}
-                      onClick={() => {
-                        if (userId) {
-                          handleVote({
-                            skill: rating.ratingPositionSkillId,
-                            vote: index + 1,
-                          });
-                        } else {
-                          alert("fuck you");
-                        }
-
-                        //handleSubmit();
-                      }}
-                    />
-                  );
-                })}
+            <li
+              className="star-rating"
+              key={rating.skill + index + rating.value}
+            >
+              <div className="skill">{rating.skill}</div>
+              <div className="star-wrapper">
+                {Array(5)
+                  .fill()
+                  .map((item, index) => {
+                    return (
+                      <FaStar
+                        key={Math.random()}
+                        className="star"
+                        size={20}
+                        value={rating.value}
+                        color={rating.value > index ? "#5ACA75" : "#e4e5e9"}
+                        onClick={() => {
+                          if (userId) {
+                            handleVote({
+                              skill: rating.ratingPositionSkillId,
+                              vote: index + 1,
+                            });
+                          } else {
+                            alert("fuck you");
+                          }
+                          //handleSubmit();
+                        }}
+                      />
+                    );
+                  })}
+              </div>
             </li>
           );
         })}

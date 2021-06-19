@@ -14,7 +14,7 @@ function UpdateUser() {
   const [userTeam, setUserTeam] = useState("");
   const [userNumber, setUserNumber] = useState("");
   const [userBirthday, setUserBirthday] = useState(new Date());
-  const [userPosition, setUserPosition] = useState("Portero");
+  const [userPosition, setUserPosition] = useState("Elije tu posición");
   const [userDescription, setUserDescription] = useState("");
   const [response, setResponse] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -200,7 +200,7 @@ function UpdateUser() {
                   onChange={(e) => setUserPosition(e.target.value)}
                   value={userPosition}
                 >
-                  <option value="Valor a Seleccionar">Elija su posicion</option>
+                  <option value="Valor a Seleccionar">Elije tu posición</option>
                   <option value="Portero" key="Portero">
                     Portero
                   </option>

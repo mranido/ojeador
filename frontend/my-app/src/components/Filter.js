@@ -49,38 +49,50 @@ const Filter = ({ setFilter }) => {
   return (
     <div className="container-menu">
       <form className="menu-container" onSubmit={handleFilter}>
-        Filtro
+        <div className="funil-name">Filtro</div>
         <button onClick={onClick} className="menu-trigger" name="Filtro">
           <RiFilter2Line className="funil" />
         </button>
         <nav
           ref={dropdownRef}
-          className={`menu ${isActive ? "active" : "inactive"}`}
+          className={`menu ${isActive ? "active" : "inactive"} filter`}
         >
           <ul>
             <div>EDAD</div>
             <li>
               <label>
+                <input type="checkbox" name="prebenjamin" value="1"></input>
+                Prebenjamin (5-8)
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" name="benjamin" value="1"></input>
+                Benjamín (8-10)
+              </label>
+            </li>
+            <li>
+              <label>
                 <input type="checkbox" name="alevin" value="1"></input>
-                Alevín (10-11)
+                Alevín (10-12)
               </label>
             </li>
             <li>
               <label>
                 <input type="checkbox" name="infantil" value="1"></input>
-                Infantil (12-13)
+                Infantil (12-14)
               </label>
             </li>
             <li>
               <label>
                 <input type="checkbox" name="cadete"></input>
-                Cadete (14-15)
+                Cadete (14-16)
               </label>
             </li>
             <li>
               <label>
                 <input type="checkbox" name="juvenil"></input>
-                Juvenil (15-16)
+                Juvenil (16-18)
               </label>
             </li>
             <div>POSICIÓN</div>
@@ -154,10 +166,15 @@ const Filter = ({ setFilter }) => {
             <div>EQUIPO</div>
             <li>
               <label>
-                <input id="buscar-equipo" type="search" name="equipo"></input>
+                <input
+                  className="form-input"
+                  id="buscar-equipo"
+                  type="search"
+                  name="equipo"
+                ></input>
               </label>
             </li>
-            <button>Aplicar</button>
+            <button className="button0">Aplicar</button>
           </ul>
         </nav>
       </form>

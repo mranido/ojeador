@@ -66,7 +66,7 @@ export function Notification({ contactId }) {
                 return (
                   <div key={i.contactId} className="main-container-offer">
                     <div className="container-offer">
-                      <div>
+                      <div className="separador-img-p">
                         {i.scoutImage ? (
                           <Link to={`/profile/user/${i.scoutId}`}>
                             <img

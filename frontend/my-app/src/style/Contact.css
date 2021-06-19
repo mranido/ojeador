@@ -1,0 +1,22 @@
+.contact-wrapper {
+  display: block;
+}
+.contact-image {
+  border-radius: 50%;
+  width: 15rem;
+  height: 15rem;
+  margin-bottom: 2rem;
+}
+.img-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: xx-large;
+}
+.img-name > p {
+  margin: 0;
+  margin-bottom: 1vh;
+  font-weight: bold;
+}

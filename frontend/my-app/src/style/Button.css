@@ -38,7 +38,7 @@
   justify-content: center;
   font-size: large;
   font-weight: 500;
-  border: solid 3.5px var(--gris-oscuro-borde);
+  border: solid 0.5px var(--gris-oscuro-borde);
   border-radius: 5px;
   margin-top: 2rem;
   color: var(--gris-oscuro-contenido);
@@ -51,7 +51,7 @@
   align-self: flex-end;
   font-size: large;
   font-weight: 500;
-  border: solid 3.5px var(--gris-oscuro-borde);
+  border: solid 0.5px var(--gris-oscuro-borde);
   border-radius: 5px;
   color: var(--gris-oscuro-contenido);
   background-color: white;

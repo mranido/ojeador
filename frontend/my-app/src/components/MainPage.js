@@ -6,6 +6,8 @@ import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./../style/MainPage.css";
 import Filter from "./Filter";
+import { getAge } from "../utils/getAge";
+import { categories } from "../utils/categories";
 
 export function MainPage() {
   const [user, setUser] = useState([]);
@@ -43,6 +45,7 @@ export function MainPage() {
   let videoUrl = userVideo
     .map((i) => {
       return {
+        userCategory: categories(getAge(i.userBirthday)),
         userId: i.userId,
         videoUrl: i.videoUrl,
         videoIduser: i.videoIduser,
@@ -50,6 +53,8 @@ export function MainPage() {
         userImage: i.userImage,
         userNumber: i.userNumber,
         avgMedia: i.avgMedia,
+        userTeam: i.userTeam,
+        userPosition: i.userPosition,
       };
     })
     .reverse();
@@ -112,6 +117,7 @@ export function MainPage() {
                             id: url.userId,
                             image: url.userImage,
                             userName: url.userName,
+                            avgMedia: url.avgMedia,
                           },
                         }}
                       >
