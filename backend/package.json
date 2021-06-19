@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./api/server",
-    "start": "node ./api/dist"
+    "start": "nodemon ./api/server",
+    "debug": "node ./api/dist"
   },
   "author": "Diego Anido Martinez && Angel Manuel Vazquez Rodriguez",
   "license": "ISC",

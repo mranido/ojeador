@@ -82,7 +82,7 @@ function GetSkills({ id }) {
     if (respuesta.ok) {
       refreshUserInfo();
     } else {
-      alert("movida");
+      alert("No seas presuntuoso. ¡Deja al resto de usuarios la valoración!");
     }
   }
 
@@ -121,7 +121,7 @@ function GetSkills({ id }) {
                               vote: index + 1,
                             });
                           } else {
-                            alert("fuck you");
+                            alert("Debes de estar registrado para poder votar");
                           }
                           //handleSubmit();
                         }}

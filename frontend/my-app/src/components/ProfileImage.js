@@ -37,7 +37,7 @@ function ProfileImage(props) {
   if (userInfo) {
     return userInfo.user.userImage ? (
       <>
-        <div>{userInfo.user.userName}</div>
+        <div className="profilename">{userInfo.user.userName}</div>
         <img
           className="profileimage"
           src={`/images/profiles/${userInfo.user.userImage}`}
@@ -46,7 +46,7 @@ function ProfileImage(props) {
       </>
     ) : (
       <>
-        <div>{userInfo.user.userName}</div>{" "}
+        <div className="profilename">{userInfo.user.userName}</div>{" "}
         <img
           className="profileimage"
           src={`/images/profiles/image-default.png`}

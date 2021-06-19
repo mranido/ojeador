@@ -33,12 +33,14 @@
   text-decoration: none;
   width: 100%;
 }
-.button2 {
+.button2,
+label[for="buttoni"] {
   flex-grow: 1;
   justify-content: center;
   font-size: large;
   font-weight: 500;
   border: solid 0.5px var(--gris-oscuro-borde);
+  padding: 0.5rem 0.5rem;
   border-radius: 5px;
   margin-top: 2rem;
   color: var(--gris-oscuro-contenido);
@@ -72,4 +74,19 @@
   color: var(--verde-oscuro);
   font-size: large;
   font-weight: 500;
+}
+
+input[type="file"]#buttoni {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+label[for="buttoni"] {
+  transition: all 0.5s;
+  cursor: pointer;
+  padding: 0.7rem;
+  margin: 10% 0 0;
 }

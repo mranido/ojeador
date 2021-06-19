@@ -5,30 +5,27 @@
   flex-grow: 1;
   align-items: center;
 }
-
 .profile {
   display: inline-block;
   width: 80%;
 }
-
 .name-team {
   margin: 5% 5%;
 }
-
 .position-name {
   display: flex;
   flex-direction: row;
   margin-top: -5%;
-  font-size: x-large;
 }
-
-.profilename {
+.profilename,
+p > .update-user-wrapper {
   font-family: Poppins;
   font-weight: bold;
   display: flex;
   align-items: center;
+  font-weight: 800;
+  font-size: x-large;
 }
-
 .profilenumber {
   font-family: Poppins;
   font-style: normal;
@@ -40,7 +37,6 @@
   color: var(--black);
   margin-right: 3%;
 }
-
 .profile-container {
   display: flex;
   width: 95%;
@@ -49,22 +45,18 @@
   align-items: center;
   justify-content: center;
 }
-
 .containerprofileimage .profileimage {
   margin-bottom: 2%;
 }
-
 .imageandpuntuation {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-
 .space {
   margin: 5px 0;
 }
-
 .bold {
   font-weight: bold;
 }

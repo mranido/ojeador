@@ -15,4 +15,21 @@
 }
 .update-user-wrapper-p {
   font-weight: bold;
+  font-size: xx-large;
+}
+.update-user-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
+}
+.update-user-wrapper-p div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 100%;
 }

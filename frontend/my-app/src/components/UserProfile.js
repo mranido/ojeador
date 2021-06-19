@@ -14,7 +14,7 @@ import "./../style/Star.css";
 function GetMyProfile() {
   const [token, setToken] = useContext(AuthContext);
   const decodedToken = jwt_decode(token);
-  const { userId } = decodedToken;
+  const { userId, userRol } = decodedToken;
 
   return (
     <>
@@ -24,11 +24,15 @@ function GetMyProfile() {
           <a href="/profile/update-user-profile">Edita tu Perfil</a>
         </button>
       </div>
-      <div className="form-button">
-        <button className="button1">
-          <a href="/profile/upload-video">Sube un vídeo</a>
-        </button>
-      </div>
+      {userRol === "Player" ? (
+        <div className="form-button">
+          <button className="button1">
+            <a href="/profile/upload-video">Sube un vídeo</a>
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
     </>
   );
 }

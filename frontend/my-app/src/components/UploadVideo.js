@@ -3,6 +3,7 @@ import axios from "axios";
 import { AuthContext } from "./AuthContext";
 import jwtDecode from "jwt-decode";
 import { Redirect } from "react-router";
+import "../style/Button.css";
 
 export const UploadVideo = () => {
   const [file, setFile] = useState("");
@@ -34,23 +35,24 @@ export const UploadVideo = () => {
             Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
-        onUploadProgress: progressEvent => {
-          setUploadPercentage(
-            parseInt(
-              Math.round((progressEvent.loaded * 100) / progressEvent.total)
-            )
-          );
+          onUploadProgress: (progressEvent) => {
+            setUploadPercentage(
+              parseInt(
+                Math.round((progressEvent.loaded * 100) / progressEvent.total)
+              )
+            );
+          },
         }
-      });
-      
+      );
+
       // Clear percentage
       setTimeout(() => setUploadPercentage(0), 10000);
 
       const { fileName, filePath } = res.data;
 
-      setUploadedFile('Vídeo subido correctamente');
+      setUploadedFile("Vídeo subido correctamente");
 
-      setMessage('File Uploaded');
+      setMessage("File Uploaded");
     } catch (err) {
       if (err.response.status === 500) {
         setMessage("There was a problem with the server");
@@ -64,11 +66,13 @@ export const UploadVideo = () => {
       {token && userRol === "Player" ? (
         <div className="App">
           <form onSubmit={uploadFile}>
-            <div>
-              <label>Subir Vídeo</label>
-              <input type="file" onChange={onFileChange} />
+            <div className="form-button">
+              <label for="buttoni">Escoge un Vídeo</label>
+              <input id="buttoni" type="file" onChange={onFileChange} />
             </div>
-            <button type="submit">Subir Vídeo</button>
+            <button className="button1" type="submit">
+              Subir Vídeo
+            </button>
           </form>
         </div>
       ) : (
