@@ -87,15 +87,18 @@ export function Notification({ contactId }) {
                       </div>
                       <div>
                         <Link to={`/profile/notifications/${i.contactId}`}>
-                          <p>{i.contactTitle}</p>
+                          <p className="contact-title">{i.contactTitle}</p>
                         </Link>
-                        <p>{i.scoutName}</p>
+                        <p className="contact-name">
+                          <span>de: </span>
+                          {i.scoutName}
+                        </p>
                       </div>
                     </div>
                     {i.contactStatus ? (
                       <p>{status(i.contactStatus)}</p>
                     ) : (
-                      <p>Pendiente</p>
+                      <p className="contact-state">Pendiente</p>
                     )}
                   </div>
                 );

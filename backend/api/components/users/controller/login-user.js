@@ -41,7 +41,7 @@ async function loginUser(req, res, next) {
       return response.error(
         req,
         res,
-        "Verifique su cuenta para proceder con nuestros servicios",
+        "Verifica tu cuenta para proceder con nuestros servicios",
         403
       );
     }

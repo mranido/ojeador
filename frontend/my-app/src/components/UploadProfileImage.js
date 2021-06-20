@@ -87,7 +87,7 @@ export const UploadProfileImage = () => {
       ) : (
         <Redirect to="/profile" />
       )}
-      {message ? <div>{message}</div> : ""}
+      <form className="form-button">{message ? <p>{message}</p> : ""}</form>
     </>
   );
 };

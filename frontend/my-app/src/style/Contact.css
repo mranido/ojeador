@@ -1,5 +1,8 @@
 .contact-wrapper {
-  display: block;
+  display: flex;
+  width: min-content;
+  flex-direction: column;
+  margin: 0 auto;
 }
 .contact-image {
   border-radius: 50%;

@@ -35,21 +35,20 @@
 
 .menu {
   background: #ffffff;
-  border-radius: 4%;
+  border-radius: 4px;
   position: absolute;
   top: 60px;
   right: 0;
   width: auto;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-20px);
+  transform: translateY(28px) translateX(-10px);
   transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
 }
 
 .menu.active {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
   z-index: 1;
 }
 
@@ -57,6 +56,7 @@
   list-style: none;
   padding: 3px;
   margin: 1px;
+  transform: translateY(100);
 }
 
 .menu li {

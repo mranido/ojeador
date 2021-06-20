@@ -96,11 +96,11 @@ export const CreateContact = () => {
             onChange={(e) => setContactDescription(e.target.value)}
           />
         </label>
+        {response && <div>{response}</div>}
         <button className="button0" type="submit">
           Enviar
         </button>
       </form>
-      {response && <div>{response}</div>}
     </div>
   );
 };
