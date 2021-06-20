@@ -8,8 +8,8 @@ import { decodeTokenData } from "../utils/decodeToken";
 import { Link, Redirect } from "react-router-dom";
 
 export function Notification({ contactId }) {
-  const [contactPlayer] = useContactPlayer();
-  const [contactScout] = useContactScout();
+  const [contactPlayer] = useContactPlayer([]);
+  const [contactScout] = useContactScout([]);
   const [token] = useContext(AuthContext);
   const decodedToken = () => {
     if (!decodeTokenData(token)) {
@@ -19,41 +19,9 @@ export function Notification({ contactId }) {
     }
   };
 
-  const userRol = decodedToken();
+  console.log(contactPlayer);
 
-  let contactsPlayer = contactPlayer
-    .map((i) => {
-      return {
-        contactId: i.contactId,
-        scoutId: i.scoutId,
-        scoutName: i.scoutName,
-        message: i.message,
-        contactStatus: i.contactStatus,
-        scoutImage: i.scoutImage,
-        contactTitle: i.contactTitle,
-        scoutTeam: i.scoutTeam,
-        userRol: "Player",
-        playerId: i.playerId,
-      };
-    })
-    .reverse();
-  let contactsScout = contactScout
-    .map((i) => {
-      return {
-        scoutId: i.scoutId,
-        contactId: i.contactId,
-        playerId: i.playerId,
-        playerName: i.userName,
-        message: i.message,
-        contactStatus: i.contactStatus,
-        playerImage: i.userImage,
-        contactTitle: i.contactTitle,
-        playerTeam: i.playerTeam,
-        userRol: "Scout",
-      };
-    })
-    .reverse();
-  console.log(contactsPlayer);
+  const userRol = decodedToken();
 
   return (
     <>
@@ -62,7 +30,7 @@ export function Notification({ contactId }) {
           <h1>Ofertas Recibidas</h1>
           <div className="offerul">
             <ul>
-              {contactsPlayer.map((i) => {
+              {contactPlayer.map((i) => {
                 return (
                   <div key={i.contactId} className="main-container-offer">
                     <div className="container-offer">
@@ -92,11 +60,16 @@ export function Notification({ contactId }) {
                         <p>{i.scoutName}</p>
                       </div>
                     </div>
-                    {i.contactStatus ? (
-                      <p>{status(i.contactStatus)}</p>
-                    ) : (
-                      <p>Pendiente</p>
-                    )}
+                    <p>
+                      {"Estado: "}
+                      {Number(i.contactStatus) === 1 ? (
+                        <span>Aceptada</span>
+                      ) : i.contactStatus !== 0 ? (
+                        <span>Pendiente</span>
+                      ) : (
+                        <span>Rechazada</span>
+                      )}
+                    </p>
                   </div>
                 );
               })}{" "}
@@ -108,7 +81,7 @@ export function Notification({ contactId }) {
           <h1>Ofertas Enviadas</h1>
           <div className="offerul">
             <ul>
-              {contactsScout.map((i) => {
+              {contactScout.map((i) => {
                 return (
                   <div key={i.contactId} className="main-container-offer">
                     <div className="container-offer">
@@ -137,11 +110,16 @@ export function Notification({ contactId }) {
                         </Link>
                         <p>{i.playerName}</p>
                       </div>
-                      {i.contactStatus ? (
-                        <p>{status(i.contactStatus)}</p>
-                      ) : (
-                        <p>Pendiente</p>
-                      )}
+                      <p>
+                        {"Estado: "}
+                        {Number(i.contactStatus) === 1 ? (
+                          <span>Aceptada</span>
+                        ) : i.contactStatus !== 0 ? (
+                          <span>Pendiente</span>
+                        ) : (
+                          <span>Rechazada</span>
+                        )}
+                      </p>
                     </div>
                   </div>
                 );

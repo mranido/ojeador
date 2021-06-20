@@ -23,7 +23,9 @@ async function acceptContact(req, res, next) {
     const acceptedContact = await model.update1(
       { contactStatus: true },
       TABLE,
-      { contactId: contactid }
+      {
+        contactId: contactid,
+      }
     );
 
     response.success(req, res, acceptedContact, 201);

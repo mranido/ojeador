@@ -1,13 +1,17 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { AuthContext } from "./AuthContext";
 import jwtDecode from "jwt-decode";
+import { FaStar, FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
 import "../style/Button.css";
 
 export const UploadVideo = () => {
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("Choose File");
+  const [userVideo, setUserVideo] = useState([]);
+  const [deleteVideo, setDeleteVideo] = useState();
   const [uploadedFile, setUploadedFile] = useState({});
   const [token] = useContext(AuthContext);
   const decodedToken = jwtDecode(token);
@@ -15,7 +19,49 @@ export const UploadVideo = () => {
   const [message, setMessage] = useState("");
   const [uploadPercentage, setUploadPercentage] = useState(0);
 
-  console.log(userId);
+  const [userInfoReloader, setUserInfoReloader] = useState(0);
+  const refreshUserInfo = () => setUserInfoReloader(Math.random());
+
+  useEffect(() => {
+    const loadVideos = async () => {
+      const response = await fetch(
+        `http://localhost:8000/api/v1/videos/user/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.ok) {
+        const body = await response.json();
+        setUserVideo(body);
+      }
+    };
+    loadVideos();
+  }, [token, userId]);
+
+  console.log(userVideo);
+  let videoUrl = userVideo
+    .map((i) => {
+      return {
+        userId: i.userId,
+        videoId: i.videoId,
+        videoUrl: i.videoUrl,
+        videoIduser: i.videoIduser,
+        userName: i.userName,
+        userImage: i.userImage,
+        userNumber: i.userNumber,
+        avgMedia: i.avgMedia,
+        userTeam: i.userTeam,
+        userPosition: i.userPosition,
+      };
+    })
+    .reverse();
+
+  let { videoId } = videoUrl;
+  console.log(videoId);
   const onFileChange = (e) => {
     setFile(e.target.files[0]);
     setFilename(e.target.files[0].name);
@@ -61,19 +107,116 @@ export const UploadVideo = () => {
       }
     }
   };
+  const deletedVideo = async (e) => {
+    try {
+      const res = await axios.delete(
+        `http://localhost:8000/api/v1/videos/user/${userId}/${userVideo[0].videoId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          onUploadProgress: (progressEvent) => {
+            setUploadPercentage(
+              parseInt(
+                Math.round((progressEvent.loaded * 100) / progressEvent.total)
+              )
+            );
+          },
+        }
+      );
+
+      setDeleteVideo("Vídeo eliminado correctamente");
+
+      setMessage("Vídeo eliminado");
+    } catch (err) {
+      if (err.response.status === 500) {
+        setMessage("There was a problem with the server");
+      } else {
+        setMessage(err.response.data.msg);
+      }
+    }
+    refreshUserInfo();
+  };
+
   return (
     <>
       {token && userRol === "Player" ? (
-        <div className="App">
-          <form onSubmit={uploadFile}>
-            <div className="form-button">
-              <label for="buttoni">Escoge un Vídeo</label>
-              <input id="buttoni" type="file" onChange={onFileChange} />
+        <div>
+          <div className="App">
+            <form onSubmit={uploadFile}>
+              <div className="form-button">
+                <label for="buttoni">Escoge un Vídeo</label>
+                <input id="buttoni" type="file" onChange={onFileChange} />
+              </div>
+              <button className="button1" type="submit">
+                Subir Vídeo
+              </button>
+            </form>
+          </div>
+          <>
+            <div className="wrap-centra-column">
+              <ul className="tag-information">
+                {videoUrl.map((url, index) => {
+                  return (
+                    <li
+                      key={url.videoId}
+                      prop={url.userId}
+                      className="videosli"
+                    >
+                      <video
+                        className="video"
+                        controls
+                        src={`/videos/${url.videoUrl}`}
+                        type="video/mp4"
+                      >
+                        {" "}
+                      </video>
+                      <div>
+                        <div className="container-infowithbutton">
+                          <div className="container-info">
+                            <div>
+                              {url.userImage ? (
+                                <Link to={`/profile/user/${url.userId}`}>
+                                  <img
+                                    src={`/images/profiles/${url.userImage}`}
+                                    alt="Imagen de perfil"
+                                    className="image"
+                                  ></img>
+                                </Link>
+                              ) : (
+                                <Link to={`/profile/user/${url.userId}`}>
+                                  <img
+                                    src={`/images/profiles/image-default.png`}
+                                    alt="Imagen de perfil"
+                                    className="image"
+                                  ></img>
+                                </Link>
+                              )}{" "}
+                            </div>{" "}
+                            <div>
+                              <div>{url.userName}</div>
+                              {url.avgMedia ? (
+                                <div>
+                                  {url.avgMedia}
+                                  <FaStar color="#5ACA75"></FaStar>
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                              <div>
+                                {" "}
+                                <FaTrashAlt onClick={deletedVideo}></FaTrashAlt>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <button className="button1" type="submit">
-              Subir Vídeo
-            </button>
-          </form>
+          </>
         </div>
       ) : (
         <Redirect to="/profile/user-profile" />
