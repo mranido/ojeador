@@ -31,5 +31,4 @@ async function acceptContact(req, res, next) {
     next(error);
   }
 }
-
 module.exports = acceptContact;

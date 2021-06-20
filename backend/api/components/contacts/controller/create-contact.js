@@ -21,7 +21,7 @@ async function createContact(req, res, next) {
 
     const player = await model.findOne({ userId: contactPlayerId }, TABLE2);
     if (!player) {
-      return response.error(req, res, "Persona no existe", 400);
+      return response.error(req, res, "Este usuario no existe", 400);
     }
 
     const { userEmail, userName, userRol } = player;

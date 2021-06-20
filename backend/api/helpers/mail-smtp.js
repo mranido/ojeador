@@ -29,7 +29,7 @@ async function sendEmailRegistration(
     text: `¡Hola ${userName}!\n Para confirmar tu cuenta haz click aquí ${linkActivation}`,
     html: `¡Hola ${userName}! Para confirmar tu cuenta haz click <a href="${linkActivation}">aquí</a>.`,
   };
-  console.log("mailMessage", mailMessage);
+
   const data = await transporter.sendMail(mailMessage);
 
   return data;
@@ -52,18 +52,28 @@ async function sendEmailContact(userName, userEmail, id) {
   const mailMessage = {
     from: config.nodemailer.from,
     to: userEmail,
-    subject: "Ojeador Tienes una nueva oferta",
-    text: `Hola ${userName},\n tienes una nueva oferta, entra en la aplicación y visualizala.\n Ojalá que sea de tu agrado. Haz click <a href ="http://localhost:3000/login/">aquí</a> para loguearte y ver la oferta`,
-    html: `Hola ${userName}, tienes una nueva oferta, entra en la aplicación y visualizala. <p>Ojalá que sea de tu agrado. Haz click <a href ="http://localhost:3000/login/">aquí</a> para loguearte y ver la oferta</p>`,
+    subject: "Ojeador Nueva Oferta",
+    text: `Hola ${userName},\n Tienes una nueva oferta, entra en la aplicación y visualizala.\n Ojalá que sea de tu agrado. Haz click <a href ="http://localhost:3000/login/">aquí</a> para loguearte y ver la oferta`,
+    html: `Hola ${userName}, <p>Tienes una nueva oferta, entra en la aplicación y visualizala.</p><p>Ojalá que sea de tu agrado. Haz click <a href ="http://localhost:3000/login/">aquí</a> para loguearte y ver la oferta</p>`,
   };
 
   const data = await transporter.sendMail(mailMessage);
 
   return data;
 }
+async function sendEmailScoutContactAcept(userName, userEmail, id) {
+  const mailMessage = {
+    from: config.nodemailer.from,
+    to: userEmail,
+    subject: "Ojeador Oferta Aceptada",
+    text: `Hola ${userName},\n ¡Tu oferta ha sido aceptada!.\n Entra en Ojeador y descubre quién ha aceptado tu oferta <a href="http://localhost:3000/login/">aquí</a>.`,
+    html: `Hola ${userName},<p>¡Tu oferta ha sido aceptada!.</p><p>Entra en Ojeador y descubre quién ha aceptado tu oferta <a href="http://localhost:3000/login/">aquí</a>.</p>`,
+  };
+}
 
 module.exports = {
   sendEmailRegistration,
   sendEmailCorrectValidation,
   sendEmailContact,
+  sendEmailScoutContactAcept,
 };

@@ -25,7 +25,6 @@ export const UploadVideo = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("profileVideo", file);
-
     try {
       const res = await axios.post(
         `http://localhost:8000/api/v1/videos/user/${userId}`,
@@ -50,12 +49,14 @@ export const UploadVideo = () => {
 
       const { fileName, filePath } = res.data;
 
-      setUploadedFile("Vídeo subido correctamente");
+      setUploadedFile("");
 
-      setMessage("File Uploaded");
+      setMessage("Vídeo subido correctamente");
     } catch (err) {
       if (err.response.status === 500) {
-        setMessage("There was a problem with the server");
+        setMessage(
+          "Hubo un problema con el servidor, vuelve a cargar la página"
+        );
       } else {
         setMessage(err.response.data.msg);
       }
@@ -78,6 +79,7 @@ export const UploadVideo = () => {
       ) : (
         <Redirect to="/profile/user-profile" />
       )}
+      {message ? <div>{message}</div> : ""}
     </>
   );
 };

@@ -36,7 +36,7 @@ export const CreateContact = () => {
       }
     );
     if (respuesta.ok) {
-      setResponse("Mensaje de contratación enviada");
+      setResponse("Mensaje de contratación enviado");
     }
     refreshUserInfo();
   }
