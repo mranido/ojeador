@@ -23,7 +23,9 @@ async function rejectContact(req, res, next) {
     const rejectedContact = await model.update1(
       { contactStatus: false },
       TABLE,
-      { contactId: contactid }
+      {
+        contactId: contactid,
+      }
     );
 
     response.success(req, res, rejectedContact, 201);

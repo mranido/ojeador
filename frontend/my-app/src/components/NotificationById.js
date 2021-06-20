@@ -26,35 +26,27 @@ export function NotificationsById() {
   };
   const userRol = decodedToken();
   const playerId = decodedToken2();
-  const [requestStatus, setRequestStatus] = useState("");
+  const [messageId] = useContactMessage([]);
+  const [contactStatus, setContactStatus] = useState(messageId.contactStatus);
   const { contactId } = useParams();
 
-  const [messageId, setMessageId] = useContactMessage();
+  console.log(messageId);
 
-  if (!messageId[0]) return <p>Cargando...</p>;
-  const {
-    scoutName,
-    message,
-    contactStatus,
-    scoutImage,
-    contactTitle,
-    userImage,
-    userName,
-  } = messageId[0];
+  if (!messageId) return <p>Cargando...</p>;
 
   const acceptContact = async (e) => {
     e.preventDefault();
     await fetch(
       `http://localhost:8000/api/v1/contact/user/${playerId}/accept/${contactId}`,
       {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-type": "application/json",
           Authorization: ` Bearer ${token}`,
         },
       }
     );
-    setRequestStatus(1);
+    setContactStatus(1);
   };
 
   const rejectContact = async (e) => {
@@ -62,14 +54,14 @@ export function NotificationsById() {
     await fetch(
       `http://localhost:8000/api/v1/contact/user/${playerId}/reject/${contactId}`,
       {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       }
     );
-    setRequestStatus(0);
+    setContactStatus(0);
   };
 
   return (
@@ -77,9 +69,9 @@ export function NotificationsById() {
       {userRol === "Scout" ? (
         <div className="container-notification">
           <div className="separador-img-h1">
-            {userImage ? (
+            {messageId.userImage ? (
               <img
-                src={`/images/profiles/${userImage}`}
+                src={`/images/profiles/${messageId.userImage}`}
                 alt="Imagen de perfil"
                 className="image"
               ></img>
@@ -90,19 +82,24 @@ export function NotificationsById() {
                 className="image"
               ></img>
             )}
-            <h1>Oferta enviada a {userName}</h1>
-            <h2>Título: {contactTitle}</h2>
+            <h1>Oferta enviada a {messageId.userName}</h1>
+            <h2>Título: {messageId.contactTitle}</h2>
             <h3>Asunto</h3>
-            <p>{message}</p>
-            <p>Estado de la oferta: {status(contactStatus)}</p>
+            <p>{messageId.message}</p>
+            <p>
+              Estado de la oferta:{" "}
+              {contactStatus
+                ? status(contactStatus)
+                : status(messageId.contactStatus)}
+            </p>
           </div>
         </div>
       ) : (
         <div className="container-notification">
           <div className="separador-img-h1">
-            {scoutImage ? (
+            {messageId.scoutImage ? (
               <img
-                src={`/images/profiles/${scoutImage}`}
+                src={`/images/profiles/${messageId.scoutImage}`}
                 alt="Imagen de perfil"
                 className="image"
               ></img>
@@ -114,21 +111,26 @@ export function NotificationsById() {
               ></img>
             )}
           </div>
-          <h1>Oferta enviada por {scoutName}</h1>
-          <h2>Título: {contactTitle}</h2>
+          <h1>Oferta enviada por {messageId.scoutName}</h1>
+          <h2>Título: {messageId.contactTitle}</h2>
           <h3>Asunto</h3>
-          <p>{message}</p>
+          <p>{messageId.message}</p>
           <div className="form-button">
-            <button className="button0" onClick={acceptContact}>
+            <button className="button0" type="submit" onClick={acceptContact}>
               Aceptar
             </button>
           </div>
           <div className="form-button">
-            <button className="button1" onClick={rejectContact}>
+            <button className="button1" type="submit" onClick={rejectContact}>
               Rechazar
             </button>
           </div>
-          <p>Estado de la oferta: {status(contactStatus)}</p>
+          <p>
+            Estado de la oferta:{" "}
+            {contactStatus
+              ? status(contactStatus)
+              : status(messageId.contactStatus)}
+          </p>
         </div>
       )}
     </>
