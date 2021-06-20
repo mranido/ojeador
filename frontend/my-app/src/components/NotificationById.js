@@ -4,8 +4,9 @@ import { decodeTokenData } from "../utils/decodeToken";
 import useContactMessage from "../hooks/useContactsById";
 import { useParams } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import "./../style/Button.css";
+import "../style/Button.css";
 import { status } from "./../utils/status";
+import "../style/Notification.css";
 
 export function NotificationsById() {
   const [token] = useContext(AuthContext);
@@ -74,41 +75,45 @@ export function NotificationsById() {
   return (
     <>
       {userRol === "Scout" ? (
-        <div>
-          {userImage ? (
-            <img
-              src={`/images/profiles/${userImage}`}
-              alt="Imagen de perfil"
-              className="image"
-            ></img>
-          ) : (
-            <img
-              src={`/images/profiles/image-default.png`}
-              alt="Imagen de perfil"
-              className="image"
-            ></img>
-          )}
-          <h1>Oferta enviada a {userName}</h1>
-          <h2>Título: {contactTitle}</h2>
-          <h3>Asunto</h3>
-          <p>{message}</p>
-          <p>Estado de la oferta: {status(contactStatus)}</p>
+        <div className="container-notification">
+          <div className="separador-img-h1">
+            {userImage ? (
+              <img
+                src={`/images/profiles/${userImage}`}
+                alt="Imagen de perfil"
+                className="image"
+              ></img>
+            ) : (
+              <img
+                src={`/images/profiles/image-default.png`}
+                alt="Imagen de perfil"
+                className="image"
+              ></img>
+            )}
+            <h1>Oferta enviada a {userName}</h1>
+            <h2>Título: {contactTitle}</h2>
+            <h3>Asunto</h3>
+            <p>{message}</p>
+            <p>Estado de la oferta: {status(contactStatus)}</p>
+          </div>
         </div>
       ) : (
-        <div>
-          {scoutImage ? (
-            <img
-              src={`/images/profiles/${scoutImage}`}
-              alt="Imagen de perfil"
-              className="image"
-            ></img>
-          ) : (
-            <img
-              src={`/images/profiles/image-default.png`}
-              alt="Imagen de perfil"
-              className="image"
-            ></img>
-          )}
+        <div className="container-notification">
+          <div className="separador-img-h1">
+            {scoutImage ? (
+              <img
+                src={`/images/profiles/${scoutImage}`}
+                alt="Imagen de perfil"
+                className="image"
+              ></img>
+            ) : (
+              <img
+                src={`/images/profiles/image-default.png`}
+                alt="Imagen de perfil"
+                className="image"
+              ></img>
+            )}
+          </div>
           <h1>Oferta enviada por {scoutName}</h1>
           <h2>Título: {contactTitle}</h2>
           <h3>Asunto</h3>

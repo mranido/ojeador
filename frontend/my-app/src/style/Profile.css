@@ -1,6 +1,7 @@
 .update-user,
 .profile-wrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   flex-grow: 1;
   align-items: center;
@@ -59,4 +60,9 @@ p > .update-user-wrapper {
 }
 .bold {
   font-weight: bold;
+}
+.response p {
+  display: flex;
+  margin: 25%;
+  width: 10%;
 }
