@@ -58,7 +58,8 @@ function GetProfile({ id }) {
   const [userInfo, setUserInfo] = useState("");
   const [userRating, setUserRating] = useState("");
   const [userAverage, setUserAverage] = useState("");
-
+  const [userVoted, setUserVoted] = useState(false);
+  console.log("userVoted", userVoted);
   const [userImage, setUserImage] = useState("");
   const [formState, setFormState] = useState("");
 
@@ -97,18 +98,12 @@ function GetProfile({ id }) {
       if (response.ok) {
         const body2 = await response.json();
         setUserRating(body2);
-        setUserAverage(body2.averagePuntuation);
+        setUserAverage(body2[0].averagePuntuation);
       }
     };
     loadUserRating();
-  }, [id]);
-  const avgPunt = () => {
-    if (userRating) {
-      return userRating.map((i) => i.averagePuntuation).pop();
-    } else {
-      return " ";
-    }
-  };
+    setUserVoted(false);
+  }, [id, userVoted]);
 
   const birth = moment(userInfo.userBirthday).format("YYYY-MM-DD");
   const age = getAge(birth);
@@ -139,7 +134,7 @@ function GetProfile({ id }) {
             ></img>
           )}
         </div>
-        {avgPunt() && userInfo.userRol === "Player" ? (
+        {userAverage && userInfo.userRol === "Player" ? (
           <div className="star">
             {Array(5)
               .fill()
@@ -149,11 +144,11 @@ function GetProfile({ id }) {
                     key={Math.random()}
                     className="star"
                     size={20}
-                    color={Number(avgPunt()) > index ? "#5ACA75" : "#e4e5e9"}
+                    color={Number(userAverage) > index ? "#5ACA75" : "#e4e5e9"}
                   />
                 );
               })}
-            <span>{Number(avgPunt())}</span>
+            <span>{Number(userAverage)}</span>
           </div>
         ) : (
           ""
@@ -183,7 +178,11 @@ function GetProfile({ id }) {
       <div className="space">
         <p>{userInfo.userDescription}</p>
       </div>
-      {userInfo.userRol === "Player" ? <GetSkills id={id} /> : ""}
+      {userInfo.userRol === "Player" ? (
+        <GetSkills id={id} setUserVoted={setUserVoted} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

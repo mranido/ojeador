@@ -12,6 +12,7 @@ import { categories } from "../utils/categories";
 export function MainPage() {
   const [user, setUser] = useState([]);
   const [userVideo, setUserVideo] = useState([]);
+  const [filteredVideos, setFilteredVideos] = useState([]);
   const [userInfoReloader, setUserInfoReloader] = useState(0);
   const refreshUserInfo = () => setUserInfoReloader(Math.random());
   const [filter, setFilter] = useState({});
@@ -31,40 +32,57 @@ export function MainPage() {
       const response = await fetch(`http://localhost:8000/api/v1/videos/`);
       if (response.ok) {
         const body = await response.json();
-        setUserVideo(body);
+        const data = body.map((i) => {
+          return {
+            userCategory: categories(getAge(i.userBirthday)),
+            userId: i.userId,
+            videoUrl: i.videoUrl,
+            videoIduser: i.videoIduser,
+            userName: i.userName,
+            userImage: i.userImage,
+            userNumber: i.userNumber,
+            avgMedia: i.avgMedia,
+            userTeam: i.userTeam,
+            userPosition: i.userPosition,
+          };
+        });
+        setUserVideo(data);
+        setFilteredVideos(data);
       }
     };
     loadVideos();
   }, []);
 
   useEffect(() => {
-    console.log("filtro actual");
-    console.log(filter);
-  }, [filter]);
+    let videos = userVideo;
 
-  let videoUrl = userVideo
-    .map((i) => {
-      return {
-        userCategory: categories(getAge(i.userBirthday)),
-        userId: i.userId,
-        videoUrl: i.videoUrl,
-        videoIduser: i.videoIduser,
-        userName: i.userName,
-        userImage: i.userImage,
-        userNumber: i.userNumber,
-        avgMedia: i.avgMedia,
-        userTeam: i.userTeam,
-        userPosition: i.userPosition,
-      };
-    })
-    .reverse();
+    if (filter.age?.length) {
+      videos = videos.filter((v) =>
+        filter.age.includes(v.userCategory.toLowerCase())
+      );
+    }
+
+    if (filter.position?.length) {
+      videos = videos.filter((v) =>
+        filter.position.includes(v.userPosition.toLowerCase())
+      );
+    }
+
+    if (filter.team) {
+      videos = videos.filter((v) =>
+        v.userTeam.toLowerCase().includes(filter.team.toLowerCase())
+      );
+    }
+
+    setFilteredVideos(videos);
+  }, [filter, userVideo]);
 
   return (
     <>
       <Filter setFilter={setFilter} />
       <div className="wrap-centra-column">
         <ul className="tag-information">
-          {videoUrl.map((url, index) => {
+          {filteredVideos.reverse().map((url, index) => {
             return (
               <li key={url.videoUrl} prop={url.userId} className="videosli">
                 <video
