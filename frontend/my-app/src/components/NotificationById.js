@@ -90,12 +90,12 @@ export function NotificationsById() {
                 className="image"
               ></img>
             )}
-            <h1>Oferta enviada a {userName}</h1>
-            <h2>Título: {contactTitle}</h2>
-            <h3>Asunto</h3>
-            <p>{message}</p>
-            <p>Estado de la oferta: {status(contactStatus)}</p>
+            <h1 className="flotame">Oferta enviada a {userName}</h1>
           </div>
+          <h2>Título: {contactTitle}</h2>
+          <h3>Asunto</h3>
+          <p>{message}</p>
+          <p>Estado de la oferta: {status(contactStatus)}</p>
         </div>
       ) : (
         <div className="container-notification">
@@ -113,8 +113,8 @@ export function NotificationsById() {
                 className="image"
               ></img>
             )}
+            <div className="flotame">Oferta enviada por {scoutName}</div>
           </div>
-          <h1>Oferta enviada por {scoutName}</h1>
           <h2>Título: {contactTitle}</h2>
           <h3>Asunto</h3>
           <p>{message}</p>

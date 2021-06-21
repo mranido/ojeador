@@ -115,7 +115,7 @@ export function Notification({ contactId }) {
                 return (
                   <div key={i.contactId} className="main-container-offer">
                     <div className="container-offer">
-                      <div>
+                      <div className="separador-img-p">
                         {i.playerImage ? (
                           <Link to={`/profile/user/${i.playerId}`}>
                             <img
@@ -138,14 +138,17 @@ export function Notification({ contactId }) {
                         <Link to={`/profile/notifications/${i.contactId}`}>
                           <p>{i.contactTitle}</p>
                         </Link>
-                        <p>{i.playerName}</p>
+                        <p className="contact-name">
+                          <span>de: </span>
+                          {i.playerName}
+                        </p>
                       </div>
-                      {i.contactStatus ? (
-                        <p>{status(i.contactStatus)}</p>
-                      ) : (
-                        <p>Pendiente</p>
-                      )}
                     </div>
+                    {i.contactStatus ? (
+                      <p>{status(i.contactStatus)}</p>
+                    ) : (
+                      <p className="contact-state">Pendiente</p>
+                    )}
                   </div>
                 );
               })}{" "}

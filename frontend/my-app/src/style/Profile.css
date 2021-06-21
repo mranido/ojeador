@@ -16,7 +16,8 @@
 .position-name {
   display: flex;
   flex-direction: row;
-  margin-top: -5%;
+  justify-content: center;
+  margin-top: 5%;
 }
 .profilename,
 p > .update-user-wrapper {
