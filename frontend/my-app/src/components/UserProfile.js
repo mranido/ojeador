@@ -98,7 +98,9 @@ function GetProfile({ id }) {
       if (response.ok) {
         const body2 = await response.json();
         setUserRating(body2);
-        setUserAverage(body2[0].averagePuntuation);
+        if (body2[0]) {
+          setUserAverage(body2[0].averagePuntuation);
+        }
       }
     };
     loadUserRating();

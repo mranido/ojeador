@@ -66,11 +66,11 @@ export function Notification({ contactId }) {
 
                     {"Estado: "}
                     {Number(i.contactStatus) === 1 ? (
-                      <p className="contact-state">Aceptada</p>
+                      <p className="contact-state">Aceptado</p>
                     ) : i.contactStatus !== 0 ? (
                       <p className="contact-state">Pendiente</p>
                     ) : (
-                      <p className="contact-state">Rechazada</p>
+                      <p className="contact-state">Rechazado</p>
                     )}
                   </div>
                 );
@@ -115,11 +115,11 @@ export function Notification({ contactId }) {
                       <p>
                         {"Estado: "}
                         {Number(i.contactStatus) === 1 ? (
-                          <span>Aceptada</span>
+                          <span>Aceptado</span>
                         ) : i.contactStatus !== 0 ? (
                           <span>Pendiente</span>
                         ) : (
-                          <span>Rechazada</span>
+                          <span>Rechazado</span>
                         )}
                       </p>
                     </div>
