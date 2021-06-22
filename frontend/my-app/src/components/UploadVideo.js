@@ -11,6 +11,10 @@ export const UploadVideo = () => {
   const [file, setFile] = useState("");
   const [filename, setFilename] = useState("Choose File");
   const [userVideo, setUserVideo] = useState([]);
+<<<<<<< HEAD
+=======
+  const [deleteVideo, setDeleteVideo] = useState();
+>>>>>>> 58b4f791a9850d629355e0652d63504754252ff7
   const [uploadedFile, setUploadedFile] = useState({});
   const [token] = useContext(AuthContext);
   const decodedToken = jwtDecode(token);
@@ -125,6 +129,11 @@ export const UploadVideo = () => {
         }
       );
 
+<<<<<<< HEAD
+=======
+      setDeleteVideo("Vídeo eliminado correctamente");
+
+>>>>>>> 58b4f791a9850d629355e0652d63504754252ff7
       setMessage("Vídeo eliminado");
     } catch (err) {
       if (err.response.status === 500) {
@@ -158,7 +167,11 @@ export const UploadVideo = () => {
                   return (
                     <li
                       key={url.videoId}
+<<<<<<< HEAD
                       prop={url.videoId}
+=======
+                      prop={url.userId}
+>>>>>>> 58b4f791a9850d629355e0652d63504754252ff7
                       className="videosli"
                     >
                       <video

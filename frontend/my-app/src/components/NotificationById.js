@@ -46,8 +46,12 @@ export function NotificationsById() {
         },
       }
     );
+<<<<<<< HEAD
     setContactStatus(parseInt("1"));
     window.location = "http://localhost:3000/profile/notifications";
+=======
+    setContactStatus(1);
+>>>>>>> 58b4f791a9850d629355e0652d63504754252ff7
   };
 
   const rejectContact = async (e) => {
@@ -62,8 +66,12 @@ export function NotificationsById() {
         },
       }
     );
+<<<<<<< HEAD
     setContactStatus(parseInt(2));
     window.location = "http://localhost:3000/profile/notifications";
+=======
+    setContactStatus(0);
+>>>>>>> 58b4f791a9850d629355e0652d63504754252ff7
   };
 
   return (
@@ -88,7 +96,16 @@ export function NotificationsById() {
             <h2>Título: {messageId.contactTitle}</h2>
             <h3>Asunto</h3>
             <p>{messageId.message}</p>
+<<<<<<< HEAD
             <p>Estado de la oferta: {status(messageId.contactStatus)}</p>
+=======
+            <p>
+              Estado de la oferta:{" "}
+              {contactStatus
+                ? status(contactStatus)
+                : status(messageId.contactStatus)}
+            </p>
+>>>>>>> 58b4f791a9850d629355e0652d63504754252ff7
           </div>
         </div>
       ) : (
@@ -122,7 +139,16 @@ export function NotificationsById() {
               Rechazar
             </button>
           </div>
+<<<<<<< HEAD
           <p>Estado de la oferta: {status(messageId.contactStatus)}</p>
+=======
+          <p>
+            Estado de la oferta:{" "}
+            {contactStatus
+              ? status(contactStatus)
+              : status(messageId.contactStatus)}
+          </p>
+>>>>>>> 58b4f791a9850d629355e0652d63504754252ff7
         </div>
       )}
     </>
