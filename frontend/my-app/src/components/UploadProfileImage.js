@@ -4,22 +4,20 @@ import { AuthContext } from "./AuthContext";
 import jwtDecode from "jwt-decode";
 import { Redirect } from "react-router";
 
-export const UploadProfileImage = () => {
+export const UploadProfileImage = ({ setUserImage }) => {
   const [file, setFile] = useState("");
-  const [filename, setFilename] = useState("Choose File");
   const [uploadedFile, setUploadedFile] = useState({});
   const [token] = useContext(AuthContext);
   const decodedToken = jwtDecode(token);
   const { userId, userRol } = decodedToken;
   const [message, setMessage] = useState("");
   const [uploadPercentage, setUploadPercentage] = useState(0);
-  const [userInfoReloader, setUserInfoReloader] = useState(0);
+  const [userInfoReloader, setUserInfoReloader] = useState(1);
   const refreshUserInfo = () => setUserInfoReloader(Math.random());
 
   console.log(userId);
   const onFileChange = (e) => {
     setFile(e.target.files[0]);
-    setFilename(e.target.files[0].name);
   };
 
   const uploadFile = async (e) => {
@@ -53,7 +51,6 @@ export const UploadProfileImage = () => {
       setUploadedFile("Imagen subida correctamente");
 
       setMessage("Imagen de Pefil cambiada correctamente");
-      refreshUserInfo();
     } catch (err) {
       if (err.response.status === 500) {
         setMessage("There was a problem with the server");
@@ -61,6 +58,8 @@ export const UploadProfileImage = () => {
         setMessage(err.response.data.msg);
       }
     }
+
+    refreshUserInfo();
   };
 
   return (
@@ -76,6 +75,7 @@ export const UploadProfileImage = () => {
                   className="button0"
                   type="file"
                   onChange={onFileChange}
+                  setUserImage={setFile}
                 />
               </div>
             </div>
@@ -87,7 +87,7 @@ export const UploadProfileImage = () => {
       ) : (
         <Redirect to="/profile" />
       )}
-      {message ? <div>{message}</div> : ""}
+      <form className="form-button">{message ? <p>{message}</p> : ""}</form>
     </>
   );
 };

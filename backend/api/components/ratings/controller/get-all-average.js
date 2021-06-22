@@ -19,7 +19,7 @@ async function getAllAverageRating(req, res, next) {
     group by a.userId`;
     const [allAverageRating] = await connection.execute(getAllAverage);
     connection.release();
-    res.send(allAverageRating).status(201);
+    res.send(allAverageRating[0]).status(201);
     //response.success(req, res, averageRating, 201);
   } catch (error) {
     next(error);

@@ -1,9 +1,9 @@
 export const status = (contactStatus) => {
-  if (contactStatus === 0) {
+  if (contactStatus === 2) {
     return "Rechazado";
   } else if (contactStatus === 1) {
     return "Aceptado";
-  } else {
+  } else if (!contactStatus) {
     return "Pendiente";
   }
 };

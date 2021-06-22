@@ -2,8 +2,8 @@
 const Joi = require("joi");
 
 const update = Joi.object({
-  userName: Joi.string().min(5).max(255).messages({
-    "string.min": "El campo name tiene que tener un minimo 5 carácteres",
+  userName: Joi.string().min(1).max(255).messages({
+    "string.min": "El campo name tiene que tener al menos 1 caracter",
     "string.max": "El campo name tiene que tener un máximo 255 carácteres",
     "string.name": "El campo userName es obligatorio",
   }),

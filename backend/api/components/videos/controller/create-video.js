@@ -27,7 +27,7 @@ async function uploadVideo(req, res, next) {
         400
       );
     }
-    console.log('Ese es el video', files);
+    console.log("Ese es el video", files);
     // profileImage es el nombre que enviamos desde el postman,
     // si enviamos
     const { profileVideo } = files;
@@ -59,7 +59,7 @@ async function uploadVideo(req, res, next) {
         req,
         res,
         { url: `${HTTP_SERVER_DOMAIN}/${PATH_USER_VIDEOS}/${videoName}` },
-        201
+        204
       );
     });
   } catch (error) {

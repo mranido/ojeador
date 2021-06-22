@@ -16,15 +16,13 @@ async function rejectContact(req, res, next) {
     const contact = await model.findOne({ contactId }, TABLE);
     console.log(contact.contactStatus);
 
-    if (Number(contact.contactStatus) === 0) {
+    if (Number(contact.contactStatus) === 2) {
       return response.error(req, res, "Ya has rechazado la oferta", 409);
     }
 
-    const rejectedContact = await model.update1(
-      { contactStatus: false },
-      TABLE,
-      { contactId: contactid }
-    );
+    const rejectedContact = await model.update1({ contactStatus: 2 }, TABLE, {
+      contactId: contactid,
+    });
 
     response.success(req, res, rejectedContact, 201);
   } catch (error) {

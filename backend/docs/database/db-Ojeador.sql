@@ -89,14 +89,16 @@ CREATE TABLE IF NOT EXISTS contacts (
 contactId INT NOT NULL AUTO_INCREMENT,
 contactPlayerId INT NOT NULL,
 contactScoutId INT NOT NULL,
+contactTitle VARCHAR(50) NOT NULL,
 contactDescription VARCHAR(255) NOT NULL,
-contactStatus BOOLEAN,
+contactStatus TINYINT,
 contactCreatedAt DATETIME NOT NULL DEFAULT NOW(),
 PRIMARY KEY (contactId),
 FOREIGN KEY(`contactPlayerId`) REFERENCES `users` (`userId`) on delete cascade,
 FOREIGN KEY(`contactScoutId`) REFERENCES `users` (`userId`) on delete cascade
 );
-    
-    
+
+use ojeador;
+select * from users;
 
 

@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 //import jwt_decode from "jwt-decode";
 import { FaStar } from "react-icons/fa";
 
-function GetSkills({ id }) {
+function GetSkills({ id, setUserVoted }) {
   const [userInfo, setUserInfo] = useState([]);
   //const [token, setToken] = useContext(AuthContext);
   const [hover, setHover] = useState(null);
@@ -120,6 +120,7 @@ function GetSkills({ id }) {
                               skill: rating.ratingPositionSkillId,
                               vote: index + 1,
                             });
+                            setUserVoted(true);
                           } else {
                             alert("Debes de estar registrado para poder votar");
                           }

@@ -7,12 +7,12 @@ const controller = require("./controller");
 
 router
   .post("/user/:id", accessAuth.onlyScout, controller.createContact)
-  .post(
+  .put(
     "/user/:id/accept/:contactid",
     accessAuth.registred,
     controller.acceptContact
   )
-  .post(
+  .put(
     "/user/:id/reject/:contactid",
     accessAuth.registred,
     controller.rejectContact

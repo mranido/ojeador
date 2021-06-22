@@ -9,39 +9,30 @@ import { RiFilter2Line } from "react-icons/ri";
 const Filter = ({ setFilter }) => {
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
-  const onClick = () => setIsActive(!isActive);
-  // const [token] = useContext(AuthContext);
-  // const [userInfo, setUserInfo] = useState([]);
+  const onClick = (e) => {
+    e.preventDefault();
+    setIsActive(!isActive);
+  };
 
-  // const decodedToken = () => {
-  //   if (!decodeTokenData(token)) {
-  //     return " ";
-  //   } else {
-  //     return decodeTokenData(token).userId;
-  //   }
-  // };
-
-  // const userId = decodedToken();
-
-  // useEffect(() => {
-  //   const loadUserInfo = async () => {
-  //     const response = await fetch(
-  //       `http://localhost:8000/api/v1/users/profiles/${userId}`
-  //     );
-  //     if (response.ok) {
-  //       const body = await response.json();
-  //       setUserInfo(body.user);
-  //     }
-  //   };
-  //   loadUserInfo();
-  // }, [userId]);
+  const age = useRef(null);
+  const hability = useRef(null);
+  const position = useRef(null);
+  const [team, setTeam] = useState("");
 
   const handleFilter = (e) => {
     e.preventDefault();
-
-    const filterForm = new FormData(e.target);
-
-    const filter = Object.fromEntries(filterForm.entries());
+    const filter = {
+      age: Array.from(age.current.querySelectorAll(":checked")).map((el) =>
+        el.getAttribute("name")
+      ),
+      position: Array.from(position.current.querySelectorAll(":checked")).map(
+        (el) => el.getAttribute("name")
+      ),
+      hability: Array.from(hability.current.querySelectorAll(":checked")).map(
+        (el) => el.getAttribute("name")
+      ),
+      team,
+    };
 
     setFilter(filter);
   };
@@ -57,29 +48,29 @@ const Filter = ({ setFilter }) => {
           ref={dropdownRef}
           className={`menu ${isActive ? "active" : "inactive"} filter`}
         >
-          <ul>
+          <ul ref={age}>
             <div>EDAD</div>
             <li>
               <label>
-                <input type="checkbox" name="prebenjamin" value="1"></input>
+                <input type="checkbox" name="prebenjamin"></input>
                 Prebenjamin (5-8)
               </label>
             </li>
             <li>
               <label>
-                <input type="checkbox" name="benjamin" value="1"></input>
+                <input type="checkbox" name="benjamin"></input>
                 Benjamín (8-10)
               </label>
             </li>
             <li>
               <label>
-                <input type="checkbox" name="alevin" value="1"></input>
+                <input type="checkbox" name="alevin"></input>
                 Alevín (10-12)
               </label>
             </li>
             <li>
               <label>
-                <input type="checkbox" name="infantil" value="1"></input>
+                <input type="checkbox" name="infantil"></input>
                 Infantil (12-14)
               </label>
             </li>
@@ -95,7 +86,9 @@ const Filter = ({ setFilter }) => {
                 Juvenil (16-18)
               </label>
             </li>
-            <div>POSICIÓN</div>
+          </ul>
+          <div>POSICIÓN</div>
+          <ul ref={position}>
             <li>
               <label>
                 <input type="checkbox" name="portero"></input>
@@ -120,7 +113,9 @@ const Filter = ({ setFilter }) => {
                 Delantero
               </label>
             </li>
-            <div>HABILIDADES</div>
+          </ul>
+          <div>HABILIDADES</div>
+          <ul ref={hability}>
             <li>
               <label>
                 <input type="checkbox" name="velocidad"></input>
@@ -171,6 +166,8 @@ const Filter = ({ setFilter }) => {
                   id="buscar-equipo"
                   type="search"
                   name="equipo"
+                  value={team}
+                  onChange={(e) => setTeam(e.target.value)}
                 ></input>
               </label>
             </li>

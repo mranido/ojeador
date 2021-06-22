@@ -17,7 +17,7 @@ async function getContactById(req, res, next) {
 group by a.contactId, d.contactId`;
     const [results] = await connection.execute(getContactById, [contactId]);
     connection.release();
-    res.send(results).status(201);
+    res.send(results[0]).status(201);
   } catch (error) {
     next(error);
   }

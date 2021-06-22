@@ -1,9 +1,10 @@
 .container-offer {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  margin: 1vh;
 }
 
 .container-offer a {
@@ -11,7 +12,8 @@
 }
 
 .container-offer p {
-  margin: 2% auto;
+  margin: 0;
+  padding: 0.6vh 0;
 }
 
 .offerul ul {
@@ -22,18 +24,53 @@
 .main-container-offer {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   align-content: center;
   flex-wrap: wrap;
   border: 1px solid var(--gris-oscuro-borde);
-  margin-top: 1vh;
+  margin-top: 2vh;
   border-radius: 5px;
-  padding: 1.5rem 0 0 0;
+  padding: 0 0 0 0;
 }
-
 .separador-img-p {
+  margin: 10px;
+}
+.contact-title {
+  display: inline-block;
+  font-size: larger;
+}
+.contact-name {
+  font-size: larger;
+  margin-top: -10%;
+}
+.contact-name > span {
+  font-weight: lighter;
+}
+.contact-state {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  font-size: smaller;
+  font-weight: 500;
+  border: solid 0.5px var(--gris-oscuro-borde);
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+  color: var(--gris-oscuro-contenido);
+  background-color: white;
+  text-decoration: none;
+  margin: -0.3vh 0 1vh 0;
+}
+.container-notification {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.separador-img-h1 {
+  display: flex;
+  flex-direction: column;
+}
+.separador-img-h1 h1 {
+  display: inline-block;
+}
+a {
 }

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import jwt_decode from "jwt-decode";
 import ProfileImage from "./ProfileImage";
@@ -42,14 +43,14 @@ function UpdateUser() {
         setUserNumber(body.user.userNumber);
         setUserDescription(body.user.userDescription);
         setUserLocation(body.user.userLocation);
-        setUserBirthday(body.user.userBirthday);
+        setUserBirthday(moment(body.user.userBirthday).format("YYYY-MM-DD"));
         setUserPosition(body.user.userPosition);
         setUserImage(body.user.userImage);
         setFormState("activo");
       }
     };
     loadUserInfo();
-  }, [formState, userId]);
+  }, [formState, userId, userImage]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -97,6 +98,7 @@ function UpdateUser() {
             }
           );
     if (res.ok) {
+      window.location = "http://localhost:3000/profile/user-profile";
       setResponse("Usuario Actualizado");
     } else {
       const resMessage = await res.json();
@@ -112,6 +114,7 @@ function UpdateUser() {
         <ProfileImage
           className="profileimage"
           id="avatar-profile"
+          setUserImage={setUserImage}
           userInfoReloader={userInfoReloader}
         />
         <div className="upload-image-wrapper">
