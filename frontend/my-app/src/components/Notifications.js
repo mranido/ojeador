@@ -61,12 +61,10 @@ export function Notification({ contactId }) {
                         </p>
                       </div>
                     </div>
-
-                    {"Estado: "}
                     {Number(i.contactStatus) === 1 ? (
-                      <p className="contact-state">Aceptado</p>
+                      <p className="contact-state acepted">Aceptado</p>
                     ) : i.contactStatus === 2 ? (
-                      <p className="contact-state">Rechazado</p>
+                      <p className="contact-state refused">Rechazado</p>
                     ) : (
                       <p className="contact-state">Pendiente</p>
                     )}
@@ -85,7 +83,7 @@ export function Notification({ contactId }) {
                 return (
                   <div key={i.contactId} className="main-container-offer">
                     <div className="container-offer">
-                      <div>
+                      <div className="separador-img-p">
                         {i.playerImage ? (
                           <Link to={`/profile/user/${i.playerId}`}>
                             <img
@@ -106,21 +104,23 @@ export function Notification({ contactId }) {
                       </div>
                       <div>
                         <Link to={`/profile/notifications/${i.contactId}`}>
-                          <p>{i.contactTitle}</p>
+                          <div>
+                            <p className="contact-name">{i.contactTitle}</p>
+                          </div>
                         </Link>
-                        <p>{i.playerName}</p>
+                        <p className="contact-name">
+                          <span>a: </span>
+                          {i.userName}
+                        </p>
                       </div>
-                      <p>
-                        {"Estado: "}
-                        {Number(i.contactStatus) === 1 ? (
-                          <span>Aceptado</span>
-                        ) : i.contactStatus === 2 ? (
-                          <span>Rechazado</span>
-                        ) : (
-                          <span>Pendiente</span>
-                        )}
-                      </p>
                     </div>
+                    {Number(i.contactStatus) === 1 ? (
+                      <p className="contact-state acepted">Aceptado</p>
+                    ) : i.contactStatus === 2 ? (
+                      <p className="contact-state refused">Rechazado</p>
+                    ) : (
+                      <p className="contact-state">Pendiente</p>
+                    )}
                   </div>
                 );
               })}{" "}

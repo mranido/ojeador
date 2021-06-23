@@ -60,6 +60,13 @@
   text-decoration: none;
   margin: -0.3vh 0 1vh 0;
 }
+.acepted {
+  color: var(--verde);
+}
+.refused {
+  border: solid 0.5px var(--gris-oscuro-borde);
+  color: var(--warning-red);
+}
 .container-notification {
   display: flex;
   flex-direction: column;
@@ -67,7 +74,12 @@
 }
 .separador-img-h1 {
   display: flex;
-  flex-direction: column;
+  flex-flow: nowrap column;
+  align-items: center;
+}
+.separador-img-h1 > img {
+  width: 20vh;
+  height: 20vh;
 }
 .separador-img-h1 h1 {
   display: inline-block;

@@ -68,6 +68,7 @@ export function NotificationsById() {
     <>
       {userRol === "Scout" ? (
         <div className="container-notification">
+          <h1>Oferta enviada a {messageId.userName}</h1>
           <div className="separador-img-h1">
             {messageId.userImage ? (
               <img
@@ -82,15 +83,20 @@ export function NotificationsById() {
                 className="image"
               ></img>
             )}
-            <h1>Oferta enviada a {messageId.userName}</h1>
-            <h2>Título: {messageId.contactTitle}</h2>
-            <h3>Asunto</h3>
+            <div>
+              <h2>Título: </h2>
+              {messageId.contactTitle}
+            </div>
+            <div></div>
+            <h3>Asunto: </h3>
             <p>{messageId.message}</p>
-            <p>Estado de la oferta: {status(messageId.contactStatus)}</p>
+            <h3>Estado de la oferta: </h3>{" "}
+            <p>{status(messageId.contactStatus)}</p>
           </div>
         </div>
       ) : (
         <div className="container-notification">
+          <h1>Oferta enviada por {messageId.scoutName}</h1>
           <div className="separador-img-h1">
             {messageId.scoutImage ? (
               <img
@@ -106,10 +112,12 @@ export function NotificationsById() {
               ></img>
             )}
           </div>
-          <h1>Oferta enviada por {messageId.scoutName}</h1>
-          <h2>Título: {messageId.contactTitle}</h2>
-          <h3>Asunto</h3>
+          <h2>Título: </h2>
+          {messageId.contactTitle}
+          <h3>Asunto: </h3>
           <p>{messageId.message}</p>
+          <h3>Estado de la oferta: </h3>
+          <p>{status(messageId.contactStatus)}</p>
           <div className="form-button">
             <button className="button0" type="submit" onClick={acceptContact}>
               Aceptar
@@ -120,7 +128,6 @@ export function NotificationsById() {
               Rechazar
             </button>
           </div>
-          <p>Estado de la oferta: {status(messageId.contactStatus)}</p>
         </div>
       )}
     </>
