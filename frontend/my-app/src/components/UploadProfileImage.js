@@ -15,7 +15,6 @@ export const UploadProfileImage = ({ setUserImage }) => {
   const [userInfoReloader, setUserInfoReloader] = useState(1);
   const refreshUserInfo = () => setUserInfoReloader(Math.random());
 
-  console.log(userId);
   const onFileChange = (e) => {
     setFile(e.target.files[0]);
   };

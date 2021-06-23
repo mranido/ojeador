@@ -14,12 +14,9 @@ async function updateScout(req, res, next) {
     let { userId, userRol } = req.headers.authorization;
     userId = Number(id);
 
-    console.log(userId);
-
     const { userName, userEmail, userLocation, userTeam, userDescription } =
       req.body;
-    console.log("este es el usuario:", userId);
-    console.log("password", req.body.userPassword);
+
     const userDataUpdated = {
       userName,
       userEmail,
@@ -28,7 +25,6 @@ async function updateScout(req, res, next) {
       userDescription,
     };
 
-    console.log(userDataUpdated);
     const userExists = await model.findOne({ userId }, TABLE);
     if (!userExists) {
       return response.error(req, res, "El usuario no existe", 404);

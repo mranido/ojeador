@@ -10,7 +10,6 @@ const TABLE = "users";
 
 async function registerUser(req, res, next) {
   try {
-    console.log(req.body);
     await schema.register.validateAsync(req.body);
     const { userName, userEmail, userPassword, userRol } = req.body;
 
@@ -33,8 +32,6 @@ async function registerUser(req, res, next) {
     const findId = await model.findOne({ userEmail }, TABLE);
 
     const { userId } = findId;
-
-    console.log("Id", findId);
 
     await sendEmailRegistration(
       userName,

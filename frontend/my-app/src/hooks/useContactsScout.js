@@ -22,7 +22,7 @@ const useContactScout = () => {
       );
 
       const fetchedNotifications = await res.json();
-      setContactScout(fetchedNotifications);
+      setContactScout(fetchedNotifications.reverse());
     };
 
     getContacts();

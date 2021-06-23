@@ -19,8 +19,6 @@ export function Notification({ contactId }) {
     }
   };
 
-  console.log(contactPlayer);
-
   const userRol = decodedToken();
 
   return (

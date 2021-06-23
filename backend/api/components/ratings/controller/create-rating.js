@@ -39,7 +39,6 @@ async function createRate(req, res, next) {
       ratingPositionSkillId,
     };
 
-    console.log(ratingDB);
     await model.create(ratingDB, TABLE);
 
     response.success(req, res, "Voto realizado con éxito", 201);

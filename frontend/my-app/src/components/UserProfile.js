@@ -59,7 +59,7 @@ function GetProfile({ id }) {
   const [userRating, setUserRating] = useState("");
   const [userAverage, setUserAverage] = useState("");
   const [userVoted, setUserVoted] = useState(false);
-  console.log("userVoted", userVoted);
+
   const [userImage, setUserImage] = useState("");
   const [formState, setFormState] = useState("");
 

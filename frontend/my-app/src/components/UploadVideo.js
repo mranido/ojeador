@@ -41,7 +41,6 @@ export const UploadVideo = () => {
     loadVideos();
   }, [token, userId]);
 
-  console.log(userVideo);
   let videoUrl = userVideo
     .map((i) => {
       return {

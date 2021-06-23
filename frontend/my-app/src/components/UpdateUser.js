@@ -102,7 +102,7 @@ function UpdateUser() {
       setResponse("Usuario Actualizado");
     } else {
       const resMessage = await res.json();
-      console.log("eso es el res message", resMessage);
+
       setResponse(resMessage.error);
     }
     refreshUserInfo();

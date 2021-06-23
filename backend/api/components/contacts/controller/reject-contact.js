@@ -14,7 +14,6 @@ async function rejectContact(req, res, next) {
     contactPlayerId = userId;
 
     const contact = await model.findOne({ contactId }, TABLE);
-    console.log(contact.contactStatus);
 
     if (Number(contact.contactStatus) === 2) {
       return response.error(req, res, "Ya has rechazado la oferta", 409);

@@ -22,7 +22,7 @@ const useContactPlayer = () => {
       );
 
       const fetchedNotifications = await res.json();
-      setContactPlayer(fetchedNotifications);
+      setContactPlayer(fetchedNotifications.reverse());
     };
 
     getContacts();

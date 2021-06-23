@@ -59,7 +59,6 @@ function GetSkills({ id, setUserVoted }) {
       value: playerSkill ? Number(playerSkill.userPuntuation) : 0,
     };
   });
-  console.log(userRatings);
 
   async function handleVote({ skill, vote }) {
     const newvote = {

@@ -17,7 +17,7 @@ async function loginUser(req, res, next) {
 
     // 1. Buscamos el usuario en la base de datos
     const user = await model.findOne({ userEmail }, TABLE);
-    console.log("--> user", user);
+
     // 2. Validamo sel usuario
     if (!user) {
       return response.error(req, res, "Usuario erróneo", 409);

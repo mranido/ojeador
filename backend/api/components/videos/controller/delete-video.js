@@ -9,7 +9,7 @@ async function deleteVideoById(req, res, next) {
     const { videoid: videoId } = req.params;
 
     const video = await model.findOne({ videoId }, TABLE);
-    console.log("--> user", video);
+
     if (!video) {
       return response.error(req, res, "No hay video", 409);
     }

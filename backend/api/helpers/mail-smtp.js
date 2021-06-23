@@ -20,7 +20,6 @@ async function sendEmailRegistration(
   userid
 ) {
   const linkActivation = `${config.api.host}:${config.api.port}/api/v1/users/${userid}/activation?verification_code=${userVerificationCode}`;
-  console.log(linkActivation);
 
   const mailMessage = {
     from: config.nodemailer.from,
@@ -69,6 +68,10 @@ async function sendEmailScoutContactAcept(userName, userEmail, id) {
     text: `Hola ${userName},\n ¡Tu oferta ha sido aceptada!.\n Entra en Ojeador y descubre quién ha aceptado tu oferta <a href="http://localhost:3000/login/">aquí</a>.`,
     html: `Hola ${userName},<p>¡Tu oferta ha sido aceptada!.</p><p>Entra en Ojeador y descubre quién ha aceptado tu oferta <a href="http://localhost:3000/login/">aquí</a>.</p>`,
   };
+
+  const data = await transporter.sendMail(mailMessage);
+
+  return data;
 }
 
 module.exports = {

@@ -48,9 +48,8 @@ async function getUserByVerificationCode(userVerificationCode) {
 async function findAllUsers(userRol) {
   const pool = await database.getPool();
   const query = `SELECT userId, userName, userEmail, userVerifiedAt FROM users where userRol =?`;
-  console.log("query", query);
+
   const [users] = await pool.query(query, userRol);
-  console.log("users", users);
 
   return users;
 }
@@ -62,7 +61,6 @@ async function login(userEmail) {
     WHERE userEmail = ?`;
   const [user] = await pool.query(query, userEmail);
 
-  console.log(user);
   return user[0];
 }
 async function removeUserById(userId) {

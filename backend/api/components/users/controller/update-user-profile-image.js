@@ -13,12 +13,11 @@ const validExtensions = [".jpeg", ".jpg", ".png"];
 async function uploadImageProfile(req, res, next) {
   try {
     const { userEmail } = req.headers.authorization;
-    console.log(userEmail);
+
     const { id } = req.params;
     const userId = Number(id);
     // Las imagenes vienen dentro de la cabecera req en el objeto files
     // Comprobamos q existe alguna imagen
-    console.log(id, typeof userId);
 
     const { files } = req;
     if (!files || Object.keys(files).length === 0) {
@@ -49,7 +48,6 @@ async function uploadImageProfile(req, res, next) {
     // Generamos la ruta completa a la carpeta donde situamos las imagenes de perfil
     const pathProfileImageFolder = `${__dirname}/../../../../../frontend/my-app/public/${PATH_USER_IMAGE}`;
 
-    console.log(pathProfileImageFolder);
     // Borramos la imagen original si existe
     if (userImage) {
       fs.unlink(`${pathProfileImageFolder}/${userImage}`, () => {

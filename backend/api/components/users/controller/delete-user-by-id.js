@@ -12,7 +12,7 @@ async function deleteUserById(req, res, next) {
     await schema.remove.validateAsync(userId);
 
     const user = await model.findOne({ userId }, TABLE);
-    console.log("--> user", user);
+
     if (!user) {
       return response.error(req, res, "Usuario erróneo", 409);
     }

@@ -30,8 +30,6 @@ export function NotificationsById() {
   const [contactStatus, setContactStatus] = useState(messageId.contactStatus);
   const { contactId } = useParams();
 
-  console.log(messageId);
-
   if (!messageId) return <p>Cargando...</p>;
 
   const acceptContact = async (e) => {
