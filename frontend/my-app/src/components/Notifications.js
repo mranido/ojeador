@@ -67,17 +67,10 @@ export function Notification({ contactId }) {
                     {"Estado: "}
                     {Number(i.contactStatus) === 1 ? (
                       <p className="contact-state">Aceptado</p>
-<<<<<<< HEAD
                     ) : i.contactStatus === 2 ? (
                       <p className="contact-state">Rechazado</p>
                     ) : (
                       <p className="contact-state">Pendiente</p>
-=======
-                    ) : i.contactStatus !== 0 ? (
-                      <p className="contact-state">Pendiente</p>
-                    ) : (
-                      <p className="contact-state">Rechazado</p>
->>>>>>> 58b4f791a9850d629355e0652d63504754252ff7
                     )}
                   </div>
                 );
@@ -123,17 +116,10 @@ export function Notification({ contactId }) {
                         {"Estado: "}
                         {Number(i.contactStatus) === 1 ? (
                           <span>Aceptado</span>
-<<<<<<< HEAD
                         ) : i.contactStatus === 2 ? (
                           <span>Rechazado</span>
                         ) : (
                           <span>Pendiente</span>
-=======
-                        ) : i.contactStatus !== 0 ? (
-                          <span>Pendiente</span>
-                        ) : (
-                          <span>Rechazado</span>
->>>>>>> 58b4f791a9850d629355e0652d63504754252ff7
                         )}
                       </p>
                     </div>
