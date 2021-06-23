@@ -47,11 +47,7 @@ export function MainPage() {
           };
         });
         setUserVideo(data);
-<<<<<<< HEAD
         setFilteredVideos(data.reverse());
-=======
-        setFilteredVideos(data);
->>>>>>> 58b4f791a9850d629355e0652d63504754252ff7
       }
     };
     loadVideos();
@@ -86,11 +82,7 @@ export function MainPage() {
       <Filter setFilter={setFilter} />
       <div className="wrap-centra-column">
         <ul className="tag-information">
-<<<<<<< HEAD
           {filteredVideos.map((url, index) => {
-=======
-          {filteredVideos.reverse().map((url, index) => {
->>>>>>> 58b4f791a9850d629355e0652d63504754252ff7
             return (
               <li key={url.videoUrl} prop={url.userId} className="videosli">
                 <video
