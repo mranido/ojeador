@@ -41,6 +41,10 @@
 .cubo-vasura {
   display: flex;
   justify-content: space-around;
+  color: var(--gris-oscuro-borde);
+}
+.cubo-vasura svg {
+  width: fit-content;
 }
 .funil-name {
   display: inline-block;

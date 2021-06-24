@@ -80,6 +80,11 @@ export function MainPage() {
         v.userTeam.toLowerCase().includes(filter.team.toLowerCase())
       );
     }
+    if (filter.team) {
+      videos = videos.filter((v) =>
+        v.userTeam.toLowerCase().includes(filter.team.toLowerCase())
+      );
+    }
 
     setFilteredVideos(videos);
   }, [filter, userVideo]);
