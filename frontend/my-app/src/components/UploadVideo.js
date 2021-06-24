@@ -106,10 +106,10 @@ export const UploadVideo = () => {
       }
     }
   };
-  const deletedVideo = async (e) => {
+  const deletedVideo = async (videoId, e) => {
     try {
       const res = await axios.delete(
-        `http://localhost:8000/api/v1/videos/user/${userId}/${userVideo[0].videoId}`,
+        `http://localhost:8000/api/v1/videos/user/${userId}/${videoId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -203,8 +203,10 @@ export const UploadVideo = () => {
                               )}
                             </div>
                           </div>
-                          <div className="cubo-basura">
-                            <FaTrashAlt onClick={deletedVideo}></FaTrashAlt>
+                          <div className="cubo-vasura">
+                            <FaTrashAlt
+                              onClick={() => deletedVideo(url.videoId)}
+                            ></FaTrashAlt>
                           </div>
                         </div>
                       </div>
