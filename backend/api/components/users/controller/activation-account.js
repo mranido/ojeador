@@ -31,9 +31,9 @@ async function activateUser(req, res, next) {
     const { userName, userEmail } = dataEmail;
     await sendEmailCorrectValidation(userName, userEmail);
 
-    res.send({
-      message: `Tu cuenta ha sido activada`,
-    });
+    res.send(
+      `Tu cuenta ha sido activada correctamente. En unos segundos recibirás un email de confirmación para poder disfrutar de nuestros servicios`
+    );
   } catch (error) {
     next(error);
   }
