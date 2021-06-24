@@ -118,15 +118,8 @@ const Filter = ({ setFilter }) => {
               </label>
             </li>
           </ul>
-<<<<<<< HEAD
-          <div>
-            <h3>HABILIDADES</h3>
-          </div>
-          <ul ref={hability}>
-=======
           <div>HABILIDADES</div>
           <ul ref={skills}>
->>>>>>> ultimosarreglos
             <li>
               <label>
                 <input type="checkbox" name="Velocidad"></input>
