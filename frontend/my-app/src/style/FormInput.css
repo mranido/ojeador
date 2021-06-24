@@ -24,4 +24,5 @@ label > span {
   height: 100%;
   margin: 0 0 0 0;
   border: var(--gris-oscuro-borde) solid 1px;
+  padding: 2px;
 }
