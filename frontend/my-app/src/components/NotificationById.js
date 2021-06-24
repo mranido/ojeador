@@ -83,25 +83,17 @@ export function NotificationsById() {
                 className="image"
               ></img>
             )}
-            <div>
-              <h2>Título: </h2>
-              {messageId.contactTitle}
-            </div>
-            <div></div>
-            <h3>Asunto: </h3>
-            <p>{messageId.message}</p>
-            <h3>Estado de la oferta: </h3>{" "}
-            <p>{status(messageId.contactStatus)}</p>
           </div>
-          <h2>Título: {messageId.contactTitle}</h2>
-          <h3>Asunto</h3>
-          <p>{messageId.message}</p>
-          <p>Estado de la oferta: {status(messageId.contactStatus)}</p>
+          <h2>Título: </h2>
+          <p className="form-input">{messageId.contactTitle}</p>
+          <h2>Asunto: </h2>
+          <p className="form-input">{messageId.message}</p>
+          <h3>Estado de la oferta: </h3>{" "}
+          <p className="button2">{status(messageId.contactStatus)}</p>
         </div>
       ) : (
         <div className="container-notification">
-          <h1>Oferta enviada por </h1>
-          <h2>{messageId.scoutName}</h2>
+          <h1>Oferta enviada por {messageId.scoutName}</h1>
           <div className="separador-img-h1">
             {messageId.scoutImage ? (
               <img
@@ -116,16 +108,13 @@ export function NotificationsById() {
                 className="image"
               ></img>
             )}
-            <div className="flotame">
-              Oferta enviada por {messageId.scoutName}
-            </div>
           </div>
           <h2>Título: </h2>
-          {messageId.contactTitle}
-          <h3>Asunto: </h3>
-          <p>{messageId.message}</p>
+          <p className="form-input">{messageId.contactTitle}</p>
+          <h2>Asunto: </h2>
+          <p className="form-input">{messageId.message}</p>
           <h3>Estado de la oferta: </h3>
-          <p>{status(messageId.contactStatus)}</p>
+          <p className="button2">{status(messageId.contactStatus)}</p>
           <div className="form-button">
             <button className="button0" type="submit" onClick={acceptContact}>
               Aceptar

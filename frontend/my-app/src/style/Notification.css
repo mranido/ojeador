@@ -72,13 +72,15 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
+  justify-content: center;
 }
 .separador-img-h1 {
   display: flex;
   flex-flow: nowrap column;
-  align-items: center;
+  align-items: flex-start;
 }
 .separador-img-h1 > img {
+  align-self: center;
   width: 20vh;
   height: 20vh;
 }

@@ -86,21 +86,16 @@
   align-content: center;
 }
 
-.menu.active.filter,
 .menu.inactive.filter {
-  position: absolute;
   transform: translateY(-19px);
-  transform: translateX(100px);
   opacity: 0;
   transition: 1.5s;
 }
 .menu.active.filter,
 .menu.inactive.filter:hover {
-  position: absolute;
-  transform: translateX(10px);
+  transform: translateY(0px);
   opacity: 0.9;
   transition: 1.5s;
-  width: 50%;
 }
 
 input[type="checkbox" i] {

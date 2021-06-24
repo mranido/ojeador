@@ -1,7 +1,8 @@
 .update-user-input,
 .form-input,
 select,
-textarea {
+textarea,
+.container-notification > p {
   display: flex;
   flex-grow: 1;
   border-radius: 4px;
@@ -10,7 +11,7 @@ textarea {
   background-color: var(--gris-claro);
   opacity: 50%;
   color: var(--gris-oscuro-contenido);
-  width: 100%;
+  width: 97%;
   font-size: 18px;
   margin-bottom: 2vh;
   padding: 8px 8px;

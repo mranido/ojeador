@@ -203,7 +203,7 @@ export const UploadVideo = () => {
                               )}
                             </div>
                           </div>
-                          <div className="cubo-vasura">
+                          <div className="cubo-basura">
                             <FaTrashAlt
                               onClick={() => deletedVideo(url.videoId)}
                             ></FaTrashAlt>
