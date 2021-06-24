@@ -27,7 +27,7 @@ function GetMyProfile() {
       {userRol === "Player" ? (
         <div className="form-button">
           <button className="button1">
-            <a href="/profile/upload-video">Sube un vídeo</a>
+            <a href="/profile/upload-video">Tus vídeos</a>
           </button>
         </div>
       ) : (

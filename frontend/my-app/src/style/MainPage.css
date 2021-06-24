@@ -4,6 +4,9 @@
   height: 3rem;
   margin: 0.5rem;
 }
+.img-not-found {
+  width: 70%;
+}
 .container-info {
   display: flex;
   flex-direction: row;
@@ -25,8 +28,9 @@
   flex-direction: column;
 }
 .video {
-  width: 100%;
+  width: 281px;
   border-radius: 12px 12px 0 0;
+  height: 158px;
 }
 .videosli {
   display: flex;
@@ -36,14 +40,13 @@
   box-shadow: 0px 0px 10px 0px var(--gris-oscuro-borde);
   border-bottom: 1px solid var(--gris-oscuro-borde);
   border-radius: 12px;
-  width: 80%;
 }
-.cubo-vasura {
+.cubo-basura {
   display: flex;
   justify-content: space-around;
-  color: var(--gris-oscuro-borde);
+  color: var(--gris-oscuro-contenido);
 }
-.cubo-vasura svg {
+.cubo-basura svg {
   width: fit-content;
 }
 .funil-name {
@@ -53,11 +56,31 @@
 .funil {
   font-size: large;
 }
+#filtro {
+  flex-grow: 0;
+  width: fit-content;
+  margin: 0 10%;
+}
+#filtro:hover {
+  flex-grow: 0;
+  justify-content: center;
+  font-size: large;
+  font-weight: 500;
+  border: none;
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+  margin: 1vh 0;
+  border: 1px solid var(--verde);
+  color: white;
+  background-color: var(--verde);
+  width: fit-content;
+  margin: 0 10%;
+}
 .menu-container {
   margin: 5% 0;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
   align-content: center;
@@ -66,8 +89,20 @@
 .menu.active.filter,
 .menu.inactive.filter {
   position: absolute;
-  transform: translateY(-6%);
+  transform: translateY(-19px);
+  transform: translateX(100px);
+  opacity: 0;
+  transition: 1.5s;
 }
+.menu.active.filter,
+.menu.inactive.filter:hover {
+  position: absolute;
+  transform: translateX(10px);
+  opacity: 0.9;
+  transition: 1.5s;
+  width: 50%;
+}
+
 input[type="checkbox" i] {
   background-color: none;
 }

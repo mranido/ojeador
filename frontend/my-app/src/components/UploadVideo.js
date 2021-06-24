@@ -138,16 +138,18 @@ export const UploadVideo = () => {
   return (
     <>
       {token && userRol === "Player" ? (
-        <div>
-          <div className="App">
-            <form onSubmit={uploadFile}>
-              <div className="form-button">
+        <div className="App">
+          <div>
+            <form className="wrap-centra-column" onSubmit={uploadFile}>
+              <div className="tag-information">
                 <label for="buttoni">Escoge un Vídeo</label>
                 <input id="buttoni" type="file" onChange={onFileChange} />
               </div>
-              <button className="button1" type="submit">
-                Subir Vídeo
-              </button>
+              <div className="form-button">
+                <button className="button1" type="submit">
+                  Subir Vídeo
+                </button>
+              </div>
             </form>
           </div>
           <>
@@ -201,7 +203,7 @@ export const UploadVideo = () => {
                               )}
                             </div>
                           </div>
-                          <div className="cubo-vasura">
+                          <div className="cubo-basura">
                             <FaTrashAlt onClick={deletedVideo}></FaTrashAlt>
                           </div>
                         </div>
@@ -216,7 +218,7 @@ export const UploadVideo = () => {
       ) : (
         <Redirect to="/profile/user-profile" />
       )}
-      <p className="form-input">{message ? <div>{message}</div> : ""}</p>
+      <p>{message ? <p>{message}</p> : ""}</p>
     </>
   );
 };

@@ -40,8 +40,8 @@ const Filter = ({ setFilter }) => {
   return (
     <div className="container-menu">
       <form className="menu-container" onSubmit={handleFilter}>
-        <div className="funil-name">Filtro</div>
-        <button onClick={onClick} className="menu-trigger" name="Filtro">
+        <button onClick={onClick} className="button1" id="filtro" name="Filtro">
+          <div className="funil-name">Filtro</div>
           <RiFilter2Line className="funil" />
         </button>
         <nav

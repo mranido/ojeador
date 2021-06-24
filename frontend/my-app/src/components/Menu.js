@@ -39,7 +39,7 @@ const Menu = () => {
       {token === "" ? (
         <div className="container-menu">
           <div className="menu-container">
-            <button onClick={onClick} className="menu-trigger">
+            <button onClick={onClick} className={"menu-trigger"}>
               <img
                 src={`/images/profiles/image-default.png`}
                 className="menu-image"

@@ -167,12 +167,13 @@ export function MainPage() {
             })
           ) : (
             <>
+              <p>No hay resultados para tu búsqueda</p>
               <img
                 src={logo}
                 className="img-not-found"
                 alt="Imagen de ojeador"
               ></img>
-              <p> No hay resultados para tu búsqueda</p>
+              <p>Prueba otra combinación de filtros</p>
             </>
           )}
         </ul>
