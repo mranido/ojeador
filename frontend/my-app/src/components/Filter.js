@@ -49,7 +49,9 @@ const Filter = ({ setFilter }) => {
           className={`menu ${isActive ? "active" : "inactive"} filter`}
         >
           <ul ref={age}>
-            <div>EDAD</div>
+            <div>
+              <h3>EDAD</h3>
+            </div>
             <li>
               <label>
                 <input type="checkbox" name="prebenjamin"></input>
@@ -87,7 +89,9 @@ const Filter = ({ setFilter }) => {
               </label>
             </li>
           </ul>
-          <div>POSICIÓN</div>
+          <div>
+            <h3>POSICIÓN</h3>
+          </div>
           <ul ref={position}>
             <li>
               <label>
@@ -114,7 +118,9 @@ const Filter = ({ setFilter }) => {
               </label>
             </li>
           </ul>
-          <div>HABILIDADES</div>
+          <div>
+            <h3>HABILIDADES</h3>
+          </div>
           <ul ref={hability}>
             <li>
               <label>
@@ -158,7 +164,9 @@ const Filter = ({ setFilter }) => {
                 Paralotodo
               </label>
             </li>
-            <div>EQUIPO</div>
+            <div>
+              <h3>EQUIPO</h3>
+            </div>
             <li>
               <label>
                 <input

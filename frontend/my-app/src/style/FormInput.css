@@ -10,7 +10,7 @@ textarea {
   background-color: var(--gris-claro);
   opacity: 50%;
   color: var(--gris-oscuro-contenido);
-  width: 95%;
+  width: 100%;
   font-size: 18px;
   margin-bottom: 2vh;
   padding: 8px 8px;
@@ -18,4 +18,10 @@ textarea {
 
 label > span {
   color: var(--warning-red);
+}
+
+#buscar-equipo {
+  height: 100%;
+  margin: 0 0 0 0;
+  border: var(--gris-oscuro-borde) solid 1px;
 }

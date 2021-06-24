@@ -127,7 +127,7 @@ export const UploadVideo = () => {
       setMessage("Vídeo eliminado");
     } catch (err) {
       if (err.response.status === 500) {
-        setMessage("There was a problem with the server");
+        setMessage("Ocurrió un problema con el servidor");
       } else {
         setMessage(err.response.data.msg);
       }
@@ -165,10 +165,9 @@ export const UploadVideo = () => {
                         controls
                         src={`/videos/${url.videoUrl}`}
                         type="video/mp4"
-                      >
-                        {" "}
-                      </video>
+                      ></video>
                       <div>
+                        {" "}
                         <div className="container-infowithbutton">
                           <div className="container-info">
                             <div>
@@ -200,11 +199,10 @@ export const UploadVideo = () => {
                               ) : (
                                 ""
                               )}
-                              <div>
-                                {" "}
-                                <FaTrashAlt onClick={deletedVideo}></FaTrashAlt>
-                              </div>
                             </div>
+                          </div>
+                          <div className="cubo-vasura">
+                            <FaTrashAlt onClick={deletedVideo}></FaTrashAlt>
                           </div>
                         </div>
                       </div>
@@ -218,7 +216,7 @@ export const UploadVideo = () => {
       ) : (
         <Redirect to="/profile/user-profile" />
       )}
-      {message ? <div>{message}</div> : ""}
+      <p className="form-input">{message ? <div>{message}</div> : ""}</p>
     </>
   );
 };

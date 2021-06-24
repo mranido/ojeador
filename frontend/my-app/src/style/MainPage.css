@@ -2,6 +2,7 @@
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
+  margin: 0.5rem;
 }
 .container-info {
   display: flex;
@@ -24,25 +25,35 @@
   flex-direction: column;
 }
 .video {
-  width: 256px;
-  height: 144px;
-  border-radius: 4%;
+  width: 100%;
+  border-radius: 12px 12px 0 0;
 }
 .videosli {
-  margin-bottom: 5%;
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  margin: 1rem;
   box-shadow: 0px 0px 10px 0px var(--gris-oscuro-borde);
   border-bottom: 1px solid var(--gris-oscuro-borde);
   border-radius: 12px;
+  width: 80%;
+}
+.cubo-vasura {
+  display: flex;
+  justify-content: space-around;
 }
 .funil-name {
   display: inline-block;
+  font-size: large;
 }
-
+.funil {
+  font-size: large;
+}
 .menu-container {
   margin: 5% 0;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   align-content: center;
@@ -51,8 +62,8 @@
 .menu.active.filter,
 .menu.inactive.filter {
   position: absolute;
-  transform: translateY(-7%);
+  transform: translateY(-6%);
 }
 input[type="checkbox" i] {
-  background-color: aquamarine;
+  background-color: none;
 }

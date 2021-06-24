@@ -117,11 +117,7 @@ function UpdateUser() {
           setUserImage={setUserImage}
           userInfoReloader={userInfoReloader}
         />
-        <div className="upload-image-wrapper">
-          <div className="upload-image">
-            <UploadProfileImage />
-          </div>
-        </div>
+        <UploadProfileImage />
 
         <div className="update-user">
           <form onSubmit={handleSubmit}>

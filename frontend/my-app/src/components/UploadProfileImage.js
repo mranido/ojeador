@@ -52,7 +52,7 @@ export const UploadProfileImage = ({ setUserImage }) => {
       setMessage("Imagen de Pefil cambiada correctamente");
     } catch (err) {
       if (err.response.status === 500) {
-        setMessage("There was a problem with the server");
+        setMessage("Ocurrió un problema con el servidor");
       } else {
         setMessage(err.response.data.msg);
       }

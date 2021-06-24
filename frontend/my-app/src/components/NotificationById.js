@@ -96,7 +96,8 @@ export function NotificationsById() {
         </div>
       ) : (
         <div className="container-notification">
-          <h1>Oferta enviada por {messageId.scoutName}</h1>
+          <h1>Oferta enviada por </h1>
+          <h2>{messageId.scoutName}</h2>
           <div className="separador-img-h1">
             {messageId.scoutImage ? (
               <img
