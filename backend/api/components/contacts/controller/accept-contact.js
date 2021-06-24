@@ -21,13 +21,9 @@ async function acceptContact(req, res, next) {
       return response.error(req, res, "Ya has aceptado la oferta", 409);
     }
 
-    const acceptedContact = await model.update1(
-      { contactStatus: true },
-      TABLE,
-      {
-        contactId: contactid,
-      }
-    );
+    const acceptedContact = await model.update1({ contactStatus: 1 }, TABLE, {
+      contactId: contactid,
+    });
     const { contactScoutId } = contact;
 
     const dataEmail = await model.findOne({ userId: contactScoutId }, TABLE2);

@@ -4,6 +4,7 @@ import { AuthContext } from "./AuthContext";
 import { decodeTokenData } from "../utils/decodeToken";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import logo from "./../imagesMenu/ojeador.svg";
 import "./../style/MainPage.css";
 import Filter from "./Filter";
 import { getAge } from "../utils/getAge";
@@ -44,6 +45,7 @@ export function MainPage() {
             avgMedia: i.avgMedia,
             userTeam: i.userTeam,
             userPosition: i.userPosition,
+            skillName: i.SkillName,
           };
         });
         setUserVideo(data);
@@ -53,6 +55,7 @@ export function MainPage() {
     loadVideos();
   }, []);
 
+  console.log(userVideo);
   useEffect(() => {
     let videos = userVideo;
 
@@ -68,6 +71,10 @@ export function MainPage() {
       );
     }
 
+    if (filter.skills?.length) {
+      videos = videos.filter((v) => v.skillName.includes(filter.skills));
+    }
+
     if (filter.team) {
       videos = videos.filter((v) =>
         v.userTeam.toLowerCase().includes(filter.team.toLowerCase())
@@ -76,79 +83,93 @@ export function MainPage() {
 
     setFilteredVideos(videos);
   }, [filter, userVideo]);
+  if (!userVideo) {
+    return <p>No hay resultados para tu búsqueda</p>;
+  }
 
   return (
     <>
       <Filter setFilter={setFilter} />
       <div className="wrap-centra-column">
         <ul className="tag-information">
-          {filteredVideos.map((url, index) => {
-            return (
-              <li key={url.videoUrl} prop={url.userId} className="videosli">
-                <video
-                  className="video"
-                  controls
-                  src={`/videos/${url.videoUrl}`}
-                  type="video/mp4"
-                >
-                  {" "}
-                </video>
-                <div>
-                  <div className="container-infowithbutton">
-                    <div className="container-info">
-                      <div>
-                        {url.userImage ? (
-                          <Link to={`/profile/user/${url.userId}`}>
-                            <img
-                              src={`/images/profiles/${url.userImage}`}
-                              alt="Imagen de perfil"
-                              className="image"
-                            ></img>
-                          </Link>
-                        ) : (
-                          <Link to={`/profile/user/${url.userId}`}>
-                            <img
-                              src={`/images/profiles/image-default.png`}
-                              alt="Imagen de perfil"
-                              className="image"
-                            ></img>
-                          </Link>
-                        )}{" "}
-                      </div>{" "}
-                      <div>
-                        <div>{url.userName}</div>
-                        {url.avgMedia ? (
-                          <div>
-                            {url.avgMedia}
-                            <FaStar color="#5ACA75"></FaStar>
-                          </div>
-                        ) : (
-                          ""
-                        )}
+          {filteredVideos.length > 0 ? (
+            filteredVideos.map((url, index) => {
+              return (
+                <li key={url.videoUrl} prop={url.userId} className="videosli">
+                  <video
+                    className="video"
+                    controls
+                    src={`/videos/${url.videoUrl}`}
+                    type="video/mp4"
+                  >
+                    {" "}
+                  </video>
+                  <div>
+                    <div className="container-infowithbutton">
+                      <div className="container-info">
+                        <div>
+                          {url.userImage ? (
+                            <Link to={`/profile/user/${url.userId}`}>
+                              <img
+                                src={`/images/profiles/${url.userImage}`}
+                                alt="Imagen de perfil"
+                                className="image"
+                              ></img>
+                            </Link>
+                          ) : (
+                            <Link to={`/profile/user/${url.userId}`}>
+                              <img
+                                src={`/images/profiles/image-default.png`}
+                                alt="Imagen de perfil"
+                                className="image"
+                              ></img>
+                            </Link>
+                          )}{" "}
+                        </div>{" "}
+                        <div>
+                          <div>{url.userName}</div>
+                          {url.avgMedia ? (
+                            <div>
+                              {url.avgMedia}
+                              <FaStar color="#5ACA75"></FaStar>
+                            </div>
+                          ) : (
+                            ""
+                          )}
+                        </div>
                       </div>
+                      {userRol === "Scout" ? (
+                        <Link
+                          to={{
+                            pathname: "/contact",
+                            state: {
+                              id: url.userId,
+                              image: url.userImage,
+                              userName: url.userName,
+                              avgMedia: url.avgMedia,
+                            },
+                          }}
+                        >
+                          <button className="button3">Contacta</button>
+                        </Link>
+                      ) : (
+                        ""
+                      )}
                     </div>
-                    {userRol === "Scout" ? (
-                      <Link
-                        to={{
-                          pathname: "/contact",
-                          state: {
-                            id: url.userId,
-                            image: url.userImage,
-                            userName: url.userName,
-                            avgMedia: url.avgMedia,
-                          },
-                        }}
-                      >
-                        <button className="button3">Contacta</button>
-                      </Link>
-                    ) : (
-                      ""
-                    )}
                   </div>
-                </div>
-              </li>
-            );
-          })}
+                </li>
+              );
+            })
+          ) : (
+            <>
+              <img
+                src={logo}
+                className="img-not-found"
+                alt="Imagen de ojeador"
+              ></img>
+              <p> No hay resultados para tu búsqueda</p>
+            </>
+          )}
         </ul>
       </div>
     </>

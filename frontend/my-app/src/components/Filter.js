@@ -15,7 +15,7 @@ const Filter = ({ setFilter }) => {
   };
 
   const age = useRef(null);
-  const hability = useRef(null);
+  const skills = useRef(null);
   const position = useRef(null);
   const [team, setTeam] = useState("");
 
@@ -28,7 +28,7 @@ const Filter = ({ setFilter }) => {
       position: Array.from(position.current.querySelectorAll(":checked")).map(
         (el) => el.getAttribute("name")
       ),
-      hability: Array.from(hability.current.querySelectorAll(":checked")).map(
+      skills: Array.from(skills.current.querySelectorAll(":checked")).map(
         (el) => el.getAttribute("name")
       ),
       team,
@@ -115,46 +115,46 @@ const Filter = ({ setFilter }) => {
             </li>
           </ul>
           <div>HABILIDADES</div>
-          <ul ref={hability}>
+          <ul ref={skills}>
             <li>
               <label>
-                <input type="checkbox" name="velocidad"></input>
+                <input type="checkbox" name="Velocidad"></input>
                 Velocidad
               </label>
             </li>
             <li>
               <label>
-                <input type="checkbox" name="salto"></input>
+                <input type="checkbox" name="Salto"></input>
                 Salto
               </label>
             </li>
             <li>
               <label>
-                <input type="checkbox" name="defensivo"></input>
+                <input type="checkbox" name="Defensivo"></input>
                 Defensivo
               </label>
             </li>
             <li>
               <label>
-                <input type="checkbox" name="regateador"></input>
+                <input type="checkbox" name="Regateador"></input>
                 Regateador
               </label>
             </li>
             <li>
               <label>
-                <input type="checkbox" name="rematador"></input>
+                <input type="checkbox" name="Rematador"></input>
                 Rematador
               </label>
             </li>
             <li>
               <label>
-                <input type="checkbox" name="incansable"></input>
+                <input type="checkbox" name="Incansable"></input>
                 Incansable
               </label>
             </li>
             <li>
               <label>
-                <input type="checkbox" name="paralotodo"></input>
+                <input type="checkbox" name="Paralotodo"></input>
                 Paralotodo
               </label>
             </li>
