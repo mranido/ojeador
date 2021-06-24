@@ -118,7 +118,9 @@ const Filter = ({ setFilter }) => {
               </label>
             </li>
           </ul>
-          <div>HABILIDADES</div>
+          <div>
+            <h3>HABILIDADES</h3>
+          </div>
           <ul ref={skills}>
             <li>
               <label>
